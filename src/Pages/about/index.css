@@ -1,0 +1,135 @@
+/* Default styles */
+.aboutOuterCon {
+  padding: 10px !important;
+  background: white !important;
+}
+
+.aboutcontainer {
+  background: var(--secondary-color) !important;
+  padding: 100px !important;
+}
+
+.about_boxes {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.about_boxes_inside {
+  flex: 1 1 280px;
+  margin: 20px;
+  padding: 20px;
+  border-bottom: 3px dotted #d5dbe6;
+  text-align: center;
+}
+
+.about_box_title {
+  font-weight: 500;
+  margin-bottom: 10px;
+}
+
+.aboutimg {
+  margin-top: 20px;
+  border: 3px solid var(--primary-color);
+  transition: border-width 0.3s ease;
+}
+
+.aboutimg:hover {
+  border-width: 6px;
+}
+
+.about_explore,
+.about_shop {
+  padding: 20px 0;
+  text-align: center;
+}
+
+.about_explore h2,
+.about_shop h2 {
+  font-size: 24px;
+  font-weight: 600;
+}
+
+.about_shop_heading {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 600;
+  color: #333;
+}
+
+.about_shop_heading div {
+  background-color: black;
+  border-radius: 50%;
+  height: 8px;
+  width: 8px;
+}
+
+/* Responsive adjustments */
+.hov-img0 img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Media Queries for responsiveness */
+
+/* Large desktops and laptops */
+@media (min-width: 1200px) {
+  .aboutcontainer {
+    padding: 80px !important;
+  }
+
+  .about_boxes_inside {
+    flex: 1 1 calc(33.33% - 40px);
+    max-width: calc(33.33% - 40px);
+  }
+}
+
+/* Medium devices (tablets, 768px and up) */
+@media (min-width: 768px) and (max-width: 1199px) {
+  .aboutcontainer {
+    padding: 60px !important;
+  }
+
+  .about_boxes_inside {
+    flex: 1 1 calc(50% - 40px);
+    max-width: calc(50% - 40px);
+  }
+}
+
+/* Small devices (landscape phones, 576px and up) */
+@media (min-width: 576px) and (max-width: 767px) {
+  .aboutcontainer {
+    padding: 40px !important;
+  }
+
+  .about_boxes_inside {
+    flex: 1 1 calc(50% - 30px);
+    max-width: calc(50% - 30px);
+  }
+
+  .aboutimg {
+    display: none;
+  }
+}
+
+/* Extra small devices (portrait phones, less than 576px) */
+@media (max-width: 575px) {
+  .aboutcontainer {
+    padding: 20px !important;
+  }
+
+  .about_boxes_inside {
+    flex: 1 1 calc(100% - 20px);
+    max-width: calc(100% - 20px);
+  }
+
+  .col-md-5 {
+    order: -1;
+    text-align: center;
+  }
+
+  .aboutimg {
+    display: none;
+  }
+}

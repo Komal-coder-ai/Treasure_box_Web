@@ -1,0 +1,41 @@
+.productdetail_container {
+    padding: 50px;
+}
+
+.productBTNLAst {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.quantitybutton {
+    color: #000 !important;
+    font-size: 14px !important;
+    font-weight: 400 !important;
+    border: 1px solid #dcdcdc !important;
+    height: 50px !important;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 110px !important;
+}
+
+.num-product {
+    background: none !important;
+    border: none !important;
+}
+
+.quantityAddSubIncon {
+    font-size: medium;
+    font-weight: bold;
+    margin: 3px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.read-more-btn {
+    background-color: transparent;
+    border: none;
+    color: var(--primary-color) !important;
+    cursor: pointer;
+}

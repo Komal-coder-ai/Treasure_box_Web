@@ -1,0 +1,121 @@
+/* Default styles */
+
+/* Carousel item content */
+.sliderCon {
+  padding: 15px;
+  /* margin-top: 40px !important; */
+  background: white;
+}
+
+.carousel-item-content {
+  position: relative;
+}
+
+/* Content text */
+.content-text {
+  position: absolute;
+  top: 50%;
+  left: 100px;
+  right: 20px;
+  transform: translateY(-50%);
+  color: white;
+  text-align: left;
+  width: 500px; 
+}
+
+.content-text h2,
+.content-text p,
+.content-text button {
+  margin-bottom: 10px;
+}
+
+.content-text button {
+  background-color: #ffffff;
+  color: #000000;
+  padding: 10px 20px; 
+  border: none;
+  cursor: pointer;
+}
+
+.sliderheading {
+  animation-delay: .5s !important;
+  animation-duration: .5s !important;
+  line-height: 1.2 !important;
+  color: #323232 !important;
+  margin-bottom: 14px !important;
+  font-size: 36px !important;
+  font-weight: 400;
+}
+
+/* Carousel indicators */
+.carousel-indicators {
+  bottom: 10px;
+}
+.carousel-indicators [data-bs-target]{
+  background-color: red;
+}
+.carousel-indicators li {
+  background-color: red; 
+  border: 1px solid black;
+  width: 10px !important ; 
+  border-radius: 100% !important;
+  height: 10px; 
+  margin: 0 5px; 
+}
+
+.carousel-indicators .active {
+  background: #6b6868;
+}
+
+/* Responsive adjustments */
+@media (max-width: 1200px) {
+  .content-text {
+    width: 400px;
+  }
+}
+
+@media (max-width: 992px) {
+  .content-text {
+    width: 300px;
+  }
+}
+
+@media (max-width: 768px) {
+  .content-text {
+    width: calc(100% - 40px); /* Adjust to the specific padding or margin of the parent container */
+    padding: 0 20px;
+    left: 0;
+    right: 0;
+  }
+
+
+
+  .content-text p {
+    font-size: 14px; 
+  }
+
+  .content-text button {
+    font-size: 14px; 
+    padding: 8px 16px; 
+  }
+}
+
+@media (max-width: 576px) {
+ 
+
+  .content-text h2 {
+    font-size: 10px; 
+  }
+
+
+  .content-text button {
+    font-size: 12px; 
+    padding: 6px 12px; 
+  }
+  .decrptionHomeSlider{
+    display: none;
+  }
+  .sliderheading{
+    font-size: smaller;
+  }
+}

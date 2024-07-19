@@ -1,0 +1,23 @@
+.category-list {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 20px;
+  justify-content: center;
+  list-style-type: none; /* Remove default list styles */
+  padding: 0; /* Remove default padding */
+}
+
+.category-item {
+  margin-right: 20px;
+}
+
+.category-link {
+  text-decoration: none;
+  color: #323232;
+  /* font-weight: bold; */
+  padding: 10px;
+}
+
+.category-link:hover {
+  color: gray;
+}
