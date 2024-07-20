@@ -10,7 +10,7 @@ const ButtonForAll = ({ name, backgroundColor, textColor, onClick }) => {
   return (
     <button className="custom-button" style={buttonStyle} onClick={onClick}>
       {name}
-      <div className="innercontainer" >{name}</div>
+      <div className="innercontainer xyz" >{name}</div>
     </button>
   );
 };
