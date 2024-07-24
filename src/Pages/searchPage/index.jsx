@@ -36,26 +36,27 @@ const SearchPage = ({onClose}) => {
 
   const handleListClick = (id, name) => {
     navigate(`/productDetails/${id}/${name}`)
+    setSearch("");
   }
 
 
   return (
     <div className='search_container_fluid'>
-      <SearchBar {...{ handleOnSearchChange, setSearch, search ,onClose}} />
+      <SearchBar {...{ handleOnSearchChange, setSearch, search,onClose }} />
       {search ?
         <div className='searchList_container'>
           {data.map((item) => {
             return (
-              <> <div className="search_data_img_con">
+              <div>
+               <div className="search_data_img_con">
                 <div className="search_data_img_name">
-
                 <CiSearch  />
-
                   <img onClick={() => handleListClick(item.id, item?.productName)} className='' src={`${ImageUrl}/${item.files ? item.files : item.file}`} alt="" height={40} width={40} />
                   <p className='product_list' onClick={() => handleListClick(item.id, item?.productName)} >{item?.productName}</p>
                 </div>
+                <Divider />
                 </div>
-              </>
+                </div>
             )
           })}
         </div>

@@ -446,6 +446,7 @@ mobile navbar
     mix-blend-mode: multiply;
     margin: auto;
     display: flex;
+    justify-content: center;
     padding: 4px;
 }
 

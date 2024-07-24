@@ -60,8 +60,11 @@ const ProductBox = ({
   };
   const numProducts = renderproduct.length;
   const getGridProps = (numProducts) => {
-    if (numProducts <= 2) {
-      return { xs: 12, sm: 6, md: 5 };
+    if (numProducts <= 1) {
+      return { xs: 12, sm: 6, md: 12 };
+    }
+   else if (numProducts <= 2) {
+      return { xs: 12, sm: 6, md: 6 };
     } else {
       return { xs: 12, sm: 6, md: 3 };
     }

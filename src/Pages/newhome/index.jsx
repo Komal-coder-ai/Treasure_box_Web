@@ -220,7 +220,9 @@ const Newhome = ({ reload, setReload, catval, setCatval }) => {
                       style={{
                         display: "flex",
                         justifyContent: "space-evenly",
+                        alignItems:"center",
                         marginTop: "50px",
+                        
                         width: "90%",
                         margin: "auto",
                       }}

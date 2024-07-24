@@ -221,7 +221,7 @@ const Footer = ({ catval, setCatval, bgcolor, textcolor, imptext }) => {
                   color: finalTextColor,
                 }}
               >
-                (+91) 92945 88000
+                {/* (+91) 92945 88000 */}
               </a>
             </p>
             <p

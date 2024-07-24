@@ -101,7 +101,7 @@ const SearchBar = ({
                 placeholder="Search for products..."
                 value={search}
                 onChange={(e) => handleOnSearchChange(e)}
-                onBlur={onClose}
+                // onBlur={onClose}
                 type="search"
                 autoFocus={true}
                 style={{

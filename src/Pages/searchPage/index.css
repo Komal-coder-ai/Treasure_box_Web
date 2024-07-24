@@ -30,6 +30,6 @@
 }
 
 .search_data_img_name:hover {
-    padding: 2px;
+    /* padding: 2px; */
     background: var(--secondary-color);
 }

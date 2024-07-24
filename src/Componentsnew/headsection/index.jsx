@@ -764,8 +764,8 @@ const HeaderSection = ({
           <div className="logo-mobile">
             <Link to="/" className="logo">
               <img
-                src="https://tse1.mm.bing.net/th?id=OIP.6VJpiEB8bvznoRMNRDREjQHaB1&pid=Api&P=0&h=180"
-                alt="IMG-LOGO"
+              src={headerlogo}
+               alt="IMG-LOGO"
               />
             </Link>
           </div>

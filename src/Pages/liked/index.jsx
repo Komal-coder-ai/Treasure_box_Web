@@ -27,11 +27,11 @@ const Liked = () => {
                 ToastMessage("error", result.data.message);
             }
         } catch (error) {
-        }finally{
+        } finally {
             setPending(false)
         }
     }
-  
+
     useEffect(() => {
         getLiked()
     }, [])
@@ -45,60 +45,61 @@ const Liked = () => {
                 ToastMessage("error", result.data.message);
             }
         } catch (error) {
-        }finally{
+        } finally {
         }
-      }
-  
+    }
+
 
 
     return (
         <>
 
-<div className="TopPageForMobile">
-  	<TopPageImage pagename="Wishlist"></TopPageImage>
-      </div>
-
-        {pending ? <Loader/> :
-        <div style={{
-            width:"90vw",
-            height:"cover",
-            background:'white',
-            display:"flex",
-            justifyContent:"space-evenly",
-            alignItems:"center",
-            margin:"auto",
-            padding:"20px"
-        }}>
-            {productList.length ?
-                <div >
-                    <div className='wishlist_heading'>
-                        {LikedHeading}
-                    </div>
-                <div className='wishlist_container'
-                
-                >
-                   <div className="wishList_img "
-                
-                style={{
-                    padding:"20px"
-                }}>
-                   <ProductBox renderproduct={productList}  setProductList={setProductList}  productApifunc={updateApiCall} />
-                   </div>
-                </div>
-                </div>
-                :
-               <div className="emptycon"> 
-             <div className="data">
-             <h3>No Wishlist Items Found</h3>
-           <div className="btnWishlist"
-          >
-           <Link to={"/product"} style={{ textDecoration: 'none' }}><ButtonForAll name="CONTINUE SHOPING"  className="Wishlistbtn"></ButtonForAll></Link>
-           </div>
-             </div>
-               </div>
-            }
+            <div className="TopPageForMobile">
+                {/* <TopPageImage pagename="Wishlist.."></TopPageImage> */}
             </div>
-        }
+
+            {pending ? <Loader /> :
+                <div style={{
+                    width: "90vw",
+                    height: "cover",
+                    background: 'white',
+                    display: "flex",
+                    justifyContent: "space-evenly",
+                    alignItems: "center",
+                    margin: "auto",
+                    padding: "20px"
+                }}>
+                    {productList.length ?
+                        <div >
+                            <div className='wishlist_heading'>
+                                {LikedHeading}
+                            </div>
+                            <div className='wishlist_container'
+
+                            >
+                                <div className="wishList_img "
+
+                                    style={{
+                                        padding: "20px"
+                                    }}
+                                    >
+                                    <ProductBox renderproduct={productList} setProductList={setProductList} productApifunc={updateApiCall} />
+                                </div>
+                            </div>
+                        </div>
+                        :
+                        <div className="emptycon">
+                            <div className="data">
+                                <h3>No Wishlist Items Found</h3>
+                                <div className="btnWishlist"
+                                >
+                                    <Link to={"/product"} style={{ textDecoration: 'none' }}><ButtonForAll name="CONTINUE SHOPING" className="Wishlistbtn"></ButtonForAll></Link>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            }
         </>
     )
 }
