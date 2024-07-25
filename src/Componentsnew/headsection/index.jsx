@@ -583,7 +583,7 @@ const HeaderSection = ({
               ref={dropdownRefShop}
             >
               <div className="dropdown navbarListItemsStylex d-flex">
-                <button className="dropbtn" onMouseOver={toggleDropdownShop}>
+                <button className="dropbtn" onClick={toggleDropdownShop}>
                   <span className=" bold navbarListItemsStyle">
                     Shop <IoIosArrowDown className="navbarListItemsStyle" />
                   </span>

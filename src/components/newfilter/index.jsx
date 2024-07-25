@@ -342,6 +342,7 @@ const Newfilter = ({name,categoryvalueforapi,categoryList,categoryheading, setCa
 			<div className="">
 				<div className="filter-col1 p-r-15 p-b-10 ">
 					<div>
+						{/* <p>Lorem, ipsum dolor.</p> */}
 						<h3 className="productheading ">{categoryheading ? "Product Categories" : "Sub Category"}</h3>
 					</div>
 					<ul className='productList'>

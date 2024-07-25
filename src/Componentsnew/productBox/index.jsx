@@ -75,7 +75,9 @@ const ProductBox = ({
         <Grid container>
           {renderproduct.map((item, index) => (
             <Grid key={index} {...getGridProps(numProducts)}>
-              <div className="product-box">
+              <div className="product-box"
+              
+              >
                 <div className="product-img-box">
                   <div className="likebuttonForMobile">
                     {item.is_wishlist ? (
@@ -119,6 +121,7 @@ const ProductBox = ({
                     className="product-image"
                     src={`${ImageUrl}/${item.files || item.file}`}
                     alt=""
+                  
                   />
 
                   <div className="product-icons">

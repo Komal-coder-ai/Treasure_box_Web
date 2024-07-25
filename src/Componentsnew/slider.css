@@ -45,15 +45,16 @@
 
 /* Product image itself */
 .product-image {
-  padding: 20%;
+  padding: 10%;
   width: 100%;
   height: 300px;
-  object-fit: cover;
+  object-fit: contain;
   cursor: pointer;
   transition: transform 0.3s ease;
   mix-blend-mode: multiply;
   background-color: transparent;
 }
+
 
 /* Product icons container */
 .product-icons {

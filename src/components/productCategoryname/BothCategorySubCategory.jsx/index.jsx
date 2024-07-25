@@ -46,6 +46,7 @@ const CategoryAndSubcategoryComponent = ({dropdownRef}) => {
               <Link
                 to={`/product/${category.id}/${category.category_name}`}
                 className="bothList"
+                // onClick={dropdownRef}
               >
                 {category.category_name}
               </Link>
