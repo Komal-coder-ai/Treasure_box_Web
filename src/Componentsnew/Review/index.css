@@ -3,9 +3,7 @@
   justify-content:start;
   margin-bottom: 20px;
 }
-.review-container h3{
-  font-style: 27px;
-}
+
 
 .review-form {
   display: flex;
@@ -44,4 +42,5 @@ textarea {
 
 .startrating label span{
   font-size: 20px !important;
+  color: var(--primary-color);
 }

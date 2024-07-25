@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { Rating } from '@mui/material';
+import { Avatar, Rating } from '@mui/material';
 import './index.css'; // Import your CSS file for styling
+import ButtonForAll from './../../components/ButtonForALL/index';
 
 const ReviewForm = () => {
   const [rating, setRating] = useState(0); // State to store rating
@@ -43,17 +44,45 @@ const ReviewForm = () => {
 
   return (
     <div className="review-container">
-      <h3>Your Review</h3>
+      <p className='reviewheading'
+        style={{
+          fontSize: "27px",
+          color: "var(--black-color)"
+        }}
+      >Your Review</p>
       {submittedData && (
         <div className="submitted-data">
-          <p>Name: {submittedData.name}</p>
-          <p>Email: {submittedData.email}</p>
-          <p>Comments: {submittedData.comments}</p>
-          <p>Rating: {submittedData.rating}</p>
+          <p style={{
+            fontSize: "27px",
+            color: "var(--black-color)"
+          }}>
+          </p><div className="rating d-flex ">
+
+            <Avatar alt={submittedData.name} src="/static/images/avatar/1.jpg" sx={{ width: 56, height: 56 }} />
+
+            <div className="userinformation mx-4">
+              <p
+                style={{
+                  fontSize: "14px",
+                  color: "var(--black-color)"
+                }}>{submittedData.name}</p>
+              <Rating name="size-large"
+                defaultValue={submittedData.rating}
+                size="large"
+                className='startrating'
+                onChange={(event, newValue) => handleRatingChange(newValue)}
+              />
+
+              <p>{submittedData.comments}</p>
+            </div>
+          </div>
+          <hr />
         </div>
       )}
 
-      <Rating name="size-large" defaultValue={2} size="large" className='startrating' onChange={(event, newValue) => handleRatingChange(newValue)} />{/* Rating section */}
+
+
+      <Rating name="size-large" defaultValue={0} size="large" className='startrating' onChange={(event, newValue) => handleRatingChange(newValue)} />{/* Rating section */}
 
       <form className="review-form" onSubmit={handleSubmit}>
         <div className="form-group">
@@ -89,9 +118,11 @@ const ReviewForm = () => {
             rows={5}
           />
         </div>
-        <div>
-          <button type="submit">Submit Review</button>
+        <div className='reviewsubmit' type="submit">
+          <ButtonForAll name="POST COMMENT"></ButtonForAll>
+          {/* <button type="submit">Submit Review</button> */}
         </div>
+
       </form>
     </div>
   );

@@ -221,14 +221,14 @@ const Newhome = ({ reload, setReload, catval, setCatval }) => {
                       style={{
                         display: "flex",
                         justifyContent: "space-evenly",
-                        alignItems:"center",
+                        alignItems: "center",
                         marginTop: "50px",
-                        
+
                         width: "90%",
                         margin: "auto",
                       }}
                     >
-                      <hr class="col-2"  />
+                      <hr class="col-2" />
 
                       <h2
                         class="home_body_product_heading col "
@@ -335,6 +335,7 @@ const Newhome = ({ reload, setReload, catval, setCatval }) => {
                       style={{
                         display: "flex",
                         justifyContent: "center",
+                        alignItems: "center",
                         paddingTop: "100px",
                         width: "90%",
                         margin: "auto",
@@ -368,7 +369,7 @@ const Newhome = ({ reload, setReload, catval, setCatval }) => {
                       />
                     </div>
                     <TwoConSlider></TwoConSlider>
-                    <GetDiscountInfo/>
+                    <GetDiscountInfo />
                   </div>
                 </div>
               </div>

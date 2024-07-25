@@ -39,6 +39,7 @@ import TopPageImage from "../../components/toppageimage";
 import { IoMdAdd } from "react-icons/io";
 import { RiSubtractFill } from "react-icons/ri";
 import DetailPageTab from "../../slider/detailPageTab";
+import RelatedProducts from "../RelatedProducts/Index";
 
 const ProductDetail = ({ reload, setReload, setCatval }) => {
   const user_id = localStorage.getItem("user_id");
@@ -821,6 +822,9 @@ const ProductDetail = ({ reload, setReload, setCatval }) => {
             id="readmore"
             Reviews={Reviews}
           />
+
+<RelatedProducts></RelatedProducts>
+
         </div>
       </div>
     </>
