@@ -3,8 +3,9 @@ import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
 import "./index.css"; // Import your custom CSS file
 import RemoveTag from "../../components/removetag";
+import ReviewCom from "../../Componentsnew/Review";
 
-const DetailPageTab = ({ description, general }) => {
+const DetailPageTab = ({ description, general, Reviews }) => {
   const showSpecificationTab = general && general.length > 0;
 
   return (
@@ -13,6 +14,7 @@ const DetailPageTab = ({ description, general }) => {
         <TabList className="custom-tab-list">
           <Tab>Description</Tab>
           {showSpecificationTab && <Tab>Specification</Tab>}
+          {Reviews && Reviews.length > 0 && <Tab>Reviews</Tab>}
         </TabList>
 
         <TabPanel>
@@ -43,6 +45,12 @@ const DetailPageTab = ({ description, general }) => {
                 </tbody>
               </table>
             </div>
+          </TabPanel>
+        )}
+
+        {Reviews && Reviews.length > 0 && (
+          <TabPanel>
+        <ReviewCom></ReviewCom>
           </TabPanel>
         )}
       </Tabs>

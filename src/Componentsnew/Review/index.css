@@ -1,0 +1,47 @@
+.rating-section {
+  display: flex;
+  justify-content:start;
+  margin-bottom: 20px;
+}
+.review-container h3{
+  font-style: 27px;
+}
+
+.review-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+label {
+  font-weight: bold;
+}
+
+input[type='text'],
+input[type='email'],
+textarea {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+}
+
+.review-form-input-name-email {
+  border: 1px solid #eaeaea;
+  height: 55px;
+  padding: 0 30px;
+  width: 100%;
+  font-size: 14px;
+}
+
+.review-form-input:focus {
+  border: 2px solid black;
+}
+
+.startrating label span{
+  font-size: 20px !important;
+}

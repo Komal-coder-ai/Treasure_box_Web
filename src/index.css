@@ -4,6 +4,11 @@
 
   font-family: 'Poppins', sans-serif !important;
 
+  font-size: 14px;
+  font-weight: 400;
+  color: #848b8a;
+  line-height: 24px;
+
 }
 
 
@@ -62,15 +67,22 @@ body {
   --dark-gray-color: #444444;
   --black-color: #201f1f;
   --heading-color: #201f1f;
+  --line-color:#848b8a
 
 }
 
-h2 {
+h1,h2,h3,h4,h5 {
+  line-height: 1.2  !important;
   font-weight: 400 !important;
+  padding: 0 50px !important;
+  z-index: 1 !important;
+  font-size: 36px !important;
+  font-family: Poppins, sans-serif !important;
+  color: #201f1f !important;
 }
 
 
-
+/* ************************************ */
 @media print {
 
   *::before,

@@ -343,6 +343,14 @@ const ProductDetail = ({ reload, setReload, setCatval }) => {
     scroll.scrollToTop();
   };
 
+
+  const Reviews=[{
+    img:"https://ng-outstock.vercel.app/assets/img/blog/comments/avater-1.png",
+    name:"Siarhei Dzenisenka",
+    rating:"4",
+    comment:"xyz"
+  }]
+
   return (
     <>
       {/* <div className="TopPageForMobile">
@@ -811,6 +819,7 @@ const ProductDetail = ({ reload, setReload, setCatval }) => {
             description={details?.description}
             general={general}
             id="readmore"
+            Reviews={Reviews}
           />
         </div>
       </div>

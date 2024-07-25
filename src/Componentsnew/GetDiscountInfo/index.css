@@ -1,0 +1,37 @@
+/* src/components/CenteredContent.css */
+
+.centered-container {
+  
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+}
+.inputGetDiscount {
+    width: 100%;
+    border-bottom: 1px solid var(--line-color);
+    text-align: center; 
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+}
+.content p{
+    
+}
+.inputGetDiscount input::placeholder {
+    text-align: center; 
+}
+
+.inputGetDiscount:focus{
+    border: 2px solid black;
+}
+.content {
+    text-align: center;
+    padding: 20px;
+   
+   
+}
+.subscribe_btn{
+    margin-top: 10px;
+display: flex;
+justify-content: center;
+}

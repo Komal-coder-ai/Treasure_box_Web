@@ -29,6 +29,7 @@ import HoomepageSlider2 from "../../slider/HomePageSlider2";
 import BacktoHome from "../../components/backtohome";
 import TwoConSlider from "../../slider/twoconSlider";
 import Footer from "../../components/footer";
+import GetDiscountInfo from "../../Componentsnew/GetDiscountInfo/Index";
 
 const Newhome = ({ reload, setReload, catval, setCatval }) => {
   const user_id = localStorage.getItem("user_id");
@@ -227,7 +228,7 @@ const Newhome = ({ reload, setReload, catval, setCatval }) => {
                         margin: "auto",
                       }}
                     >
-                      <hr class="headingLine1 col" style={{ width: "20%" }} />
+                      <hr class="col-2"  />
 
                       <h2
                         class="home_body_product_heading col "
@@ -241,7 +242,7 @@ const Newhome = ({ reload, setReload, catval, setCatval }) => {
                         {/* Best Sellers */}
                       </h2>
 
-                      <hr class="headingLine1 col" style={{ width: "20%" }} />
+                      <hr class="headingLine1 col-2" style={{ width: "20%" }} />
                     </div>
                     <p style={{ textAlign: "center" }} className="mb-5">
                       Discover the latest in-demand products everyone's talking
@@ -367,6 +368,7 @@ const Newhome = ({ reload, setReload, catval, setCatval }) => {
                       />
                     </div>
                     <TwoConSlider></TwoConSlider>
+                    <GetDiscountInfo/>
                   </div>
                 </div>
               </div>

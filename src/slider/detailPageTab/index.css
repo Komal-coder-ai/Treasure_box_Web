@@ -65,3 +65,11 @@
 .general_title {
   font-weight: bold;
 }
+
+/* ************rating******** */
+.name{
+  font-size: 14px !important;
+  margin-bottom: 0 !important;
+  display: inline-block !important;
+  color: #201f1f !important;
+}
