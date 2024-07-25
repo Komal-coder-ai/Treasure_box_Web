@@ -77,6 +77,7 @@ const SliderComponent = ({
 
   return (
     <div className="slider-container">
+      <p></p>
       <Grid container spacing={3}>
         {newarrivalList.map((item, index) => (
           <Grid item key={index} xs={12} sm={6} md={3}>
@@ -116,6 +117,7 @@ const SliderComponent = ({
                     </p>
                   )}
                 </div>
+
                 <img
                   onMouseEnter={() => handleImageHover(index, true)}
                   onMouseLeave={() => handleImageHover(index, false)}
@@ -233,7 +235,7 @@ const SliderComponent = ({
           {...{ reload, setReload }}
         />
       )}
-    </div>
+    </div> 
   );
 };
 

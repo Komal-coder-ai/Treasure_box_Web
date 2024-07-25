@@ -24,8 +24,9 @@
 
 .bothList {
     color: black;
-
+    word-spacing: -1px; 
 }
+
 
 .bothList:hover {
     color: var(--primary-color);

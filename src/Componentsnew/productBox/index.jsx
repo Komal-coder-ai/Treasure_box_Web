@@ -28,7 +28,7 @@ const ProductBox = ({
   const navigate = useNavigate();
   const user_id = localStorage.getItem("user_id");
   const [showLoginPopup, setShowLoginPopup] = useState(false);
-
+  const [secondaryImages, setSecondaryImages] = useState({});
   const handleDetailPage = (id, name) => {
     const cleanedName = name.replace(/[^\w\s]/gi, "");
     navigate(`/productDetails/${id}/${cleanedName}`);
@@ -58,6 +58,9 @@ const ProductBox = ({
       setShowLoginPopup(!showLoginPopup);
     }
   };
+
+
+
   const numProducts = renderproduct.length;
   const getGridProps = (numProducts) => {
     if (numProducts <= 1) {
@@ -69,6 +72,18 @@ const ProductBox = ({
       return { xs: 12, sm: 6, md: 3 };
     }
   };
+
+
+
+  const handleImageHover = (index, isHovering) => {
+    setSecondaryImages((prevImages) => ({
+      ...prevImages,
+      [index]: isHovering
+        ? `${ImageUrl}/${renderproduct[index].secondary_image}`
+        : null,
+    }));
+  };
+
   return (
     <>
       <Container className="slider-container">
@@ -112,6 +127,10 @@ const ProductBox = ({
                   </div>
 
                   <img
+
+onMouseEnter={() => handleImageHover(index, true)}
+onMouseLeave={() => handleImageHover(index, false)}
+
                     onClick={() =>
                       handleDetailPage(
                         item.productId || item.id,
@@ -119,8 +138,12 @@ const ProductBox = ({
                       )
                     }
                     className="product-image"
-                    src={`${ImageUrl}/${item.files || item.file}`}
+                    src={
+                      secondaryImages[index] ||
+                      `${ImageUrl}/${item.files || item.file}`
+                    }
                     alt=""
+                  
                   
                   />
 
