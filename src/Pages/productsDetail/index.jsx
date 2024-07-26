@@ -153,7 +153,11 @@ const ProductDetail = ({ reload, setReload, setCatval }) => {
         setDetails(result?.data?.data);
         setGeneral(result?.data?.Detail);
         setImages(result?.data?.images);
+
+
         setRenderimage(result?.data?.images[0].original);
+
+        
       } else {
         ToastMessage("error", result.data.message);
       }
@@ -238,7 +242,7 @@ const ProductDetail = ({ reload, setReload, setCatval }) => {
       } else {
         ToastMessage("error", result.data.message);
       }
-    } catch (error) {}
+    } catch (error) { }
   };
 
   const gotocart = () => {
@@ -345,16 +349,16 @@ const ProductDetail = ({ reload, setReload, setCatval }) => {
   };
 
 
-  const Reviews=[{
-    img:"https://ng-outstock.vercel.app/assets/img/blog/comments/avater-1.png",
-    name:"Siarhei Dzenisenka",
-    rating:"4",
-    comment:"xyz"
+  const Reviews = [{
+    img: "https://ng-outstock.vercel.app/assets/img/blog/comments/avater-1.png",
+    name: "Siarhei Dzenisenka",
+    rating: "4",
+    comment: "xyz"
   }]
 
   return (
     <>
-     
+
       <div
         className="productdetail_container"
         style={{
@@ -499,9 +503,9 @@ const ProductDetail = ({ reload, setReload, setCatval }) => {
             </div>
           ) : (
             <div className="p-r-50 p-t-5 p-lr-0-lg">
-              <h4 className="productdetails_productname">
+              <p className="productdetails_productname">
                 {details.productName}
-              </h4>
+              </p>
 
               <>
                 {details.discount_percent === 0 ? (
@@ -687,11 +691,10 @@ const ProductDetail = ({ reload, setReload, setCatval }) => {
 
                 {checkAddedFunction() ? (
                   <button
-                    className={`${
-                      details.is_active === 0
-                        ? "cart_div2_disable"
-                        : "cart_div2"
-                    } `}
+                    className={`${details.is_active === 0
+                      ? "cart_div2_disable"
+                      : "cart_div2"
+                      } `}
                     disabled={cartbtnloading || details.is_active === 0}
                     onClick={gotocart}
                   >
@@ -699,11 +702,10 @@ const ProductDetail = ({ reload, setReload, setCatval }) => {
                   </button>
                 ) : (
                   <button
-                    className={`${
-                      details.is_active === 0
-                        ? "cart_div2_disable"
-                        : "cart_div2"
-                    } `}
+                    className={`${details.is_active === 0
+                      ? "cart_div2_disable"
+                      : "cart_div2"
+                      } `}
                     disabled={cartbtnloading || details.is_active === 0}
                     onClick={user_id ? handlecart : handleprofilePage}
                   >
@@ -819,7 +821,7 @@ const ProductDetail = ({ reload, setReload, setCatval }) => {
             Reviews={Reviews}
           />
 
-<RelatedProducts></RelatedProducts>
+          <RelatedProducts  user_id={user_id}></RelatedProducts>
 
         </div>
       </div>

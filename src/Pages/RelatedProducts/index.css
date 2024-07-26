@@ -1,0 +1,42 @@
+.related-products {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .slider-wrapper {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    position: relative;
+  }
+  
+  .slider-container {
+    display: flex;
+    overflow: hidden;
+    width: 100%;
+  }
+  
+  .product-list {
+    display: flex;
+    width: 100%;
+  }
+  
+ 
+  
+   .arrow-icon {
+    cursor: pointer;
+    font-size: 2rem;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+  } 
+  
+  .arrow-left {
+    left: 0;
+  }
+  
+  .arrow-right {
+    right: 0;
+  }
+  

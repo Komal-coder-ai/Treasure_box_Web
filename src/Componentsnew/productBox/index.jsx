@@ -66,8 +66,8 @@ const ProductBox = ({
     if (numProducts <= 1) {
       return { xs: 12, sm: 6, md: 12 };
     }
-   else if (numProducts <= 2) {
-      return { xs: 12, sm: 6, md: 6 };
+    else if (numProducts <= 2) {
+      return { xs: 12, sm: 6, md: 5 };
     } else {
       return { xs: 12, sm: 6, md: 3 };
     }
@@ -91,7 +91,7 @@ const ProductBox = ({
           {renderproduct.map((item, index) => (
             <Grid key={index} {...getGridProps(numProducts)}>
               <div className="product-box"
-              
+
               >
                 <div className="product-img-box">
                   <div className="likebuttonForMobile">
@@ -128,8 +128,8 @@ const ProductBox = ({
 
                   <img
 
-onMouseEnter={() => handleImageHover(index, true)}
-onMouseLeave={() => handleImageHover(index, false)}
+                    onMouseEnter={() => handleImageHover(index, true)}
+                    onMouseLeave={() => handleImageHover(index, false)}
 
                     onClick={() =>
                       handleDetailPage(
@@ -143,8 +143,8 @@ onMouseLeave={() => handleImageHover(index, false)}
                       `${ImageUrl}/${item.files || item.file}`
                     }
                     alt=""
-                  
-                  
+
+
                   />
 
                   <div className="product-icons">
@@ -158,9 +158,9 @@ onMouseLeave={() => handleImageHover(index, false)}
                           item.is_active === 0
                             ? ""
                             : handleDetailPage(
-                                item.productId || item.id,
-                                item.product_name || item.productName
-                              )
+                              item.productId || item.id,
+                              item.product_name || item.productName
+                            )
                         }
                         className="product-icon"
                       />
@@ -197,6 +197,7 @@ onMouseLeave={() => handleImageHover(index, false)}
                         />
                       )}
                     </p>
+                   
                   </div>
                 </div>
                 <div
@@ -246,6 +247,16 @@ onMouseLeave={() => handleImageHover(index, false)}
                       </>
                     )}
                   </p>
+
+                   <div className="addtocart"
+                  onClick={() =>
+                    handleDetailPage(
+                      item.productId || item.id,
+                      item.product_name || item.productName
+                    )
+                  } >
+                    <IoAddSharp /> <span>Add to cart</span>
+                  </div>
                 </div>
               </div>
             </Grid>

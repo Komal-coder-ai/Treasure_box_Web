@@ -77,12 +77,12 @@ const SliderComponent = ({
 
   return (
     <div className="slider-container">
-      <p></p>
+      <p></p> 
       <Grid container spacing={3}>
         {newarrivalList.map((item, index) => (
           <Grid item key={index} xs={12} sm={6} md={3}>
             <div className="product-box">
-              <div className="product-img-box">
+              <div className="product-img-box"  >
 
 
 
@@ -195,7 +195,7 @@ const SliderComponent = ({
                 >
                   {truncateProductName(
                     item.product_name || item.productName,
-                    15
+                    25
                   )}
                 </p>
                 <p className="product-price">
@@ -219,9 +219,16 @@ const SliderComponent = ({
                     </>
                   )}
                 </p>
-                {/* <div className="addtocart">
+                <div className="addtocart"
+                 onClick={() =>
+                  handleDetailPage(
+                    item.productId || item.id,
+                    item.product_name || item.productName
+                  )
+                }
+                >
                   <IoAddSharp /> <span> Add to cart</span>
-                </div> */}
+                </div>
                 
               </div>
             </div>
