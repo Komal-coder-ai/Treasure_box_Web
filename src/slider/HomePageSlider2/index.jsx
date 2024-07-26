@@ -1,40 +1,28 @@
 import React from "react";
 import "./index.css";
 import span from "../../components/ButtonForALL"; // Assuming this is correctly imported
+import { ImageUrl } from "../../API/baseUrl";
+import { Link } from "react-router-dom";
 
-const HoomepageSlider2 = () => {
+const HoomepageSlider2 = ({ titleList }) => {
   return (
     <div className="HomepageSliderCon2 container-fluid">
       <div className="row">
-        {/* First Column */}
-        <div className="col-12 col-md-4">
-          <div className="box box1">
-            <div className="box-content">
-              <p>Lighting</p>
-              <span className="DiscovernowBNT">Discover now</span>
+        {titleList.map((item, index) => (
+          <div key={index} className="col-12 col-md-4">
+            <div className="box box1">
+              <div className="box-content">
+                <p>{item.category_name}</p>
+                <img
+                  src={`${ImageUrl}${item.files}`}
+                  alt={item.category_name}
+                  style={{ width: "50px", height: "50px" }}
+                />
+                <Link to={"/product"} className="DiscovernowBNT" >Discover now</Link>
+              </div>
             </div>
           </div>
-        </div>
-
-        {/* Second Column */}
-        <div className="col-12 col-md-4">
-          <div className="box box2">
-            <div className="box-content">
-              <p>Decoration & Accessories</p>
-              <span className="DiscovernowBNT">Discover now</span>
-            </div>
-          </div>
-        </div>
-
-        {/* Third Column */}
-        <div className="col-12 col-md-4">
-          <div className="box box3">
-            <div className="box-content">
-              <p>Como and Hair Brush</p>
-              <span className="DiscovernowBNT">Discover now</span>
-            </div>
-          </div>
-        </div>
+        ))}
       </div>
     </div>
   );

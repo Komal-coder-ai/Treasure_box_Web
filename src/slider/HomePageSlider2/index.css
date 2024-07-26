@@ -1,4 +1,4 @@
-/* .box {
+.box {
   height: 200px;
   background-size: cover;
   background-position: center;
@@ -11,19 +11,11 @@
   cursor: pointer;
   transition: transform 0.3s ease;
   margin-bottom: 10px;
-} */
-
-.box1 {
-  background-image: url("https://ng-outstock.vercel.app/assets/img/shop/banner/banner-sm-1.jpg");
+  background-color: #f0f0f0;
+  padding: 20%;
 }
 
-.box2 {
-  background-image: url("https://ng-outstock.vercel.app/assets/img/shop/banner/banner-sm-2.jpg");
-}
 
-.box3 {
-  background-image: url("https://ng-outstock.vercel.app/assets/img/shop/banner/banner-sm-3.jpg");
-}
 
 /* Global styles */
 body {
@@ -116,7 +108,10 @@ body {
   margin-bottom: 10px;
 }
 
-
+.DiscovernowBNT{
+  text-decoration: none;
+  color: black;
+}
 .DiscovernowBNT:hover {
   color: var(--primary-color);
 }
