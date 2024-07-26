@@ -32,7 +32,7 @@ const RelatedProductList = ({
     subCategory_Id: 0,
     user_id
   };
-console.log("userid",user_id)
+  console.log("userid", user_id)
   // Fetch data from the API
   useEffect(() => {
     const fetchProducts = async () => {
@@ -123,7 +123,7 @@ console.log("userid",user_id)
       // setShowLoginPopup(!showLoginPopup);
     }
   };
-  const handleDetailPage = (id, name) => {  
+  const handleDetailPage = (id, name) => {
     const cleanedName = name.replace(/[^\w\s]/gi, "");
     navigate(`/productDetails/${id}/${cleanedName}`);
   };
@@ -216,10 +216,10 @@ console.log("userid",user_id)
                     )}
                   </p>
                   <div className="addtocart"
-                  
-               
-                  onClick={() => handleDetailPage(product.id, product.product_name)}
-              
+
+
+                    onClick={() => handleDetailPage(product.id, product.product_name)}
+
                   >
                     <IoAddSharp /> <span>Add to cart</span>
                   </div>

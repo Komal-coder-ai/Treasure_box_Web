@@ -48,8 +48,8 @@ body {
 .home_body_box_one,
 .home_body_box_two {
   overflow: hidden;
-  width: 100%;
-  height: 316px;
+  width: 100px;
+  height: 100px;
   background-size: cover;
   display: flex;
   flex-direction: column;

@@ -191,23 +191,33 @@ const Newhome = ({ reload, setReload, catval, setCatval }) => {
                 <div className="home_body_container_inside">
                   <HomePageSlider></HomePageSlider>
 
-                  {/* <div className='home_body_box_one'>
-                {titleList[0]?.sub_categoryId ?
-								 <img src={`${ImageUrl}${titleList[0]?.files}`} alt='' onClick={()=> titleList[0]?.sub_categoryId ?  handlesubcategory(titleList[0]?.sub_categoryId,titleList[0]?.subCategory_name,titleList[0]?.category_id,titleList[0]?.category_name) : ""}/>
-								 :
-								 <img src={`${ImageUrl}${titleList[0]?.files}`} alt='' onClick={()=>titleList[0]?.category_id ?  handlecategory(titleList[0]?.category_id,titleList[0]?.category_name) : ""} />
-								}
-                </div>
+                  <div className='home_body_box_one'>
+                    {titleList[0]?.sub_categoryId ?
+                      <img src={`${ImageUrl}${titleList[0]?.files}`} alt='' onClick={() => titleList[0]?.sub_categoryId ? handlesubcategory(titleList[0]?.sub_categoryId, titleList[0]?.subCategory_name, titleList[0]?.category_id, titleList[0]?.category_name) : ""} />
+                      :
+                      <img src={`${ImageUrl}${titleList[0]?.files}`} alt='' onClick={() => titleList[0]?.category_id ? handlecategory(titleList[0]?.category_id, titleList[0]?.category_name) : ""} />
+                    }
+                  </div>
+
 
                   <div className='home_body_box_two'>
-                   <div className='home_body_box_one'>
-                {titleList[1]?.sub_categoryId ?
-								 <img src={`${ImageUrl}${titleList[1]?.files}`} alt='' onClick={()=> titleList[1]?.sub_categoryId ?  handlesubcategory(titleList[1]?.sub_categoryId,titleList[1]?.subCategory_name,titleList[1]?.category_id,titleList[1]?.category_name) : ""}/>
-								 :
-								 <img src={`${ImageUrl}${titleList[1]?.files}`} alt='' onClick={()=>titleList[1]?.category_id ?  handlecategory(titleList[1]?.category_id,titleList[1]?.category_name) : ""} />
-								}
-                </div> 
-                </div> */}
+                    <div className='home_body_box_one'>
+
+                      {titleList[2]?.sub_categoryId ?
+                        <img src={`${ImageUrl}${titleList[2]?.files}`} alt='' onClick={() => titleList[2]?.sub_categoryId ? handlesubcategory(titleList[2]?.sub_categoryId, titleList[2]?.subCategory_name, titleList[2]?.category_id, titleList[2]?.category_name) : ""} />
+                        :
+                        <img src={`${ImageUrl}${titleList[2]?.files}`} alt='' onClick={() => titleList[2]?.category_id ? handlecategory(titleList[2]?.category_id, titleList[2]?.category_name) : ""} />
+                      }
+                    </div>
+                  </div>
+                  <div className='home_body_box_one'>
+
+                    {titleList[1]?.sub_categoryId ?
+                      <img src={`${ImageUrl}${titleList[1]?.files}`} alt='' onClick={() => titleList[1]?.sub_categoryId ? handlesubcategory(titleList[1]?.sub_categoryId, titleList[1]?.subCategory_name, titleList[1]?.category_id, titleList[1]?.category_name) : ""} />
+                      :
+                      <img src={`${ImageUrl}${titleList[1]?.files}`} alt='' onClick={() => titleList[1]?.category_id ? handlecategory(titleList[1]?.category_id, titleList[1]?.category_name) : ""} />
+                    }
+                  </div>
                 </div>
                 {featuredList.length ? (
                   <div
@@ -378,7 +388,7 @@ const Newhome = ({ reload, setReload, catval, setCatval }) => {
         </div>
       </div>
       <BacktoHome></BacktoHome>
-      {/* <Footer   bgcolor="#212529"  textcolor='white'  /> */}
+
     </>
   );
 };
