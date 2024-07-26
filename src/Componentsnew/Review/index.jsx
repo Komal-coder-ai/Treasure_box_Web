@@ -1,23 +1,24 @@
 import React, { useState } from 'react';
 import { Avatar, Rating } from '@mui/material';
-import './index.css'; // Import your CSS file for styling
+import './index.css';
 import ButtonForAll from './../../components/ButtonForALL/index';
-
+import { baseUrl } from '../../API/baseUrl';
 const ReviewForm = () => {
-  const [rating, setRating] = useState(0); // State to store rating
+  const [rating, setRating] = useState(0); 
   const [formData, setFormData] = useState({
     name: '',
     email: '',
-    comments: ''
+    comment: '' 
   });
-  const [submittedData, setSubmittedData] = useState(null); // State to store submitted data
+  const [submittedData, setSubmittedData] = useState(null); 
+  const [isSubmitting, setIsSubmitting] = useState(false); 
 
-  // Handle rating change
+ 
   const handleRatingChange = (value) => {
     setRating(value);
   };
 
-  // Handle form field change
+  
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData({
@@ -26,18 +27,49 @@ const ReviewForm = () => {
     });
   };
 
+
+  const postReview = async (reviewData) => {
+    try {
+      setIsSubmitting(true); 
+      const response = await fetch(`https://treasure.technotoil.com/product-rating/user/do/product-rating`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(reviewData),
+      });
+
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+
+      const data = await response.json();
+      console.log('Response Data:', data);
+
+     
+      setSubmittedData(reviewData);
+    } catch (error) {
+      console.error('Error posting review:', error);
+    } finally {
+      setIsSubmitting(false); 
+    }
+  };
+
   // Handle form submission
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Log form data and rating
-    console.log('Form Data:', { ...formData, rating });
-    // Store submitted data in state to display
-    setSubmittedData({ ...formData, rating });
-    // Clear form data and rating after submission
+   
+    const reviewData = {
+      ...formData,
+      rating
+    };
+    
+    postReview(reviewData);
+   
     setFormData({
       name: '',
       email: '',
-      comments: ''
+      comment: '' 
     });
     setRating(0);
   };
@@ -55,34 +87,36 @@ const ReviewForm = () => {
           <p style={{
             fontSize: "27px",
             color: "var(--black-color)"
-          }}>
-          </p><div className="rating d-flex ">
-
+          }}></p>
+          <div className="rating d-flex">
             <Avatar alt={submittedData.name} src="/static/images/avatar/1.jpg" sx={{ width: 56, height: 56 }} />
-
             <div className="userinformation mx-4">
               <p
                 style={{
                   fontSize: "14px",
                   color: "var(--black-color)"
                 }}>{submittedData.name}</p>
-              <Rating name="size-large"
-                defaultValue={submittedData.rating}
+              <Rating
+                name="size-large"
+                value={submittedData.rating}
                 size="large"
                 className='startrating'
-                onChange={(event, newValue) => handleRatingChange(newValue)}
+                readOnly
               />
-
-              <p>{submittedData.comments}</p>
+              <p>{submittedData.comment}</p>
             </div>
           </div>
           <hr />
         </div>
       )}
 
-
-
-      <Rating name="size-large" defaultValue={0} size="large" className='startrating' onChange={(event, newValue) => handleRatingChange(newValue)} />{/* Rating section */}
+      <Rating
+        name="size-large"
+        value={rating}
+        size="large"
+        className='startrating'
+        onChange={(event, newValue) => handleRatingChange(newValue)}
+      />
 
       <form className="review-form" onSubmit={handleSubmit}>
         <div className="form-group">
@@ -109,8 +143,8 @@ const ReviewForm = () => {
         </div>
         <div className="form-group">
           <textarea
-            name="comments"
-            value={formData.comments}
+            name="comment" 
+            value={formData.comment} 
             onChange={handleInputChange}
             required
             placeholder='Comments'
@@ -118,11 +152,9 @@ const ReviewForm = () => {
             rows={5}
           />
         </div>
-        <div className='reviewsubmit' type="submit">
-          <ButtonForAll name="POST COMMENT"></ButtonForAll>
-          {/* <button type="submit">Submit Review</button> */}
+        <div className='reviewsubmit'>
+          <ButtonForAll name={isSubmitting ? "Submitting..." : "POST COMMENT"} disabled={isSubmitting} />
         </div>
-
       </form>
     </div>
   );

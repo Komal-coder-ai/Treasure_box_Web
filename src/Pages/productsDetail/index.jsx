@@ -354,11 +354,7 @@ const ProductDetail = ({ reload, setReload, setCatval }) => {
 
   return (
     <>
-      {/* <div className="TopPageForMobile">
-        <TopPageImage pagename="Product Details"></TopPageImage>
-      </div> */}
-      {/* <!-- Product Detail --> */}
-
+     
       <div
         className="productdetail_container"
         style={{

@@ -175,7 +175,7 @@ export const updateProfile = "user/update/user/profile"
 
 export const refreshtokenapi = "user/update-accessToken-fromRefresh-token"
 
-
+export const productRating="product-rating/user/do/product-rating"
 
 
 
