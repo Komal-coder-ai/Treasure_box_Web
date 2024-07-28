@@ -2,23 +2,24 @@ import React, { useState } from 'react';
 import { Avatar, Rating } from '@mui/material';
 import './index.css';
 import ButtonForAll from './../../components/ButtonForALL/index';
-import { baseUrl } from '../../API/baseUrl';
-const ReviewForm = () => {
-  const [rating, setRating] = useState(0); 
+import axios from 'axios'; // Import axios
+import Product_Comments from '../Product_Comments/Index';
+
+const ReviewForm = ({ userId, orderid, productId, }) => {
+  const [rating, setRating] = useState(0);
   const [formData, setFormData] = useState({
     name: '',
     email: '',
-    comment: '' 
+    comment: ''
   });
-  const [submittedData, setSubmittedData] = useState(null); 
-  const [isSubmitting, setIsSubmitting] = useState(false); 
 
- 
+  const [submittedData, setSubmittedData] = useState(null);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
   const handleRatingChange = (value) => {
     setRating(value);
   };
 
-  
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData({
@@ -27,49 +28,44 @@ const ReviewForm = () => {
     });
   };
 
-
   const postReview = async (reviewData) => {
     try {
-      setIsSubmitting(true); 
-      const response = await fetch(`https://treasure.technotoil.com/product-rating/user/do/product-rating`, {
-        method: 'POST',
+      setIsSubmitting(true);
+
+      const response = await axios.post('https://treasure.technotoil.com/product-rating/user/do/product-rating', reviewData, {
         headers: {
           'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(reviewData),
+        }
       });
 
-      if (!response.ok) {
-        throw new Error('Network response was not ok');
-      }
-
-      const data = await response.json();
-      console.log('Response Data:', data);
-
-     
+      console.log('Response Data:', response.data);
       setSubmittedData(reviewData);
     } catch (error) {
       console.error('Error posting review:', error);
     } finally {
-      setIsSubmitting(false); 
+      setIsSubmitting(false);
     }
   };
 
-  // Handle form submission
   const handleSubmit = (e) => {
     e.preventDefault();
-   
+
     const reviewData = {
-      ...formData,
-      rating
+      userIdFk: userId,
+      productIdFk: productId, 
+      orderIdFk: orderid,
+      rating,
+      name: formData.name,
+      email: formData.email,
+      comment: formData.comment
     };
-    
+
     postReview(reviewData);
-   
+
     setFormData({
       name: '',
       email: '',
-      comment: '' 
+      comment: ''
     });
     setRating(0);
   };
@@ -143,8 +139,8 @@ const ReviewForm = () => {
         </div>
         <div className="form-group">
           <textarea
-            name="comment" 
-            value={formData.comment} 
+            name="comment"
+            value={formData.comment}
             onChange={handleInputChange}
             required
             placeholder='Comments'
@@ -156,6 +152,8 @@ const ReviewForm = () => {
           <ButtonForAll name={isSubmitting ? "Submitting..." : "POST COMMENT"} disabled={isSubmitting} />
         </div>
       </form>
+      <Product_Comments  productIdFk={productId}/>
+
     </div>
   );
 };

@@ -1,22 +1,29 @@
-import { useNavigate } from 'react-router-dom';
-import React, { useState, useEffect } from 'react';
-import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
-import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
-import ShoppingBagOutlinedIcon from '@mui/icons-material/ShoppingBagOutlined';
-import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
-import FavoriteIcon from '@mui/icons-material/Favorite';
-import CurrencyRupeeIcon from '@mui/icons-material/CurrencyRupee';
+import { useNavigate } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
+import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
+import ShoppingBagOutlinedIcon from "@mui/icons-material/ShoppingBagOutlined";
+import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
+import FavoriteIcon from "@mui/icons-material/Favorite";
+import CurrencyRupeeIcon from "@mui/icons-material/CurrencyRupee";
 import { IoAddSharp } from "react-icons/io5";
-import './index.css'; // Ensure this CSS file contains necessary styles
-import { addtowishlist, deleteApiCall, deleteFromWishlistApi, ImageUrl, postApiCall } from '../../API/baseUrl';
-
+import "./index.css"; // Ensure this CSS file contains necessary styles
+import {
+  addtowishlist,
+  deleteApiCall,
+  deleteFromWishlistApi,
+  ImageUrl,
+  postApiCall,
+} from "../../API/baseUrl";
+import axios from "axios";
 
 const RelatedProductList = ({
   reload,
   setReload,
   newarrivalList,
   setNewarrivalList,
-  user_id
+  user_id,
+  subcategory,
 }) => {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -24,51 +31,46 @@ const RelatedProductList = ({
   const [currentIndex, setCurrentIndex] = useState(0);
   const [secondaryImages, setSecondaryImages] = useState({});
   const navigate = useNavigate();
-  // Number of products to display at a time
+
   const itemsPerPage = 4;
 
-  // The payload for the POST request
-  const requestPayload = {
-    subCategory_Id: 0,
-    user_id
-  };
-  console.log("userid", user_id)
-  // Fetch data from the API
+  console.log("asdfghjkl", subcategory);
+  console.log("userid", user_id);
+
+
+
+  
   useEffect(() => {
-    const fetchProducts = async () => {
+    const fetchData = async () => {
       try {
-        const response = await fetch('https://treasure.technotoil.com/product/get/sub-category-product/list', {
-          method: 'POST',
-          headers: {
-            'Accept': '*/*',
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(requestPayload),
-        });
+        const response = await axios.post(
+          "https://treasure.technotoil.com/product/get/sub-category-product/list",
+          {
+            subCategory_Id: 18,
 
-        if (!response.ok) {
-          throw new Error('Network response was not ok');
-        }
+            userId: "", // Assuming userId can be an empty string
+          }
+        );
 
-        const data = await response.json();
-        if (data.status) {
-          setProducts(data.list); // Update state with fetched data
+        if (response.data.status) {
+          setProducts(response.data.list);
         } else {
-          setError('No data available');
+          throw new Error("Failed to fetch data");
         }
-      } catch (error) {
-        setError(error.message); // Set error state if an error occurs
+      } catch (err) {
+        setError(err.message);
       } finally {
-        setLoading(false); // Update loading state
+        setLoading(false);
       }
     };
 
-    fetchProducts();
+    fetchData();
   }, []);
-
   // Handle previous button click
   const handlePrev = () => {
-    setCurrentIndex((prevIndex) => (prevIndex - 1 + products.length) % products.length);
+    setCurrentIndex(
+      (prevIndex) => (prevIndex - 1 + products.length) % products.length
+    );
   };
 
   // Handle next button click
@@ -77,9 +79,14 @@ const RelatedProductList = ({
   };
 
   // Determine which products to display
-  const displayedProducts = products.slice(currentIndex, currentIndex + itemsPerPage).concat(
-    products.slice(0, Math.max(0, currentIndex + itemsPerPage - products.length))
-  );
+  const displayedProducts = products
+    .slice(currentIndex, currentIndex + itemsPerPage)
+    .concat(
+      products.slice(
+        0,
+        Math.max(0, currentIndex + itemsPerPage - products.length)
+      )
+    );
 
   // Handle image hover
   const handleImageHover = (index, isHovering) => {
@@ -145,16 +152,30 @@ const RelatedProductList = ({
       <div className="slider-wrapper">
         <ArrowBackIosIcon
           onClick={handlePrev}
-          style={{ cursor: 'pointer', fontSize: '2rem' }}
+          style={{ cursor: "pointer", fontSize: "2rem" }}
         />
         <div className="slider-container">
-          <div className="product-list" style={{ display: 'flex' }}>
+          <div className="product-list" style={{ display: "flex" }}>
             {displayedProducts.map((product, index) => (
-              <div key={product.id} className="product-box" style={{ flex: '0 0 auto', width: `${100 / itemsPerPage}%`, padding: '10px' }}>
+              <div
+                key={product.id}
+                className="product-box"
+                style={{
+                  flex: "0 0 auto",
+                  width: `${100 / itemsPerPage}%`,
+                  padding: "10px",
+                }}
+              >
                 <div className="product-img-box">
                   <div
                     className="likebuttonForMobile"
-                    onClick={() => handleLikeToggle(product.id, index, product.is_wishlist ? "remove" : "add")}
+                    onClick={() =>
+                      handleLikeToggle(
+                        product.id,
+                        index,
+                        product.is_wishlist ? "remove" : "add"
+                      )
+                    }
                   >
                     {product.is_wishlist ? (
                       <FavoriteIcon className="product-icon" />
@@ -165,45 +186,61 @@ const RelatedProductList = ({
                   <img
                     onMouseEnter={() => handleImageHover(index, true)}
                     onMouseLeave={() => handleImageHover(index, false)}
-                    onClick={() => handleDetailPage(product.id, product.product_name)}
+                    onClick={() =>
+                      handleDetailPage(product.id, product.product_name)
+                    }
                     className="product-image"
-                    src={secondaryImages[index] || `${ImageUrl}/${product.files}`}
+                    src={
+                      secondaryImages[index] || `${ImageUrl}/${product.files}`
+                    }
                     alt={product.product_name}
                   />
                   <div className="product-icons">
                     <ShoppingBagOutlinedIcon
                       className="product-icon"
-                      onClick={() => handleDetailPage(product.id, product.product_name)}
+                      onClick={() =>
+                        handleDetailPage(product.id, product.product_name)
+                      }
                     />
                     {product.is_wishlist ? (
                       <FavoriteIcon
                         className="product-icon"
-                        onClick={() => handleLikeToggle(product.id, index, "remove")}
+                        onClick={() =>
+                          handleLikeToggle(product.id, index, "remove")
+                        }
                       />
                     ) : (
                       <FavoriteBorderIcon
                         className="product-icon"
-                        onClick={() => handleLikeToggle(product.id, index, "add")}
+                        onClick={() =>
+                          handleLikeToggle(product.id, index, "add")
+                        }
                       />
                     )}
                   </div>
                 </div>
-                <div className="product-description" style={{ marginTop: "20px" }}>
+                <div
+                  className="product-description"
+                  style={{ marginTop: "20px" }}
+                >
                   <p
                     className="product-name"
-                    onClick={() => handleDetailPage(product.id, product.product_name)}
+                    onClick={() =>
+                      handleDetailPage(product.id, product.product_name)
+                    }
                   >
                     {truncateProductName(product.product_name, 25)}
                   </p>
                   <p className="product-price">
                     {product.discount_percent === 0 ? (
                       <span className="mrp-with-discount product-icon_rs">
-                        <CurrencyRupeeIcon style={{ fontSize: '14px' }} /> {product.discount_amount || product.price}
+                        <CurrencyRupeeIcon style={{ fontSize: "14px" }} />{" "}
+                        {product.discount_amount || product.price}
                       </span>
                     ) : (
                       <>
                         <span className="mrp-with-discount product-icon_rs">
-                          <CurrencyRupeeIcon style={{ fontSize: '14px' }} />
+                          <CurrencyRupeeIcon style={{ fontSize: "14px" }} />
                           {product.discount_amount}
                         </span>
                         <strike className="discount-mrp">
@@ -215,11 +252,11 @@ const RelatedProductList = ({
                       </>
                     )}
                   </p>
-                  <div className="addtocart"
-
-
-                    onClick={() => handleDetailPage(product.id, product.product_name)}
-
+                  <div
+                    className="addtocart"
+                    onClick={() =>
+                      handleDetailPage(product.id, product.product_name)
+                    }
                   >
                     <IoAddSharp /> <span>Add to cart</span>
                   </div>
@@ -230,7 +267,7 @@ const RelatedProductList = ({
         </div>
         <ArrowForwardIosIcon
           onClick={handleNext}
-          style={{ cursor: 'pointer', fontSize: '2rem' }}
+          style={{ cursor: "pointer", fontSize: "2rem" }}
         />
       </div>
     </div>

@@ -66,7 +66,7 @@ const ProductDetail = ({ reload, setReload, setCatval }) => {
   const [toggle, setToggle] = useState([]);
   const [activeColorData, setActievColorData] = useState({});
   const [renderimage, setRenderimage] = useState("");
-
+  const [subcategory, setsubcategory] = useState(null);
   const handleprofilePage = () => {
     setShowloginpopup(!showloginpopup);
   };
@@ -106,6 +106,9 @@ const ProductDetail = ({ reload, setReload, setCatval }) => {
         setRenderimage(result?.data?.images[0].original);
         setSizevalue(result.data.Info[0]?.product_size?.split(",")[0]);
 
+        const subCategoryId = result.data.data.subCategoryId;
+        setsubcategory(subCategoryId);
+        console.log("ssubb", subCategoryId);
         const sizeArray = result.data.Info[0]?.product_size
           ?.split(",")
           .map((item, index) => {
@@ -143,6 +146,8 @@ const ProductDetail = ({ reload, setReload, setCatval }) => {
       setPending(false);
     }
   };
+
+  
   const getDetailsafterclick = async () => {
     try {
       const result = await postApiCall(getProductApi, {
@@ -154,10 +159,7 @@ const ProductDetail = ({ reload, setReload, setCatval }) => {
         setGeneral(result?.data?.Detail);
         setImages(result?.data?.images);
 
-
         setRenderimage(result?.data?.images[0].original);
-
-        
       } else {
         ToastMessage("error", result.data.message);
       }
@@ -242,7 +244,7 @@ const ProductDetail = ({ reload, setReload, setCatval }) => {
       } else {
         ToastMessage("error", result.data.message);
       }
-    } catch (error) { }
+    } catch (error) {}
   };
 
   const gotocart = () => {
@@ -348,17 +350,17 @@ const ProductDetail = ({ reload, setReload, setCatval }) => {
     scroll.scrollToTop();
   };
 
-
-  const Reviews = [{
-    img: "https://ng-outstock.vercel.app/assets/img/blog/comments/avater-1.png",
-    name: "Siarhei Dzenisenka",
-    rating: "4",
-    comment: "xyz"
-  }]
+  const Reviews = [
+    {
+      img: "https://ng-outstock.vercel.app/assets/img/blog/comments/avater-1.png",
+      name: "Siarhei Dzenisenka",
+      rating: "4",
+      comment: "xyz",
+    },
+  ];
 
   return (
     <>
-
       <div
         className="productdetail_container"
         style={{
@@ -691,10 +693,11 @@ const ProductDetail = ({ reload, setReload, setCatval }) => {
 
                 {checkAddedFunction() ? (
                   <button
-                    className={`${details.is_active === 0
-                      ? "cart_div2_disable"
-                      : "cart_div2"
-                      } `}
+                    className={`${
+                      details.is_active === 0
+                        ? "cart_div2_disable"
+                        : "cart_div2"
+                    } `}
                     disabled={cartbtnloading || details.is_active === 0}
                     onClick={gotocart}
                   >
@@ -702,10 +705,11 @@ const ProductDetail = ({ reload, setReload, setCatval }) => {
                   </button>
                 ) : (
                   <button
-                    className={`${details.is_active === 0
-                      ? "cart_div2_disable"
-                      : "cart_div2"
-                      } `}
+                    className={`${
+                      details.is_active === 0
+                        ? "cart_div2_disable"
+                        : "cart_div2"
+                    } `}
                     disabled={cartbtnloading || details.is_active === 0}
                     onClick={user_id ? handlecart : handleprofilePage}
                   >
@@ -821,8 +825,14 @@ const ProductDetail = ({ reload, setReload, setCatval }) => {
             Reviews={Reviews}
           />
 
-          <RelatedProducts  user_id={user_id}></RelatedProducts>
 
+          <RelatedProducts
+            user_id={user_id}
+            subcategory={subcategory}
+          
+
+          ></RelatedProducts>
+          {console.log("Ddddd", subcategory)}
         </div>
       </div>
     </>

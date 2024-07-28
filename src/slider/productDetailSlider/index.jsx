@@ -6,7 +6,7 @@ import ReactImageMagnify from 'react-image-magnify';
 
 const Slider2 = ({ images }) => {
   const [hoveredImage, setHoveredImage] = useState(images[0]);
-  const [startIndex, setStartIndex] = useState(0); // Index of the first visible image
+  const [startIndex, setStartIndex] = useState(0);
   const sliderRef = useRef(null);
   const [isMobile, setIsMobile] = useState(false);
 
