@@ -177,7 +177,7 @@ export const refreshtokenapi = "user/update-accessToken-fromRefresh-token"
 
 export const productRating="product-rating/user/do/product-rating"
 
-
+export const RelatedProductListData = "https://treasure.technotoil.com/product/get/sub-category-product/list"
 
 
 

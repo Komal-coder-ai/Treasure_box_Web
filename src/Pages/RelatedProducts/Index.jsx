@@ -14,6 +14,7 @@ import {
   deleteFromWishlistApi,
   ImageUrl,
   postApiCall,
+  RelatedProductListData,
 } from "../../API/baseUrl";
 import axios from "axios";
 
@@ -37,33 +38,27 @@ const RelatedProductList = ({
   console.log("asdfghjkl", subcategory);
   console.log("userid", user_id);
 
+  const fetchData = async () => {
+    try {
+      const response = await postApiCall(RelatedProductListData, {
+        subCategory_Id: 19,
 
+        userId: "", // Assuming userId can be an empty string
+      });
 
-  
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.post(
-          "https://treasure.technotoil.com/product/get/sub-category-product/list",
-          {
-            subCategory_Id: 18,
-
-            userId: "", // Assuming userId can be an empty string
-          }
-        );
-
-        if (response.data.status) {
-          setProducts(response.data.list);
-        } else {
-          throw new Error("Failed to fetch data");
-        }
-      } catch (err) {
-        setError(err.message);
-      } finally {
-        setLoading(false);
+      if (response.data.status) {
+        setProducts(response.data.list);
+      } else {
+        throw new Error("Failed to fetch data");
       }
-    };
+    } catch (err) {
+      setError(err.message);
+    } finally {
+      setLoading(false);
+    }
+  };
 
+  useEffect(() => {
     fetchData();
   }, []);
   // Handle previous button click
