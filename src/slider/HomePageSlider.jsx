@@ -18,9 +18,9 @@ function DarkVariantExample() {
         activeIndex={index}
         onSelect={handleSelect}
         interval={3000}
-        controls={false} // Hide prev/next controls
-        indicators // Show slide indicators (dots)
-        pause={false} // Do not pause on hover
+        controls={false}
+        indicators
+        pause={false}
         className="HomePageSliderCon"
       >
         <Carousel.Item>

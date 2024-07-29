@@ -16,10 +16,13 @@ const HoomepageSlider2 = ({ titleList }) => {
 
   return (
     <div className="HomepageSliderCon2 container-fluid">
+     
       <div className="row">
         {limitedTitleList.map((item, index) => (
           <div key={index} className="col-12 col-md-4">
+            
             <div className="box box1">
+            <Link to="/product" className="DiscovernowBNT">
               <div className="box-content d-flex">
                 <div>
                   <p>{item.category_name}</p>
@@ -34,6 +37,7 @@ const HoomepageSlider2 = ({ titleList }) => {
                   className="homepagesliderimage "
                 />
               </div>
+            </Link>
             </div>
           </div>
         ))}
