@@ -822,9 +822,9 @@ const ProductDetail = ({ reload, setReload, setCatval }) => {
             description={details?.description}
             general={general}
             id="readmore"
-            Reviews={Reviews}
+            Reviews={details?.productRatingAndCommentList}
           />
-
+{console.log("details?.productRatingAndCommentList",details?.productRatingAndCommentList)}
 
           <RelatedProducts
             user_id={user_id}

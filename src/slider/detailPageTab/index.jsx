@@ -3,10 +3,11 @@ import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
 import "./index.css"; // Import your custom CSS file
 import RemoveTag from "../../components/removetag";
-import ReviewCom from "../../Componentsnew/Review";
+import ReviewCom from "../../Componentsnew/Review"; // Assuming you might use this component later
 
 const DetailPageTab = ({ description, general, Reviews }) => {
   const showSpecificationTab = general && general.length > 0;
+  console.log("ReviewsReviews", Reviews);
 
   return (
     <div className="detailpagetab">
@@ -50,7 +51,16 @@ const DetailPageTab = ({ description, general, Reviews }) => {
 
         {Reviews && Reviews.length > 0 && (
           <TabPanel>
-        <ReviewCom></ReviewCom>
+            <div className="reviews-container">
+              {Reviews.map((review, index) => (
+                <div key={index} className="review">
+                  <h3>Review by: {review.name}</h3>
+                  <p>Email: {review.email}</p>
+                  <p>Rating: {review.rating}</p>
+                  <p>Comment: {review.comment}</p>
+                </div>
+              ))}
+            </div>
           </TabPanel>
         )}
       </Tabs>

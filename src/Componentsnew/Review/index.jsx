@@ -12,7 +12,7 @@ const ReviewForm = ({ userId, orderid, productId, }) => {
     email: '',
     comment: ''
   });
-
+  { console.log("ppppp5", productId) }
   const [submittedData, setSubmittedData] = useState(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
@@ -52,7 +52,7 @@ const ReviewForm = ({ userId, orderid, productId, }) => {
 
     const reviewData = {
       userIdFk: userId,
-      productIdFk: productId, 
+      productIdFk: productId,
       orderIdFk: orderid,
       rating,
       name: formData.name,
@@ -152,7 +152,8 @@ const ReviewForm = ({ userId, orderid, productId, }) => {
           <ButtonForAll name={isSubmitting ? "Submitting..." : "POST COMMENT"} disabled={isSubmitting} />
         </div>
       </form>
-      <Product_Comments  productIdFk={productId}/>
+      {/* <Product_Comments  productIdFk={productId}/> */}
+      
 
     </div>
   );

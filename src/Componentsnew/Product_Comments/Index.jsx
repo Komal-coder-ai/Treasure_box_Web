@@ -12,16 +12,19 @@ const Product_Comments = ({ productIdFk }) => {
     const fetchComments = async () => {
       try {
         const response = await axios.post(
-          "https://treasure.technotoil.com/product-rating/get/product-rating/and/comment-list",
-          { productIdFk }, // Correct key for the payload
+          'https://treasure.technotoil.com/product-rating/get/product-rating/and/comment-list',
+          { productIdFk }, 
           { headers: { "Content-Type": "application/json" } }
         );
 
         console.log("Product ID:", productIdFk);
         console.log("Response Data:", response.data);
 
-        // Adjust based on actual response structure
-        setComments(response.data.comments || []); // Modify this based on response structure
+        if (response.data.status) {
+          setComments(response.data.data || []);
+        } else {
+          setError(new Error("Failed to fetch comments"));
+        }
       } catch (err) {
         setError(err);
         console.error("Error fetching comments:", err.message);
@@ -54,7 +57,7 @@ const Product_Comments = ({ productIdFk }) => {
             <div className="rating d-flex">
               <Avatar
                 alt={comment.name}
-                src="/static/images/avatar/1.jpg" // Adjust this based on your avatar logic
+                src="/static/images/avatar/1.jpg"   
                 sx={{ width: 56, height: 56 }}
               />
               <div className="userinformation mx-4">
@@ -68,7 +71,7 @@ const Product_Comments = ({ productIdFk }) => {
                 </p>
                 <Rating
                   name="size-large"
-                  value={comment.rating}
+                  value={parseFloat(comment.rating)} 
                   size="large"
                   className="startrating"
                   readOnly

@@ -14,6 +14,7 @@ import {
   deleteFromWishlistApi,
   ImageUrl,
   postApiCall,
+  relatedProductAPI,
   RelatedProductListData,
 } from "../../API/baseUrl";
 import axios from "axios";
@@ -40,12 +41,13 @@ const RelatedProductList = ({
 
   const fetchData = async () => {
     try {
-      const response = await postApiCall(RelatedProductListData, {
-        subCategory_Id: 19,
+      const response = await postApiCall(relatedProductAPI, {
+        subCategory_Id: subcategory,
 
         userId: "", // Assuming userId can be an empty string
-      });
 
+      });
+      console.log("Response data:", response.data);
       if (response.data.status) {
         setProducts(response.data.list);
       } else {
@@ -60,7 +62,7 @@ const RelatedProductList = ({
 
   useEffect(() => {
     fetchData();
-  }, []);
+  }, [subcategory]);
   // Handle previous button click
   const handlePrev = () => {
     setCurrentIndex(

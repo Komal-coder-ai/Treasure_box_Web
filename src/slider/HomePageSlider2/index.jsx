@@ -1,11 +1,18 @@
 import React from "react";
 import "./index.css";
 import { ImageUrl } from "../../API/baseUrl";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const HoomepageSlider2 = ({ titleList }) => {
   // Limit the number of items to 3
   const limitedTitleList = titleList.slice(0, 3);
+  const navigate = useNavigate();
+  
+  const handleDetailPage = (id, name) => {  
+    const cleanedName = name.replace(/[^\w\s]/gi, "");
+    navigate(`/productDetails/${id}/${cleanedName}`);
+  };
+
 
   return (
     <div className="HomepageSliderCon2 container-fluid">
@@ -23,7 +30,8 @@ const HoomepageSlider2 = ({ titleList }) => {
                 <img
                   src={`${ImageUrl}${item.files}`}
                   alt={item.category_name}
-                  style={{ width: "100px", height: "100px" }}
+              
+                  className="homepagesliderimage "
                 />
               </div>
             </div>

@@ -3,7 +3,7 @@
   background-size: cover;
   background-position: center;
   display: flex;
-  justify-content: start;
+  justify-content:space-around;
   padding-left: 20px;
   align-items: center;
   position: relative;
@@ -51,6 +51,13 @@ body {
   max-width: 33.333333%;
 }
 
+.homepagesliderimage {
+  mix-blend-mode: multiply;
+  margin-left: auto;
+  width: 200px;
+
+}
+
 /* Box styles */
 .box {
 
@@ -96,9 +103,15 @@ body {
     width: 100%;
     padding: 10px !important;
     display: flex;
-    justify-content: left;
+    justify-content: space-evenly;
     font-size: smaller;
   }
+}
+
+.box-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 /* Box content styles */
@@ -109,10 +122,11 @@ body {
   margin-bottom: 10px;
 }
 
-.DiscovernowBNT{
+.DiscovernowBNT {
   text-decoration: none;
   color: black;
 }
+
 .DiscovernowBNT:hover {
   color: var(--primary-color);
 }

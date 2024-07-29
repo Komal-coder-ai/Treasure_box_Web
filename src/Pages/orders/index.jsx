@@ -38,7 +38,7 @@ const Orders = () => {
                 setPending(false)
                 setOrderHistory(result?.data?.data)
                 setPageCount(result?.data?.total_count)
-                
+
 
             } else {
                 ToastMessage("error", result.data.message);
@@ -60,96 +60,96 @@ const Orders = () => {
 
     const handleChange = (event, value) => {
         setcurrentPage(value);
-      };
+    };
 
-     
+
 
     return (
         <>
 
             {pending ? <Loader /> :
-<>
-                <div className='orderhistory_container'>
-                    {orderHistory?.length ?
-                    //  <Pagination data={orderHistory} itemsPerPage={itemsPerPage} onChangePage={handlePageChange} />
-                        <div className='orderhistory_container_fluid'>
-                        
-<div className="TopPageForMobile">
-  	<TopPageImage pagename="Order"></TopPageImage>
-      </div>
-                            {orderHistory?.map((val, index) => <div key={index}>
-                                <Stack className='historyCompDivInside' onClick={() => handleDetails(val.order_id_fk)} >
-                                    <div className='orderIdButtonAndTrack'>
-                                    </div>
-                                    <div className='productHistoryAndDeliveryDetailsClass'>
+                <>
+                    <div className='orderhistory_container'>
+                        {orderHistory?.length ?
+                            //  <Pagination data={orderHistory} itemsPerPage={itemsPerPage} onChangePage={handlePageChange} />
+                            <div className='orderhistory_container_fluid'>
+
+                                <div className="TopPageForMobile">
+                                    <TopPageImage pagename="Order"></TopPageImage>
+                                </div>
+                                {orderHistory?.map((val, index) => <div key={index}>
+                                    <Stack className='historyCompDivInside' onClick={() => handleDetails(val.order_id_fk)} >
+                                        <div className='orderIdButtonAndTrack'>
+                                        </div>
+                                        <div className='productHistoryAndDeliveryDetailsClass'>
 
 
-                                        <div className='orderDayAndDate'>
+                                            <div className='orderDayAndDate'>
 
-                                            <div className='orderOnAndTotalClass'>
-                                                <div className='orderOnClass'>
-                                                    <p >Order Id :</p>
+                                                <div className='orderOnAndTotalClass'>
+                                                    <div className='orderOnClass'>
+                                                        <p >Order Id :</p>
+                                                    </div>
+                                                    <div className='orderOnDateClass'>
+                                                        <p >{val.product_order_id}</p>
+                                                    </div>
                                                 </div>
-                                                <div className='orderOnDateClass'>
-                                                    <p >{val.product_order_id}</p>
+
+                                                <div className='orderOnAndTotalClass'>
+                                                    <div className='orderOnClass'>
+                                                        <p >Order On :</p>
+                                                    </div>
+                                                    <div className='orderOnDateClass'>
+                                                        <p >{moment(val.Date).format('MMMM Do YYYY')}</p>
+                                                    </div>
                                                 </div>
-                                            </div>
+                                                <div className='orderOnAndTotalClass'>
+                                                    <div className='orderOnClass'>
 
-                                            <div className='orderOnAndTotalClass'>
-                                                <div className='orderOnClass'>
-                                                    <p >Order On :</p>
+                                                        <p >Order Status :</p>
+                                                    </div>
+                                                    <div className='orderOnDateClass'>
+
+                                                        <p >{val.orderStatus}</p>
+
+
+
+                                                    </div>
                                                 </div>
-                                                <div className='orderOnDateClass'>
-                                                    <p >{moment(val.Date).format('MMMM Do YYYY')}</p>
-                                                </div>
-                                            </div>
-                                            <div className='orderOnAndTotalClass'>
-                                                <div className='orderOnClass'>
 
-                                                    <p >Order Status :</p>
-                                                </div>
-                                                <div className='orderOnDateClass'>
+                                                <div className='orderOnAndTotalClass'>
+                                                    <div className='orderOnClass'>
 
-                                                    <p >{val.orderStatus}</p>
+                                                        <p >Order Total :</p>
 
 
+                                                    </div>
+                                                    <div className='orderOnDateClass'>
 
-                                                </div>
-                                            </div>
-
-                                            <div className='orderOnAndTotalClass'>
-                                                <div className='orderOnClass'>
-
-                                                    <p >Order Total :</p>
-
-
-                                                </div>
-                                                <div className='orderOnDateClass'>
-
-                                                    <p className='header-cart-item-rupee'><CurrencyRupeeIcon sx={{ fontSize: "15px" }} /> {Number(val.total_order_amount).toFixed(2)}</p>
+                                                        <p className='header-cart-item-rupee'><CurrencyRupeeIcon sx={{ fontSize: "15px" }} /> {Number(val.total_order_amount).toFixed(2)}</p>
 
 
 
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                </Stack>
+                                    </Stack>
 
-                            </div>)}
-                            {orderHistory.length ? <Pagination count={Math.ceil(pageCount / 5)}  defaultPage={5} siblingCount={0}  page={currentPage} onChange={handleChange} /> : ""}
-                        </div>
-                        :
-                     <div className="">
-                     
-                     <Empty image={emptyorderlist} btn="Shop Now" />
-                     </div>
-                    }
-                </div>
-               
+                                </div>)}
+                                {orderHistory.length ? <Pagination count={Math.ceil(pageCount / 5)} defaultPage={5} siblingCount={0} page={currentPage} onChange={handleChange} /> : ""}
+                            </div>
+                            :
+                            <div className="">
+
+                                <Empty image={emptyorderlist} btn="Shop Now" />
+                            </div>
+                        }
+                    </div>
+
                 </>
             }
-           
+
         </>
     )
 }
