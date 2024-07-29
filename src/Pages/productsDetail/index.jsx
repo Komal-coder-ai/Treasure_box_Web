@@ -24,7 +24,7 @@ import Login from "../login/login";
 import RemoveTag from "../../components/removetag";
 import CircleIcon from "@mui/icons-material/Circle";
 import RadioButtonCheckedIcon from "@mui/icons-material/RadioButtonChecked";
-import { Skeleton } from "@mui/material";
+import { Rating, Skeleton } from "@mui/material";
 // import instock from '../../Assect/ready-to-ship-icon.jpg';
 import instock from "../../Assect/return-box.png";
 import RemoveRedEyeOutlinedIcon from "@mui/icons-material/RemoveRedEyeOutlined";
@@ -543,6 +543,7 @@ const ProductDetail = ({ reload, setReload, setCatval }) => {
                   </p>
                 )}
               </>
+              <Rating name="no-value" value={details?.averageProductRating } color="var(--primary-color)" className="startrating mt-1"  />
 
               <p className="exclusive">MRP is inclusive of all taxes</p>
               {details.is_active === 0 ? (
@@ -823,8 +824,9 @@ const ProductDetail = ({ reload, setReload, setCatval }) => {
             general={general}
             id="readmore"
             Reviews={details?.productRatingAndCommentList}
+            averageProductRating={details?.averageProductRating}
           />
-{console.log("details?.productRatingAndCommentList",details?.productRatingAndCommentList)}
+
 
           <RelatedProducts
             user_id={user_id}

@@ -6,7 +6,7 @@
 
   font-size: 14px;
   font-weight: 400;
-  color: #848b8a;
+  /* color: #848b8a; */
   line-height: 24px;
 
 }
@@ -11715,4 +11715,9 @@ html [type="button"],
 
 .formcontrol span {
   color: #bc8246 !important;
+}
+
+.startrating label span{
+  font-size: 20px !important;
+  color: var(--primary-color);
 }

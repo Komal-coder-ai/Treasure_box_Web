@@ -153,7 +153,7 @@ const RelatedProductList = ({
         />
         <div className="slider-container">
           <div className="product-list" style={{ display: "flex" }}>
-            {displayedProducts.map((product, index) => (
+            {displayedProducts?.map((product, index) => (
               <div
                 key={product.id}
                 className="product-box"
@@ -174,7 +174,7 @@ const RelatedProductList = ({
                       )
                     }
                   >
-                    {product.is_wishlist ? (
+                    {product?.is_wishlist ? (
                       <FavoriteIcon className="product-icon" />
                     ) : (
                       <FavoriteBorderIcon className="product-icon" />
@@ -186,7 +186,7 @@ const RelatedProductList = ({
                     onClick={() =>
                       handleDetailPage(product.id, product.product_name)
                     }
-                    className="product-image"
+                    className="product-image" 
                     src={
                       secondaryImages[index] || `${ImageUrl}/${product.files}`
                     }

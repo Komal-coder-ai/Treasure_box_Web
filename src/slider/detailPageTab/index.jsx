@@ -3,9 +3,9 @@ import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
 import "./index.css"; // Import your custom CSS file
 import RemoveTag from "../../components/removetag";
-import { Avatar } from "@mui/material";
+import { Avatar, Rating } from "@mui/material";
 
-const DetailPageTab = ({ description, general, Reviews }) => {
+const DetailPageTab = ({ description, general, Reviews ,averageProductRating}) => {
   const showSpecificationTab = general && general.length > 0;
   const reviewCount = Reviews ? Reviews.length : 0; // Calculate the number of reviews
 
@@ -51,23 +51,29 @@ const DetailPageTab = ({ description, general, Reviews }) => {
 
         {Reviews && Reviews.length > 0 && (
           <TabPanel>
-            <div className="reviews-container">
+<Rating name="no-value" value={averageProductRating } color="var(--primary-color)" className="startrating mt-1"  />
+
+
+            <div className="reviews-container mt-2    ">
               <h3>Reviews ({reviewCount})</h3> {/* Dynamically display review count */}
               {Reviews.map((review, index) => (
-                <div key={index} className="review">
+                <div key={index} className="review mt-3">
                   <div className="rating d-flex">
                     <Avatar
                       alt={review.name}
                       src="/static/images/avatar/1.jpg" // Ensure this path is correct or dynamic
-                      sx={{ width: 56, height: 56 }}
+                      sx={{ width: 74, height: 74 }}
                     />
                     <div className="data mx-3">
-                      <p>{review.name}</p>
-                      <p>Email: {review.email}</p>
-                      <p>Rating: {review.rating}</p>
-                      <p>Comment: {review.comment}</p>
+                      <h5>{review.name}</h5>
+                      <p>{review.email}</p>
+                      <Rating name="no-value" value={review.rating} color="var(--primary-color)" className="startrating mt-1"  />
+
+                      {/* <p>Rating: {review.rating}</p> */}
+                      <p>{review.comment}</p>
                     </div>
                   </div>
+                  <hr />
                 </div>
               ))}
             </div>

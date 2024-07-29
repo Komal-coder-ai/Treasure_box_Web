@@ -73,3 +73,22 @@
   display: inline-block !important;
   color: #201f1f !important;
 }
+.reviews-container h3{
+  font-family: Poppins, sans-serif;
+    color: #201f1f;
+    margin-top: 0;
+    font-weight: 500;
+    line-height: 1.2;
+    transition: all .3s ease-out 0s;
+}
+.reviews-container h5{
+  font-size: 14px;
+  margin-bottom: 0;
+  display: inline-block;
+  color: #201f1f;
+}
+.reviews-container p{
+  margin-bottom: 0;
+    margin-top: 8px;
+    color: #5b5b5b; 
+}

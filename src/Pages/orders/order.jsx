@@ -10,6 +10,7 @@ import ReviewForm from "../../Componentsnew/Review";
 import { Button, Modal } from "react-bootstrap";
 import { Box } from "@mui/material";
 import { Rating } from "@mui/material";
+import { Avatar } from "@material-ui/core";
 
 const OrderDetails = () => {
     const { id } = useParams();
@@ -169,25 +170,50 @@ const OrderDetails = () => {
                                         </p>
 
                                         {product.ratingData?.isProductRated === 1 ? (
-                                            <div className="rating-comments">
-                                                <Rating
-                                                    name="product-rating"
-                                                    value={parseFloat(product.ratingData.rating)}
-                                                    readOnly
-                                                />
-                                                <p className="colorGrayFontSize">
-                                                    {product.ratingData.name}
-                                                </p>
-                                                <p className="colorGrayFontSize">
-                                                    Email: {product.ratingData.email}
-                                                </p>
-                                                <p className="colorGrayFontSize">
-                                                    Comment: {product.ratingData.comment}
-                                                </p>
+                                            // <div className="rating-comments">
+                                            //     <Rating
+                                            //         name="product-rating"
+                                            //         value={parseFloat(product.ratingData.rating)}
+                                            //         readOnly
+                                            //     />
+                                            //     <p className="colorGrayFontSize">
+                                            //         {product.ratingData.name}
+                                            //     </p>
+                                            //     <p className="colorGrayFontSize">
+                                            //         Email: {product.ratingData.email}
+                                            //     </p>
+                                            //     <p className="colorGrayFontSize">
+                                            //         Comment: {product.ratingData.comment}
+                                            //     </p>
+                                            // </div>
+
+                                            <div className="reviews-container mt-2    ">
+                                                <h3>Your Reviews </h3> {/* Dynamically display review count */}
+
+                                                <div key={index} className="review mt-3">
+                                                    <div className="rating d-flex">
+                                                        <Avatar
+                                                            alt={product.ratingData.name}
+                                                            src="/static/images/avatar/1.jpg" // Ensure this path is correct or dynamic
+                                                            sx={{ width: 74, height: 74 }}
+                                                        />
+                                                        <div className="data mx-3">
+                                                            <h5> {product.ratingData.name}</h5>
+                                                            <p>{product.ratingData.email}</p>
+                                                            <Rating name="no-value" value={product.ratingData.rating} />
+
+                                                            {/* <p>Rating: {review.rating}</p> */}
+                                                            <p>{product.ratingData.comment}</p>
+                                                        </div>
+                                                    </div>
+                                                    <hr />
+                                                </div>
+
                                             </div>
+
                                         ) : (
                                             <span onClick={() => handleOpen(product.productId)}>
-                                                <Rating name="no-value" value={null} />
+                                                <Rating name="no-value" value={null} color="var(--primary-color)" className="startrating mt-1" />
                                             </span>
                                         )}
                                     </div>
