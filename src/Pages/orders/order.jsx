@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./index.css";
 import ToastMessage from "../../utils/ToastMessage";
 import { ImageUrl, orderDetails, postApiCall } from "../../API/baseUrl";
@@ -7,8 +7,7 @@ import Loader from "../../components/loader";
 import moment from "moment";
 import CurrencyRupeeIcon from "@mui/icons-material/CurrencyRupee";
 import ReviewForm from "../../Componentsnew/Review";
-import Product_Comments from "../../Componentsnew/Product_Comments/Index";
-import { Button, Modal } from "react-bootstrap"; // Adjusted import
+import { Button, Modal } from "react-bootstrap";
 import { Box } from "@mui/material";
 import { Rating } from "@mui/material";
 
@@ -23,16 +22,16 @@ const OrderDetails = () => {
     const [selectedProductId, setSelectedProductId] = useState(null);
 
     const handleOpen = (productId) => {
-        setSelectedProductId(productId); // Set selected productId
+        setSelectedProductId(productId);
         setOpen(true);
     };
+
     const handleClose = () => setOpen(false);
 
     const getDetails = async () => {
         setPending(true);
         try {
             const result = await postApiCall(`${orderDetails}/${id}`);
-
             if (result?.data?.status) {
                 const UserId = result?.data?.data?.userId;
                 setUserId(UserId);
@@ -143,7 +142,7 @@ const OrderDetails = () => {
                                     <div className="orderDetailsNameFeaturePrice">
                                         <p className="colorGrayFontSize product_name_order_details">
                                             {product.product_name ? product.product_name : "-"}
-                                            <p>productID :-</p> {product.productId}
+                                            <p>ProductID :-</p> {product.productId}
                                         </p>
                                         {product.color_name === "FreeColor" ? (
                                             <p className="colorGrayFontSize">Color: -</p>
@@ -169,9 +168,28 @@ const OrderDetails = () => {
                                                 : product.discount_amount}
                                         </p>
 
-                                        <span onClick={() => handleOpen(product.productId)}>
-                                            <Rating name="no-value" value={null} />
-                                        </span>
+                                        {product.ratingData?.isProductRated === 1 ? (
+                                            <div className="rating-comments">
+                                                <Rating
+                                                    name="product-rating"
+                                                    value={parseFloat(product.ratingData.rating)}
+                                                    readOnly
+                                                />
+                                                <p className="colorGrayFontSize">
+                                                    {product.ratingData.name}
+                                                </p>
+                                                <p className="colorGrayFontSize">
+                                                    Email: {product.ratingData.email}
+                                                </p>
+                                                <p className="colorGrayFontSize">
+                                                    Comment: {product.ratingData.comment}
+                                                </p>
+                                            </div>
+                                        ) : (
+                                            <span onClick={() => handleOpen(product.productId)}>
+                                                <Rating name="no-value" value={null} />
+                                            </span>
+                                        )}
                                     </div>
                                 </div>
                             </div>
@@ -179,80 +197,30 @@ const OrderDetails = () => {
                     </div>
                 </div>
             )}
+
             <Modal
                 show={open}
                 onHide={handleClose}
                 aria-labelledby="modal-modal-title"
                 aria-describedby="modal-modal-description"
                 centered
-
             >
                 <Box
-
+                    style={{
+                        backgroundColor: 'background.paper',
+                        padding: 3,
+                        borderRadius: 2,
+                        boxShadow: 24,
+                        maxWidth: 500,
+                        width: '100%',
+                        textAlign: 'center',
+                    }}
                 >
-                    <Box
-                        style={{
-                            backgroundColor: 'background.paper',
-                            padding: 3,
-                            borderRadius: 2,
-                            boxShadow: 24,
-                            maxWidth: 500,
-                            width: '100%',
-                            textAlign: 'center',
-                        }}
-                    >
-                        <ReviewForm orderid={id} userId={userId} productId={selectedProductId} />
-                    
-                    </Box>
+                    <ReviewForm orderid={id} userId={userId} productId={selectedProductId} />
                 </Box>
             </Modal>
-
-           
         </>
     );
 };
 
 export default OrderDetails;
-
-
-
-
-
-// <Modal
-// show={open}
-// onHide={handleClose}
-// aria-labelledby="modal-modal-title"
-// aria-describedby="modal-modal-description" sx={{
-// }}
-// style={{
-
-//     display: 'flex',
-//     alignItems: 'BottomSheet',
-//     justifyContent: 'center',
-//     height: '100vh',
-//     width: '100vw',
-//     overflow: 'auto',
-
-//     marginTop: "10%"
-
-// }}
-// >
-// <Box sx={{
-
-// }}
-//     style={{
-//         backgroundColor: 'background.paper',
-//         padding: 3,
-//         borderRadius: 2,
-//         boxShadow: 24,
-//         maxWidth: 500,
-//         width: '100%',
-//         textAlign: 'center',
-//     }}
-// >
-//     <div >
-//         <ReviewForm orderid={id} userId={userId} productId={productId} />
-//         {console.log("productId...", productId)}
-//     </div>
-// </Box>
-// </Modal>

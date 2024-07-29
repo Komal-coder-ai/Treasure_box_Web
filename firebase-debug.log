@@ -1,0 +1,60 @@
+[debug] [2024-07-29T10:45:43.201Z] ----------------------------------------------------------------------
+[debug] [2024-07-29T10:45:43.203Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\kajal\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js deploy
+[debug] [2024-07-29T10:45:43.204Z] CLI Version:   13.6.0
+[debug] [2024-07-29T10:45:43.204Z] Platform:      win32
+[debug] [2024-07-29T10:45:43.204Z] Node Version:  v18.17.0
+[debug] [2024-07-29T10:45:43.224Z] Time:          Mon Jul 29 2024 16:15:43 GMT+0530 (India Standard Time)
+[debug] [2024-07-29T10:45:43.224Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2024-07-29T10:45:43.229Z] >>> [apiv2][query] GET https://firebase-public.firebaseio.com/cli.json [none]
+[debug] [2024-07-29T10:45:43.360Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2024-07-29T10:45:43.360Z] > authorizing via signed-in user (komalprajapat267@gmail.com)
+[debug] [2024-07-29T10:45:43.360Z] [iam] checking project treasurebox-a7597 for permissions ["firebase.projects.get","firebasehosting.sites.update"]
+[debug] [2024-07-29T10:45:43.361Z] > refreshing access token with scopes: []
+[debug] [2024-07-29T10:45:43.362Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]
+[debug] [2024-07-29T10:45:43.363Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2024-07-29T10:45:43.679Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 200
+[debug] [2024-07-29T10:45:43.679Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2024-07-29T10:45:43.693Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/treasurebox-a7597:testIamPermissions [none]
+[debug] [2024-07-29T10:45:43.693Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/treasurebox-a7597:testIamPermissions x-goog-quota-user=projects/treasurebox-a7597
+[debug] [2024-07-29T10:45:43.694Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/treasurebox-a7597:testIamPermissions {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2024-07-29T10:45:44.186Z] <<< [apiv2][status] GET https://firebase-public.firebaseio.com/cli.json 200
+[debug] [2024-07-29T10:45:44.186Z] <<< [apiv2][body] GET https://firebase-public.firebaseio.com/cli.json {"cloudBuildErrorAfter":1594252800000,"cloudBuildWarnAfter":1590019200000,"defaultNode10After":1594252800000,"minVersion":"3.0.5","node8DeploysDisabledAfter":1613390400000,"node8RuntimeDisabledAfter":1615809600000,"node8WarnAfter":1600128000000}
+[debug] [2024-07-29T10:45:45.133Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/treasurebox-a7597:testIamPermissions 200
+[debug] [2024-07-29T10:45:45.133Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/treasurebox-a7597:testIamPermissions {}
+[debug] [2024-07-29T10:45:45.134Z] [iam] error while checking permissions, command may fail: FirebaseError: Authorization failed. This account is missing the following required permissions on project treasurebox-a7597:
+
+  firebase.projects.get
+  firebasehosting.sites.update
+[debug] [2024-07-29T10:45:45.139Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/treasurebox-a7597 [none]
+[debug] [2024-07-29T10:45:45.656Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/treasurebox-a7597 403
+[debug] [2024-07-29T10:45:45.657Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/treasurebox-a7597 {"error":{"code":403,"message":"The caller does not have permission","status":"PERMISSION_DENIED"}}
+[debug] [2024-07-29T10:45:45.660Z] HTTP Error: 403, The caller does not have permission
+[error] 
+[error] Error: Assertion failed: resolving hosting target of a site with no site name or target name. This should have caused an error earlier
+[debug] [2024-07-29T10:52:13.394Z] ----------------------------------------------------------------------
+[debug] [2024-07-29T10:52:13.396Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\kajal\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js deploy
+[debug] [2024-07-29T10:52:13.397Z] CLI Version:   13.6.0
+[debug] [2024-07-29T10:52:13.397Z] Platform:      win32
+[debug] [2024-07-29T10:52:13.397Z] Node Version:  v18.17.0
+[debug] [2024-07-29T10:52:13.398Z] Time:          Mon Jul 29 2024 16:22:13 GMT+0530 (India Standard Time)
+[debug] [2024-07-29T10:52:13.398Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2024-07-29T10:52:13.477Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2024-07-29T10:52:13.478Z] > authorizing via signed-in user (komalprajapat267@gmail.com)
+[debug] [2024-07-29T10:52:13.478Z] [iam] checking project treasurebox-a7597 for permissions ["firebase.projects.get","firebasehosting.sites.update"]
+[debug] [2024-07-29T10:52:13.481Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/treasurebox-a7597:testIamPermissions [none]
+[debug] [2024-07-29T10:52:13.481Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/treasurebox-a7597:testIamPermissions x-goog-quota-user=projects/treasurebox-a7597
+[debug] [2024-07-29T10:52:13.481Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/treasurebox-a7597:testIamPermissions {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2024-07-29T10:52:15.177Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/treasurebox-a7597:testIamPermissions 200
+[debug] [2024-07-29T10:52:15.178Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/treasurebox-a7597:testIamPermissions {}
+[debug] [2024-07-29T10:52:15.178Z] [iam] error while checking permissions, command may fail: FirebaseError: Authorization failed. This account is missing the following required permissions on project treasurebox-a7597:
+
+  firebase.projects.get
+  firebasehosting.sites.update
+[debug] [2024-07-29T10:52:15.180Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/treasurebox-a7597 [none]
+[debug] [2024-07-29T10:52:15.746Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/treasurebox-a7597 403
+[debug] [2024-07-29T10:52:15.747Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/treasurebox-a7597 {"error":{"code":403,"message":"The caller does not have permission","status":"PERMISSION_DENIED"}}
+[debug] [2024-07-29T10:52:15.750Z] HTTP Error: 403, The caller does not have permission
+[error] 
+[error] Error: Assertion failed: resolving hosting target of a site with no site name or target name. This should have caused an error earlier

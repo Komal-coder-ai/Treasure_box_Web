@@ -3,11 +3,11 @@ import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
 import "./index.css"; // Import your custom CSS file
 import RemoveTag from "../../components/removetag";
-import ReviewCom from "../../Componentsnew/Review"; // Assuming you might use this component later
+import { Avatar } from "@mui/material";
 
 const DetailPageTab = ({ description, general, Reviews }) => {
   const showSpecificationTab = general && general.length > 0;
-  console.log("ReviewsReviews", Reviews);
+  const reviewCount = Reviews ? Reviews.length : 0; // Calculate the number of reviews
 
   return (
     <div className="detailpagetab">
@@ -22,7 +22,7 @@ const DetailPageTab = ({ description, general, Reviews }) => {
           <RemoveTag
             ParserText={description}
             style={{
-              width: "100%", // Ensure description content takes full width
+              width: "100%",
               fontSize: "14px",
               lineHeight: "24px",
               color: "red",
@@ -52,12 +52,22 @@ const DetailPageTab = ({ description, general, Reviews }) => {
         {Reviews && Reviews.length > 0 && (
           <TabPanel>
             <div className="reviews-container">
+              <h3>Reviews ({reviewCount})</h3> {/* Dynamically display review count */}
               {Reviews.map((review, index) => (
                 <div key={index} className="review">
-                  <h3>Review by: {review.name}</h3>
-                  <p>Email: {review.email}</p>
-                  <p>Rating: {review.rating}</p>
-                  <p>Comment: {review.comment}</p>
+                  <div className="rating d-flex">
+                    <Avatar
+                      alt={review.name}
+                      src="/static/images/avatar/1.jpg" // Ensure this path is correct or dynamic
+                      sx={{ width: 56, height: 56 }}
+                    />
+                    <div className="data mx-3">
+                      <p>{review.name}</p>
+                      <p>Email: {review.email}</p>
+                      <p>Rating: {review.rating}</p>
+                      <p>Comment: {review.comment}</p>
+                    </div>
+                  </div>
                 </div>
               ))}
             </div>
