@@ -47,7 +47,7 @@ const RatingChart = ({
                                         className="rating-bar"
                                         style={{
                                             width: `${getWidthPercentage(rating.count)}%`,
-                                            backgroundColor: rating.count > 0 ? rating.color : '#e0e0e0' // Use a light grey for empty bars
+                                            backgroundColor: rating.count > 0 ? rating.color : 'none' // Use a light grey for empty bars
                                         }}
                                     >
                                     </div>
