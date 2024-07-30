@@ -825,7 +825,14 @@ const ProductDetail = ({ reload, setReload, setCatval }) => {
             id="readmore"
             Reviews={details?.productRatingAndCommentList}
             averageProductRating={details?.averageProductRating}
+            productRatingExcellent={details?.productRatingExcellent}
+            productRatingVeryGood={details?.productRatingVeryGood}
+            productRatingGood={details?.productRatingGood}
+            productRatingAverage={details?.productRatingAverage}
+            productRatingPoor={details?.productRatingPoor}
+            productRatingCount={details?.productRatingCount}
           />
+
 
 
           <RelatedProducts

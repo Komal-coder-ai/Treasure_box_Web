@@ -14,6 +14,7 @@ function DarkVariantExample() {
 
   return (
     <div className="sliderCon">
+      {/* <h1>Komal</h1> */}
       <Carousel
         activeIndex={index}
         onSelect={handleSelect}

@@ -13,13 +13,13 @@ const HoomepageSlider2 = ({ titleList }) => {
     navigate(`/productDetails/${id}/${cleanedName}`);
   };
 
-
+ 
   return (
     <div className="HomepageSliderCon2 container-fluid">
      
       <div className="row">
         {limitedTitleList.map((item, index) => (
-          <div key={index} className="col-12 col-md-4">
+          <div key={index} className="col-12 col-md-4 col-sm-10 ">
             
             <div className="box box1">
             <Link to="/product" className="DiscovernowBNT">
@@ -47,3 +47,4 @@ const HoomepageSlider2 = ({ titleList }) => {
 };
 
 export default HoomepageSlider2;
+   

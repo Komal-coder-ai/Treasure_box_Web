@@ -1,47 +1,44 @@
 import React from "react";
+import { Container, Row, Col } from "react-bootstrap"; // Import Bootstrap components
 import "bootstrap/dist/css/bootstrap.min.css"; // Import Bootstrap CSS
-import "./index.css"; // Your custom CSS file if needed
-import ButtonForAll from "../../components/ButtonForALL";
+import "./index.css";
+import { ImageUrl } from "../../API/baseUrl";
+import { Link } from "react-router-dom";
 
-const TwoConSlider = () => {
+const TwoConSlider = ({ titleList = [] }) => {
+  // Filter to get items at index 4 and 5
+  const filteredTitleList = titleList.slice(3, 4);
+
   return (
-    <div className="container">
-      <div className="row">
-        <div className="col-lg-6 mb-4 boxcon d-flex" style={{ padding: '30px' ,marginRight:"12px"}}>
-          <div className="textcontainerdiv">
-            <span className="productname">Products Accessories</span>
-            <h4>Wooden Container Bowl</h4>
-            <div className="buynowbtn">
-            <ButtonForAll name="Buy Now"  />
-            </div>
-          </div>
-          <div className="">
-            <img
-              src="https://cdn.images.fecom-media.com/FE00008240/images/HE1478394_153085-P.jpg"
-              className="img-fluid twoconimage"
-              alt="Product Image"
-            />
-          </div>
-        </div>
-
-        <div className="col-lg-5 mb-4 boxcon d-flex" style={{ padding: '30px' }}>
-          <div className="textcontainerdiv">
-            <span className="productname">Products Accessories</span>
-            <h4>Wooden container Bowl</h4>
-            <div className="buynowbtn">
-            <ButtonForAll name="Buy now"  />
-            </div>
-          </div>
-          <div className="">
-            <img
-              src="https://cdn.images.fecom-media.com/FE00008240/images/HE1478394_153085-P.jpg"
-              className="img-fluid twoconimage"
-              alt="Product Image"
-            />
-          </div>
-        </div>
-      </div>
-    </div>
+    <Container className="HomepageSliderCon2">
+      <Row>
+        {filteredTitleList.length > 0 ? (
+          filteredTitleList.map((item, index) => (
+            <Col key={index} xs={12} md={6} lg={6} className="mb-3">
+              <div className="box box1">
+                <Link to={`/product/${item.id}`} className="DiscovernowBNT">
+                  <div className="box-content d-flex flex-column align-items-center">
+                    <div className="text-center mb-2">
+                      <p>{item.category_name}</p>
+                      <Link to={`/product/${item.id}`} className="DiscovernowBNT">
+                        Discover now
+                      </Link>
+                    </div>
+                    <img
+                      src={`${ImageUrl}${item.files}`}
+                      alt={item.category_name}
+                      className="homepagesliderimage"
+                    />
+                  </div>
+                </Link>
+              </div>
+            </Col>
+          ))
+        ) : (
+          <p>No items available</p>
+        )}
+      </Row>
+    </Container>
   );
 };
 

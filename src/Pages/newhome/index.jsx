@@ -368,8 +368,8 @@ const Newhome = ({ reload, setReload, catval, setCatval }) => {
                         }}
                       />
                     </div>
-                    <TwoConSlider></TwoConSlider>
-                    <GetDiscountInfo />
+                    <TwoConSlider titleList={titleList}></TwoConSlider>
+                    {/* <GetDiscountInfo /> */}
                   </div>
                 </div>
               </div>
@@ -377,7 +377,7 @@ const Newhome = ({ reload, setReload, catval, setCatval }) => {
           </div>
         </div>
       </div>
-      <BacktoHome></BacktoHome>
+      <BacktoHome ></BacktoHome>
     
     </>
   );

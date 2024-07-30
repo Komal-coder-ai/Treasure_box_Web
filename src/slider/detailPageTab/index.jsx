@@ -4,10 +4,31 @@ import "react-tabs/style/react-tabs.css";
 import "./index.css"; // Import your custom CSS file
 import RemoveTag from "../../components/removetag";
 import { Avatar, Rating } from "@mui/material";
+import RatingChart from "../../Componentsnew/RatingChart/Index";
+import { Container } from 'react-bootstrap';
 
-const DetailPageTab = ({ description, general, Reviews ,averageProductRating}) => {
+const DetailPageTab = ({
+  description,
+  general,
+  Reviews,
+  averageProductRating,
+  productRatingExcellent,
+  productRatingVeryGood,
+  productRatingGood,
+  productRatingAverage,
+  productRatingPoor,
+  productRatingCount
+}) => {
   const showSpecificationTab = general && general.length > 0;
   const reviewCount = Reviews ? Reviews.length : 0; // Calculate the number of reviews
+
+
+  const ratings = [productRatingExcellent, productRatingVeryGood, productRatingGood, productRatingAverage, productRatingPoor];
+
+  const getBarColor = (rating) => {
+    if (rating > 0) return 'orange';
+    return 'lightgray';
+  };
 
   return (
     <div className="detailpagetab">
@@ -49,12 +70,28 @@ const DetailPageTab = ({ description, general, Reviews ,averageProductRating}) =
           </TabPanel>
         )}
 
-        {Reviews && Reviews.length > 0 && (
+       
+       {Reviews && Reviews.length > 0 && (
           <TabPanel>
-<Rating name="no-value" value={averageProductRating } color="var(--primary-color)" className="startrating mt-1"  />
+            {/* Added visual rating display */}
+            <Container>
+              
+            <div className="rating-summary">
 
 
-            <div className="reviews-container mt-2    ">
+              <RatingChart
+                averageProductRating={averageProductRating}
+
+                productRatingExcellent={productRatingExcellent}
+                productRatingVeryGood={productRatingVeryGood}
+                productRatingGood={productRatingGood}
+                productRatingAverage={productRatingAverage}
+                productRatingPoor={productRatingPoor}
+                productRatingCount={productRatingCount}
+              />
+        
+
+            <div className="reviews-container mt-2">
               <h3>Reviews ({reviewCount})</h3> {/* Dynamically display review count */}
               {Reviews.map((review, index) => (
                 <div key={index} className="review mt-3">
@@ -67,9 +104,8 @@ const DetailPageTab = ({ description, general, Reviews ,averageProductRating}) =
                     <div className="data mx-3">
                       <h5>{review.name}</h5>
                       <p>{review.email}</p>
-                      <Rating name="no-value" value={review.rating} color="var(--primary-color)" className="startrating mt-1"  />
+                      <Rating name="no-value" value={review.rating} color="var(--primary-color)" className="startrating mt-1" />
 
-                      {/* <p>Rating: {review.rating}</p> */}
                       <p>{review.comment}</p>
                     </div>
                   </div>
@@ -77,8 +113,11 @@ const DetailPageTab = ({ description, general, Reviews ,averageProductRating}) =
                 </div>
               ))}
             </div>
+            </div>
+            </Container>
           </TabPanel>
         )}
+   
       </Tabs>
     </div>
   );

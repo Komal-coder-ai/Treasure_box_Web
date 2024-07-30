@@ -78,7 +78,7 @@ const ReviewForm = ({ userId, orderid, productId, }) => {
           color: "var(--black-color)"
         }}
       >Your Review</p>
-      {submittedData && (
+      {/* {submittedData && (
         <div className="submitted-data">
           <p style={{
             fontSize: "27px",
@@ -104,7 +104,7 @@ const ReviewForm = ({ userId, orderid, productId, }) => {
           </div>
           <hr />
         </div>
-      )}
+      )} */}
 
       <Rating
         name="size-large"

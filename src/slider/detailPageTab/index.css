@@ -92,3 +92,28 @@
     margin-top: 8px;
     color: #5b5b5b; 
 }
+
+
+/* Add these styles to index.css */
+
+.rating-summary {
+  margin-bottom: 20px;
+}
+
+.rating-bars {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.rating-bar {
+  height: 20px;
+  color: rgb(149, 25, 25);
+  display: flex;
+  align-items: center;
+  padding-left: 10px;
+  font-size: 14px;
+  font-weight: bold;
+  border-radius: 5px;
+  transition: width 0.3s, background-color 0.3s;
+}
