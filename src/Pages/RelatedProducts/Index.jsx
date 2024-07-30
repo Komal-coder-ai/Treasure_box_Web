@@ -15,7 +15,6 @@ import {
   ImageUrl,
   postApiCall,
   relatedProductAPI,
-  RelatedProductListData,
 } from "../../API/baseUrl";
 import axios from "axios";
 
@@ -32,20 +31,23 @@ const RelatedProductList = ({
   const [error, setError] = useState(null);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [secondaryImages, setSecondaryImages] = useState({});
+  const [itemsPerPage, setItemsPerPage] = useState(getItemsPerPage()); // State for items per page
   const navigate = useNavigate();
 
-  const itemsPerPage = 4;
+  // Function to determine items per page based on screen width
+  function getItemsPerPage() {
+    const width = window.innerWidth;
+    if (width <= 600) return 1; // Mobile
+    if (width <= 1200) return 2; // Tablet
+    return 4; // Desktop
+  }
 
-  console.log("asdfghjkl", subcategory);
-  console.log("userid", user_id);
-
+  // Fetch data from API
   const fetchData = async () => {
     try {
       const response = await postApiCall(relatedProductAPI, {
         subCategory_Id: subcategory,
-
         userId: "", // Assuming userId can be an empty string
-
       });
       console.log("Response data:", response.data);
       if (response.data.status) {
@@ -63,16 +65,27 @@ const RelatedProductList = ({
   useEffect(() => {
     fetchData();
   }, [subcategory]);
+
+  // Update items per page when window is resized
+  useEffect(() => {
+    const handleResize = () => {
+      setItemsPerPage(getItemsPerPage());
+    };
+
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
   // Handle previous button click
   const handlePrev = () => {
     setCurrentIndex(
-      (prevIndex) => (prevIndex - 1 + products.length) % products.length
+      (prevIndex) => (prevIndex - itemsPerPage + products.length) % products.length
     );
   };
 
   // Handle next button click
   const handleNext = () => {
-    setCurrentIndex((prevIndex) => (prevIndex + 1) % products.length);
+    setCurrentIndex((prevIndex) => (prevIndex + itemsPerPage) % products.length);
   };
 
   // Determine which products to display
@@ -87,14 +100,21 @@ const RelatedProductList = ({
 
   // Handle image hover
   const handleImageHover = (index, isHovering) => {
-    setSecondaryImages((prevImages) => ({
-      ...prevImages,
-      [index]: isHovering
-        ? `${ImageUrl}/${products[index].secondary_image}`
-        : null,
-    }));
+    setSecondaryImages((prevImages) => {
+      const product = products[index];
+      if (!product) {
+       
+        return prevImages;
+      }
+      return {
+        ...prevImages,
+        [index]: isHovering
+          ? `${ImageUrl}/${product.secondary_image}`
+          : null,
+      };
+    });
   };
-
+  
   // Render loading, error, or product list
   if (loading) {
     return <div>Loading...</div>;
@@ -103,6 +123,7 @@ const RelatedProductList = ({
   if (error) {
     return <div>Error: {error}</div>;
   }
+
   const handleLikeToggle = async (id, index, type, user_id) => {
     if (user_id) {
       try {
@@ -127,6 +148,7 @@ const RelatedProductList = ({
       // setShowLoginPopup(!showLoginPopup);
     }
   };
+
   const handleDetailPage = (id, name) => {
     const cleanedName = name.replace(/[^\w\s]/gi, "");
     navigate(`/productDetails/${id}/${cleanedName}`);
@@ -181,17 +203,16 @@ const RelatedProductList = ({
                     )}
                   </div>
                   <img
-                    onMouseEnter={() => handleImageHover(index, true)}
-                    onMouseLeave={() => handleImageHover(index, false)}
-                    onClick={() =>
-                      handleDetailPage(product.id, product.product_name)
-                    }
-                    className="product-image" 
-                    src={
-                      secondaryImages[index] || `${ImageUrl}/${product.files}`
-                    }
-                    alt={product.product_name}
-                  />
+  onMouseEnter={() => handleImageHover(index, true)}
+  onMouseLeave={() => handleImageHover(index, false)}
+  onClick={() => handleDetailPage(product.id, product.product_name)}
+  className="product-image"
+  src={
+    (product && secondaryImages[index]) || (product && `${ImageUrl}/${product.files}`)
+  }
+  alt={product ? product.product_name : 'Product'}
+/>
+
                   <div className="product-icons">
                     <ShoppingBagOutlinedIcon
                       className="product-icon"

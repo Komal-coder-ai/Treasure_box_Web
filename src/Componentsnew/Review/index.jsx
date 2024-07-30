@@ -5,21 +5,21 @@ import ButtonForAll from './../../components/ButtonForALL/index';
 import axios from 'axios'; // Import axios
 import Product_Comments from '../Product_Comments/Index';
 
-const ReviewForm = ({ userId, orderid, productId, }) => {
+const ReviewForm = ({ userId, orderid, productId, ratingvalue, handleClose, getDetails }) => {
   const [rating, setRating] = useState(0);
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     comment: ''
   });
-  { console.log("ppppp5", productId) }
+
   const [submittedData, setSubmittedData] = useState(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleRatingChange = (value) => {
     setRating(value);
   };
-console.log(userId,"userIduserId")
+  console.log(userId, "userIduserId")
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData({
@@ -31,7 +31,9 @@ console.log(userId,"userIduserId")
   const postReview = async (reviewData) => {
     try {
       setIsSubmitting(true);
-
+      handleClose();
+      getDetails();
+      console.log("get",getDetails)
       const response = await axios.post('https://treasure.technotoil.com/product-rating/user/do/product-rating', reviewData, {
         headers: {
           'Content-Type': 'application/json',
@@ -54,12 +56,12 @@ console.log(userId,"userIduserId")
       userIdFk: userId,
       productIdFk: productId,
       orderIdFk: orderid,
-      rating,
+      rating: ratingvalue,
       name: formData.name,
       email: formData.email,
       comment: formData.comment
     };
-
+    console.log("RRRR", rating)
     postReview(reviewData);
 
     setFormData({
@@ -78,37 +80,10 @@ console.log(userId,"userIduserId")
           color: "var(--black-color)"
         }}
       >Your Review</p>
-      {/* {submittedData && (
-        <div className="submitted-data">
-          <p style={{
-            fontSize: "27px",
-            color: "var(--black-color)"
-          }}></p>
-          <div className="rating d-flex">
-            <Avatar alt={submittedData.name} src="/static/images/avatar/1.jpg" sx={{ width: 56, height: 56 }} />
-            <div className="userinformation mx-4">
-              <p
-                style={{
-                  fontSize: "14px",
-                  color: "var(--black-color)"
-                }}>{submittedData.name}</p>
-              <Rating
-                name="size-large"
-                value={submittedData.rating}
-                size="large"
-                className='startrating'
-                readOnly
-              />
-              <p>{submittedData.comment}</p>
-            </div>
-          </div>
-          <hr />
-        </div>
-      )} */}
 
       <Rating
         name="size-large"
-        value={rating}
+        value={ratingvalue}
         size="large"
         className='startrating'
         onChange={(event, newValue) => handleRatingChange(newValue)}
@@ -153,7 +128,7 @@ console.log(userId,"userIduserId")
         </div>
       </form>
       {/* <Product_Comments  productIdFk={productId}/> */}
-      
+
 
     </div>
   );

@@ -21,7 +21,7 @@ const OrderDetails = () => {
     const [productId, setProductId] = useState(null);
     const [open, setOpen] = useState(false);
     const [selectedProductId, setSelectedProductId] = useState(null);
-
+    const [ratingvalue, setratingValue] = useState(0);
     const handleOpen = (productId) => {
         setSelectedProductId(productId);
         setOpen(true);
@@ -202,7 +202,7 @@ const OrderDetails = () => {
                                                         <div className="data mx-3">
                                                             <h5> {product.ratingData.name}</h5>
                                                             <p>{product.ratingData.email}</p>
-                                                            <Rating name="no-value" value={product.ratingData.rating} />
+                                                            <Rating name="no-value" value={product.ratingData.rating} className="startrating mt-1" />
 
                                                             {/* <p>Rating: {review.rating}</p> */}
                                                             <p>{product.ratingData.comment}</p>
@@ -215,7 +215,12 @@ const OrderDetails = () => {
 
                                         ) : (
                                             <span onClick={() => handleOpen(product.productId)}>
-                                                <Rating name="no-value" value={null} color="var(--primary-color)" className="startrating mt-1" />
+                                                <Rating name="no-value" value={ratingvalue}
+                                                    onChange={(event, newValue) => {
+                                                        setratingValue(newValue);
+                                                    }}
+
+                                                    color="var(--primary-color)" className="startrating mt-1" />
                                             </span>
                                         )}
                                     </div>
@@ -244,7 +249,14 @@ const OrderDetails = () => {
                         textAlign: 'center',
                     }}
                 >
-                    <ReviewForm orderid={id} userId={userId} productId={selectedProductId} />
+                    <ReviewForm orderid={id}
+                        userId={userId}
+                        productId={selectedProductId}
+                        handleClose={handleClose}
+                        ratingvalue={ratingvalue} 
+                        getDetails={getDetails}
+                        />
+                    {console.log("ratingvalue", ratingvalue)}
                 </Box>
             </Modal>
         </>
