@@ -19,7 +19,7 @@ const ReviewForm = ({ userId, orderid, productId, }) => {
   const handleRatingChange = (value) => {
     setRating(value);
   };
-
+console.log(userId,"userIduserId")
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData({

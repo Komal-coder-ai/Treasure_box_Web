@@ -143,24 +143,26 @@ const OrderDetails = () => {
                                     <div className="orderDetailsNameFeaturePrice">
                                         <p className="colorGrayFontSize product_name_order_details">
                                             {product.product_name ? product.product_name : "-"}
-                                            <p>ProductID :-</p> {product.productId}
+                                            {/* <p>ProductID :-</p> {product.productId} */}
+                                            {/* <p>ProductID :-</p> {product.color_name} */}
                                         </p>
                                         {product.color_name === "FreeColor" ? (
-                                            <p className="colorGrayFontSize">Color: -</p>
+
+                                            <p className="colorGrayFontSize">Color :- FreeColor  </p>
                                         ) : (
                                             <p className="colorGrayFontSize">
-                                                Color: {product.color_name ? product.color_name : "-"}
+                                                Color   : {product.color_name ? product.color_name : "-"}
                                             </p>
                                         )}
                                         {product.product_size === "FreeSize" ? (
-                                            <p className="colorGrayFontSize">Size: -</p>
+                                            <p className="colorGrayFontSize">Size :- Free Size</p>
                                         ) : (
                                             <p className="colorGrayFontSize">
-                                                Size: {product.product_size ? product.product_size : "-"}
+                                                Size : {product.product_size ? product.product_size : "-"}
                                             </p>
                                         )}
                                         <p className="colorGrayFontSize">
-                                            Quantity: {product.quantity ? product.quantity : "-"}
+                                            Quantity : {product.quantity ? product.quantity : "-"}
                                         </p>
                                         <p className="colorGrayFontSize">
                                             Price: ₹

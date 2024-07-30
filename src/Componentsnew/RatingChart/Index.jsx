@@ -13,7 +13,7 @@ const RatingChart = ({
     productRatingCount,
 }) => {
 
-    const totalRatings = productRatingExcellent + productRatingVeryGood + productRatingGood + productRatingAverage + productRatingPoor;
+    const totalRatings = averageProductRating;
 
     const getWidthPercentage = (count) => totalRatings ? (count / totalRatings) * 100 : 0;
 
@@ -27,46 +27,32 @@ const RatingChart = ({
 
     return (
         <Container className="rating-container">
-              <h4>Product Ratings</h4>
-
             <Row className="align-items-center mt-2">
-                <Col xs={12} sm={12} md={4} lg={2} xl={2} className="text-center text-md-start">
-                    <div className="average-rating d-flex ">
-                        <p>{averageProductRating}</p>
-                        <span><GoStarFill /></span>
+                <Col xs={12} sm={12} md={4} lg={2} xl={2} className="text-center text-md-start mb-4 mb-md-0">
+                    <div className="average-rating d-flex align-items-center">
+                        <p className="mb-0">{averageProductRating}</p>
+                        <span className="ms-2"><GoStarFill /></span>
                     </div>
-                    <p className='align-center'> {productRatingCount} <span> Ratings</span></p>
+                    <p className='mt-2'>{productRatingCount} <span>Ratings</span></p>
                 </Col>
                 <Col xs={12} sm={12} md={8} lg={10} xl={10}>
-                  
                     <div className="rating-bars">
                         {ratings.map((rating, index) => (
-                            <div key={index} className="rating-bar-container d-flex align-items-baseline">
-                                <p className='d-flex justify-content-end'
-                                    style={{
-                                        textAlign: "right",
-                                        width: "200px"
-                                    }}
-                                >    <span> {rating.label} </span>
-                                    {/* <span>({rating.count})</span> */}
+                            <div key={index} className="rating-bar-container d-flex align-items-center mb-2">
+                                <p className='mb-0 me-2' style={{ width: "200px", textAlign: "right" }}>
+                                    <span>{rating.label}</span>
                                 </p>
-                                <div className="outerbar mx-2">
+                                <div className="outerbar mx-2 flex-grow-1">
                                     <div
                                         className="rating-bar"
                                         style={{
                                             width: `${getWidthPercentage(rating.count)}%`,
-                                            backgroundColor: rating.count > 0 ? rating.color : 'none' 
+                                            backgroundColor: rating.count > 0 ? rating.color : '#e0e0e0' // Use a light grey for empty bars
                                         }}
                                     >
                                     </div>
                                 </div>
-                                <p className='d-flex justify-content-end'
-                                    style={{
-                                        textAlign: "right",
-                                        width: "100px"
-                                    }}
-                                >
-                                    {/* <span> {rating.label} </span> */}
+                                <p className='mb-0' style={{ width: "100px", textAlign: "right" }}>
                                     <span>{rating.count}</span>
                                 </p>
                             </div>
