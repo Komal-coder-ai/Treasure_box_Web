@@ -77,7 +77,7 @@ const Slider2 = ({ images }) => {
         </div>
         <div className="col-lg-8 col-md-6 mt-4 mt-md-0">
       {hoveredImage && (
-        <div className="hovered-image-wrapper">
+        <div className="hovered-image-wrapper image-magnify-container ">
           <ReactImageMagnify {...{
             smallImage: {
               alt: 'Hovered',
@@ -87,7 +87,8 @@ const Slider2 = ({ images }) => {
             largeImage: {
               src: hoveredImage,
               width: 1200,
-              height: 1800
+              height: 1800,
+            
             }
           }} />
         </div>

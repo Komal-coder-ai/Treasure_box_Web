@@ -29,7 +29,7 @@ const SliderComponent = ({
   // State to store secondary images
   const [secondaryImages, setSecondaryImages] = useState({});
 
-  const handleDetailPage = (id, name) => {  
+  const handleDetailPage = (id, name) => {
     const cleanedName = name.replace(/[^\w\s]/gi, "");
     navigate(`/productDetails/${id}/${cleanedName}`);
   };
@@ -77,7 +77,7 @@ const SliderComponent = ({
 
   return (
     <div className="slider-container">
-      <p></p> 
+      <p></p>
       <Grid container spacing={3}>
         {newarrivalList.map((item, index) => (
           <Grid item key={index} xs={12} sm={6} md={3}>
@@ -86,8 +86,8 @@ const SliderComponent = ({
 
 
 
-              <div className="likebuttonForMobile">
-                {item.is_wishlist ? (
+                <div className="likebuttonForMobile">
+                  {item.is_wishlist ? (
                     <p>
                       <FavoriteIcon
                         className="product-icon"
@@ -133,7 +133,7 @@ const SliderComponent = ({
                     `${ImageUrl}/${item.files || item.file}`
                   }
                   alt=""
-                
+
                 />
                 <div className="product-icons">
                   <p>
@@ -178,7 +178,7 @@ const SliderComponent = ({
                   )}
                 </div>
 
-             
+
               </div>
               <div
                 className="product-description"
@@ -201,35 +201,36 @@ const SliderComponent = ({
                 <p className="product-price">
                   {item.discount_percent === 0 ? (
                     <span className="mrp-with-discount product-icon_rs">
-                      <CurrencyRupeeIcon  style={{fontSize:'14px'}}/>{" "}
+                      <CurrencyRupeeIcon style={{ fontSize: '14px' }} />{" "}
                       {item.discount_amount || item.price}
                     </span>
                   ) : (
                     <>
                       <span className="mrp-with-discount product-icon_rs">
-                        <CurrencyRupeeIcon style={{fontSize:'14px'}}/>
+                        <CurrencyRupeeIcon style={{ fontSize: '14px' }} />
                         {item.discount_amount}
                       </span>
-                      <strike className="discount-mrp">
+                      <strike className="discount-mrp mx-2">
+                        <CurrencyRupeeIcon style={{ fontSize: '14px' }} />
                         {item.mrp_amount || item.price}
                       </strike>
-                      <span className="discount-percent">
-                        {item.discount_percent}% off
-                      </span>
+                        {/* <span className="discount-percent">
+                          {item.discount_percent} Rs off
+                        </span> */}
                     </>
                   )}
                 </p>
                 <div className="addtocart"
-                 onClick={() =>
-                  handleDetailPage(
-                    item.productId || item.id,
-                    item.product_name || item.productName
-                  )
-                }
+                  onClick={() =>
+                    handleDetailPage(
+                      item.productId || item.id,
+                      item.product_name || item.productName
+                    )
+                  }
                 >
                   <IoAddSharp /> <span> Add to cart</span>
                 </div>
-                
+
               </div>
             </div>
           </Grid>
@@ -242,7 +243,7 @@ const SliderComponent = ({
           {...{ reload, setReload }}
         />
       )}
-    </div> 
+    </div>
   );
 };
 

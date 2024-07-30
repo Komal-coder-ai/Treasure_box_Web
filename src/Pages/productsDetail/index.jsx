@@ -24,7 +24,7 @@ import Login from "../login/login";
 import RemoveTag from "../../components/removetag";
 import CircleIcon from "@mui/icons-material/Circle";
 import RadioButtonCheckedIcon from "@mui/icons-material/RadioButtonChecked";
-import { Rating, Skeleton } from "@mui/material";
+import { Divider, Rating, Skeleton } from "@mui/material";
 // import instock from '../../Assect/ready-to-ship-icon.jpg';
 import instock from "../../Assect/return-box.png";
 import RemoveRedEyeOutlinedIcon from "@mui/icons-material/RemoveRedEyeOutlined";
@@ -147,7 +147,7 @@ const ProductDetail = ({ reload, setReload, setCatval }) => {
     }
   };
 
-  
+
   const getDetailsafterclick = async () => {
     try {
       const result = await postApiCall(getProductApi, {
@@ -244,7 +244,7 @@ const ProductDetail = ({ reload, setReload, setCatval }) => {
       } else {
         ToastMessage("error", result.data.message);
       }
-    } catch (error) {}
+    } catch (error) { }
   };
 
   const gotocart = () => {
@@ -386,6 +386,9 @@ const ProductDetail = ({ reload, setReload, setCatval }) => {
             </>
           )}
         </div>
+
+
+
         <div className="product_detail_infocontainer">
           {pending ? (
             <div className="productname_skeleton">
@@ -510,10 +513,33 @@ const ProductDetail = ({ reload, setReload, setCatval }) => {
               </p>
 
               <>
+
+                <div className="d-flex  mb-1">
+
+
+
+
+                  <Rating name="no-value" value={details?.averageProductRating} color="var(--primary-color)" className="startrating mt-1" />
+                  <Divider orientation="vertical" variant="middle" flexItem />
+                  <span className="mx-2">   rating ( {details.productRatingCount} )</span>
+                  <Divider orientation="vertical" variant="middle" flexItem />
+                  {/* <ScrollLink
+                    to="readmore"
+                    spy={true}
+                    smooth={true}
+                    offset={-70}
+                    duration={500}
+                    className="read-more-btn"
+                  >
+                    see Review
+                  </ScrollLink> */}
+                </div>
+
+
                 {details.discount_percent === 0 ? (
                   <p className=" cl2 rupeesdiv">
                     <span className="mrpwithdiscount rupeesdiv">
-                      <CurrencyRupeeIcon sx={{ fontSize: "18px" }} />{" "}
+                      <CurrencyRupeeIcon sx={{ fontSize: "16px" }} />{" "}
                       {details.mrp_amount ? details.mrp_amount : details.price}
                     </span>
                     {details.is_active === 0 ? (
@@ -524,17 +550,19 @@ const ProductDetail = ({ reload, setReload, setCatval }) => {
                   </p>
                 ) : (
                   <p className=" cl2 rupeesdiv">
-                    <span className="mrpwithdiscount">
-                      <hr style={{ width: "100%" }} />
-                      <CurrencyRupeeIcon sx={{ fontSize: "18px" }} />
-                      {details.discount_amount}
+                    <span className="mrpwithdiscount mt-2">
+                      <hr />
+                      <CurrencyRupeeIcon sx={{ fontSize: "16px" }} />
+                   <span style={{
+                    fontSize:"16px"
+                   }}>   {details.discount_amount}</span>
                     </span>
-                    <strike className="discount_mrp rupeesdiv">
+                    {/* <strike className="mx-2">
                       {details.mrp_amount ? details.mrp_amount : details.price}
                     </strike>{" "}
-                    <span className="discount_percent rupeesdiv">
-                      {details.discount_percent}% off{" "}
-                    </span>
+                    <span className="discount_percent">
+                      {details.discount_percent} Rs off{" "}
+                    </span> */}
                     {details.is_active === 0 ? (
                       <p className="soldout">Sold Out</p>
                     ) : (
@@ -543,7 +571,6 @@ const ProductDetail = ({ reload, setReload, setCatval }) => {
                   </p>
                 )}
               </>
-              <Rating name="no-value" value={details?.averageProductRating } color="var(--primary-color)" className="startrating mt-1"  />
 
               <p className="exclusive">MRP is inclusive of all taxes</p>
               {details.is_active === 0 ? (
@@ -694,11 +721,10 @@ const ProductDetail = ({ reload, setReload, setCatval }) => {
 
                 {checkAddedFunction() ? (
                   <button
-                    className={`${
-                      details.is_active === 0
-                        ? "cart_div2_disable"
-                        : "cart_div2"
-                    } `}
+                    className={`${details.is_active === 0
+                      ? "cart_div2_disable"
+                      : "cart_div2"
+                      } `}
                     disabled={cartbtnloading || details.is_active === 0}
                     onClick={gotocart}
                   >
@@ -706,11 +732,10 @@ const ProductDetail = ({ reload, setReload, setCatval }) => {
                   </button>
                 ) : (
                   <button
-                    className={`${
-                      details.is_active === 0
-                        ? "cart_div2_disable"
-                        : "cart_div2"
-                    } `}
+                    className={`${details.is_active === 0
+                      ? "cart_div2_disable"
+                      : "cart_div2"
+                      } `}
                     disabled={cartbtnloading || details.is_active === 0}
                     onClick={user_id ? handlecart : handleprofilePage}
                   >
@@ -838,7 +863,7 @@ const ProductDetail = ({ reload, setReload, setCatval }) => {
           <RelatedProducts
             user_id={user_id}
             subcategory={subcategory}
-          
+
 
           ></RelatedProducts>
           {console.log("Ddddd", subcategory)}

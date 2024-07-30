@@ -99,3 +99,8 @@
     justify-content: center;
   }
 }
+
+.image-magnify-container {
+  position: relative; 
+  z-index: 9999; 
+}
