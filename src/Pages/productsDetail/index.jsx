@@ -147,7 +147,6 @@ const ProductDetail = ({ reload, setReload, setCatval }) => {
     }
   };
 
-
   const getDetailsafterclick = async () => {
     try {
       const result = await postApiCall(getProductApi, {
@@ -244,7 +243,7 @@ const ProductDetail = ({ reload, setReload, setCatval }) => {
       } else {
         ToastMessage("error", result.data.message);
       }
-    } catch (error) { }
+    } catch (error) {}
   };
 
   const gotocart = () => {
@@ -387,8 +386,6 @@ const ProductDetail = ({ reload, setReload, setCatval }) => {
           )}
         </div>
 
-
-
         <div className="product_detail_infocontainer">
           {pending ? (
             <div className="productname_skeleton">
@@ -513,15 +510,18 @@ const ProductDetail = ({ reload, setReload, setCatval }) => {
               </p>
 
               <>
-
                 <div className="d-flex  mb-1">
-
-
-
-
-                  <Rating name="no-value" value={details?.averageProductRating} color="var(--primary-color)" className="startrating mt-1" />
+                  <Rating
+                    name="no-value"
+                    value={details?.averageProductRating}
+                    color="var(--primary-color)"
+                    className="startrating mt-1"
+                  />
                   <Divider orientation="vertical" variant="middle" flexItem />
-                  <span className="mx-2">   rating ( {details.productRatingCount} )</span>
+                  <span className="mx-2">
+                    {" "}
+                    rating ( {details.productRatingCount} )
+                  </span>
                   <Divider orientation="vertical" variant="middle" flexItem />
                   {/* <ScrollLink
                     to="readmore"
@@ -551,11 +551,15 @@ const ProductDetail = ({ reload, setReload, setCatval }) => {
                 ) : (
                   <p className=" cl2 rupeesdiv">
                     <span className="mrpwithdiscount mt-2">
-                  
                       <CurrencyRupeeIcon sx={{ fontSize: "16px" }} />
-                      <span style={{
-                        fontSize: "16px"
-                      }}>   {details.discount_amount}</span>
+                      <span
+                        style={{
+                          fontSize: "16px",
+                        }}
+                      >
+                        {" "}
+                        {details.discount_amount}
+                      </span>
                     </span>
                     {/* <strike className="mx-2">
                       {details.mrp_amount ? details.mrp_amount : details.price}
@@ -588,61 +592,62 @@ const ProductDetail = ({ reload, setReload, setCatval }) => {
                 </p>
               )}
 
-              {info.length ? (
+              {info.length > 0 && (
                 <div className="input_container">
-                  {info[0]?.color_name === "" ? (
-                    ""
-                  ) : (
+                  {info[0]?.color_name !== "" && (
                     <div className="color-div">
-                      <div className="size-203  respon6">Color</div>
-                      <div className="size_container">
-                        {info?.map((item, index) => (
-                          <div
-                            className="color_circle"
-                            key={index}
-                            onClick={() => handlecolor(item.id, index, item)}
-                            style={{ width: "100%", padding: "10px" }}
-                          >
-                            <select
-                              name=""
-                              id=""
-                              style={{ width: "100%", padding: "10px" }}
-                            >
-                              <option value=""> - Please select - </option>
-                              <option value={item.color_name}>{item.color_name}</option>
-                            
-                            </select>
-
-                          </div>
-                        ))}
+                      <div className="size-203 respon6">Color</div>
+                      <div
+                        className="color_circle"
+                        style={{ width: "100%", padding: "10px" }}
+                      >
+                        <select
+                          name="color"
+                          id="color-select"
+                          style={{ width: "100%", padding: "10px" }}
+                          // onChange={(e) => handlecolor(e.target.value)}
+                        >
+                          <option value="">- Please select -</option>
+                          {info.map((item, index) => (
+                            <option key={index} value={item.color_name}>
+                              {item?.color_name}
+                              {item?.color_code}
+                            </option>
+                          ))}
+                        </select>
                       </div>
                     </div>
                   )}
-
-                  {/* {size[0]?.name === "FreeSize" || size[0]?.name === "" ? (
-                    ""
-                  ) : (
-                    <div className=" p-b-10">
-                      <div className="size-203  respon6">Size</div>
-                      <div className="size_container">
-                        {size.map((item, index) => (
-                          <div
-                            key={index}
-                            className={`${item.selected ? "size_circle_active" : "size_circle"}`}
-                            onClick={() => handlesizeclick(index, item, size)}
-                          >
-                            {item.name}
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-                  )} */}
                 </div>
-              ) : (
-                ""
               )}
 
-
+              {info.length > 0 && (
+                <div className="input_container">
+                  {info[0]?.product_size !== "" && (
+                    <div className="color-div">
+                      <div className="size-203 respon6">Size</div>
+                      <div
+                        className="color_circle"
+                        style={{ width: "100%", padding: "10px" }}
+                      >
+                        <select
+                          name="color"
+                          id="color-select"
+                          style={{ width: "100%", padding: "10px" }}
+                          // onChange={(e) => handlecolor(e.target.value)}
+                        >
+                          <option value="">- Please select -</option>
+                          {info.map((item, index) => (
+                            <option key={index} value={item.product_size}>
+                              {item?.product_size}
+                        </option>
+                          ))}
+                        </select>
+                      </div>
+                    </div>
+                  )}
+                </div>
+              )}
               {/* ************* descrption of product *********** */}
               <hr />
               <div className="descriptionp">
@@ -723,10 +728,11 @@ const ProductDetail = ({ reload, setReload, setCatval }) => {
 
                 {checkAddedFunction() ? (
                   <button
-                    className={`${details.is_active === 0
-                      ? "cart_div2_disable"
-                      : "cart_div2"
-                      } `}
+                    className={`${
+                      details.is_active === 0
+                        ? "cart_div2_disable"
+                        : "cart_div2"
+                    } `}
                     disabled={cartbtnloading || details.is_active === 0}
                     onClick={gotocart}
                   >
@@ -734,10 +740,11 @@ const ProductDetail = ({ reload, setReload, setCatval }) => {
                   </button>
                 ) : (
                   <button
-                    className={`${details.is_active === 0
-                      ? "cart_div2_disable"
-                      : "cart_div2"
-                      } `}
+                    className={`${
+                      details.is_active === 0
+                        ? "cart_div2_disable"
+                        : "cart_div2"
+                    } `}
                     disabled={cartbtnloading || details.is_active === 0}
                     onClick={user_id ? handlecart : handleprofilePage}
                   >
@@ -860,13 +867,9 @@ const ProductDetail = ({ reload, setReload, setCatval }) => {
             productRatingCount={details?.productRatingCount}
           />
 
-
-
           <RelatedProducts
             user_id={user_id}
             subcategory={subcategory}
-
-
           ></RelatedProducts>
           {console.log("Ddddd", subcategory)}
         </div>
