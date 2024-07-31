@@ -480,9 +480,9 @@ const OrderCheckout = ({ reload, setReload }) => {
                                 marginBottom:"0px"
                             }}>Net Banking</p>} />
 
-                            <FormControlLabel className='formcontrol' value="1" control={<Radio sx={{ color: "blue" }} />} label={<p style={{
+                            {/* <FormControlLabel className='formcontrol' value="1" control={<Radio sx={{ color: "blue" }} />} label={<p style={{
                                 marginBottom:"0px"
-                            }}>Cash on Delivery (COD)</p>} />
+                            }}>Cash on Delivery (COD)</p>} /> */}
                         </RadioGroup>
                     </div>
 

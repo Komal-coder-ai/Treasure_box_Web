@@ -115,7 +115,7 @@ const RelatedProductList = ({
     });
   };
 
-  // Render loading, error, or product list
+
   if (loading) {
     return <div>Loading...</div>;
   }
@@ -180,7 +180,7 @@ const RelatedProductList = ({
       <div className="slider-wrapper">
         <ArrowBackIosIcon
           onClick={handlePrev}
-          style={{ cursor: "pointer", fontSize: "2rem" }}
+          style={{ cursor: "pointer", fontSize: "2rem", color: "var(--primary-color)" }}
         />
         <div className="slider-container">
           <div className="product-list" style={{ display: "flex" }}>
@@ -211,6 +211,7 @@ const RelatedProductList = ({
                       <FavoriteBorderIcon className="product-icon" />
                     )}
                   </div>
+
                   <img
                     onMouseEnter={() => handleImageHover(index, true)}
                     onMouseLeave={() => handleImageHover(index, false)}
@@ -218,8 +219,13 @@ const RelatedProductList = ({
                     className="product-image"
                     src={
                       (item && secondaryImages[index]) || (item && `${ImageUrl}/${item.files}`)
+
                     }
                     alt={item ? item.product_name : 'Product'}
+                    style={{
+                        width:'300px',
+                        height:"400px"
+                    }}
                   />
 
                   <div className="product-icons">
@@ -315,7 +321,7 @@ const RelatedProductList = ({
         </div>
         <ArrowForwardIosIcon
           onClick={handleNext}
-          style={{ cursor: "pointer", fontSize: "2rem" }}
+          style={{ cursor: "pointer", fontSize: "2rem", color: "var(--primary-color)" }}
         />
       </div>
     </div>

@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import "./index.css"
-import { ImageUrl,getApiCall, getcartApi, getuseraddressApi, getuserloginApi, getuserprofile, logoutApi, placeorderApi, postApiCall, quantitydecApi, quantityincApi } from '../../API/baseUrl';
+import { ImageUrl, getApiCall, getcartApi, getuseraddressApi, getuserloginApi, getuserprofile, logoutApi, placeorderApi, postApiCall, quantitydecApi, quantityincApi } from '../../API/baseUrl';
 import ToastMessage from '../../utils/ToastMessage';
 import { useNavigate } from 'react-router-dom';
 import CurrencyRupeeIcon from '@mui/icons-material/CurrencyRupee';
@@ -65,19 +65,19 @@ const Placeorder = ({ refresh, setRefresh }) => {
 
   const getProfile = async () => {
     try {
-        const result = await getApiCall(`${getuserprofile}/${user_id}`)
-        if (result?.data?.status) {
-            const { userId, dial_code, mobile, first_name, last_name, email, gender } = result?.data?.data || {}
-            setEmail(email)
-        } else {
-        }
+      const result = await getApiCall(`${getuserprofile}/${user_id}`)
+      if (result?.data?.status) {
+        const { userId, dial_code, mobile, first_name, last_name, email, gender } = result?.data?.data || {}
+        setEmail(email)
+      } else {
+      }
     } catch (error) {
     }
-}
+  }
 
-useEffect(() => {
+  useEffect(() => {
     getProfile()
-}, [])
+  }, [])
 
   const getCart = async () => {
     setPending(true)
@@ -161,7 +161,7 @@ useEffect(() => {
     setpaymentoption(false)
   }
   const gotoprofile = () => {
-      navigate("/profile")
+    navigate("/profile")
   }
   const changeaddress = () => {
     setChangedileveryaddress(!changedileveryaddress);
@@ -246,7 +246,7 @@ useEffect(() => {
   const totalPrice = data?.reduce((sum, product) => sum + Number(product.total_price), 0);
 
   const PlaceOrder = async () => {
-    if (email){
+    if (email) {
       setLoading(true)
       try {
         const result = await postApiCall(placeorderApi, {
@@ -271,10 +271,10 @@ useEffect(() => {
       finally {
         setLoading(false)
       }
-    }else{
+    } else {
       ToastMessage("error", "Please complete your profile first");
     }
-   
+
   }
 
   return (
@@ -318,7 +318,7 @@ useEffect(() => {
                       </Card>
                     }
 
-                    {email? "" : <Card className='card_order_login'>
+                    {email ? "" : <Card className='card_order_login'>
                       <div className='order_login_contain'>
                         <div className='login_number_container'>
                           <h4><h3>Complete your profile</h3></h4>
@@ -330,7 +330,7 @@ useEffect(() => {
                     </Card>
                     }
 
-                    
+
 
                     {useraddress.length ?
                       <div>

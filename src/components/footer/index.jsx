@@ -232,7 +232,8 @@ const Footer = ({ catval, setCatval, bgcolor, textcolor, imptext }) => {
             >
               Follow Us
               <div
-                className="icon"
+             
+                className="icon footerSocialMediaIcon"
                 style={{
                   color: finalTextColor,
                 }}
@@ -250,7 +251,7 @@ const Footer = ({ catval, setCatval, bgcolor, textcolor, imptext }) => {
                   />
                 </a>
                 <a
-                  href="https://www.facebook.com/treasureboxlife/"
+                  href="https://www.facebook.com/batracards123?mibextid=LQQJ4d"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
@@ -261,7 +262,7 @@ const Footer = ({ catval, setCatval, bgcolor, textcolor, imptext }) => {
                     }}
                   />
                 </a>
-                <a href="https://www.google.com/maps/dir/22.710376,75.8417746/treasurebox/@22.7060118,75.8356895,15z">
+                <a href="https://www.google.com/maps/place/TREASURE+BOX/@22.6993657,75.8477109,17z/data=!3m1!4b1!4m6!3m5!1s0x3962fdf8143cc3e5:0x54bc4ea63891ccef!8m2!3d22.6993657!4d75.8502858!16s%2Fg%2F11n0dxv59c?entry=ttu">
                   <CiLocationOn
                     className="footerSocialMediaIcon"
                     style={{
