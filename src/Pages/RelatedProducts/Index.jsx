@@ -17,6 +17,7 @@ import {
   relatedProductAPI,
 } from "../../API/baseUrl";
 import axios from "axios";
+import { Col, Container } from "react-bootstrap";
 
 const RelatedProductList = ({
   reload,
@@ -76,7 +77,7 @@ const RelatedProductList = ({
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  // Handle previous button click
+
   const handlePrev = () => {
     setCurrentIndex(
       (prevIndex) => (prevIndex - itemsPerPage + products.length) % products.length
@@ -88,7 +89,6 @@ const RelatedProductList = ({
     setCurrentIndex((prevIndex) => (prevIndex + itemsPerPage) % products.length);
   };
 
-  // Determine which products to display
   const displayedProducts = products
     .slice(currentIndex, currentIndex + itemsPerPage)
     .concat(
@@ -103,7 +103,7 @@ const RelatedProductList = ({
     setSecondaryImages((prevImages) => {
       const product = products[index];
       if (!product) {
-       
+
         return prevImages;
       }
       return {
@@ -114,7 +114,7 @@ const RelatedProductList = ({
       };
     });
   };
-  
+
   // Render loading, error, or product list
   if (loading) {
     return <div>Loading...</div>;
@@ -163,11 +163,20 @@ const RelatedProductList = ({
 
   return (
     <div className="related-products">
-      <div className="heading d-flex ">
-        <hr />
-        <h1>Related Products</h1>
-        <hr />
-      </div>
+
+      <Container className="d-flex">
+        <Col><hr /></Col>
+        <Col className="text-center" style={{
+          color: "#201f1f"
+        }}> <h1>Related Products</h1></Col>
+        <Col><hr /></Col>
+      </Container>
+      <p className="text-center"
+
+      >Check out these related items to complement your choice!</p>
+
+
+
       <div className="slider-wrapper">
         <ArrowBackIosIcon
           onClick={handlePrev}
@@ -175,9 +184,9 @@ const RelatedProductList = ({
         />
         <div className="slider-container">
           <div className="product-list" style={{ display: "flex" }}>
-            {displayedProducts?.map((product, index) => (
+            {displayedProducts?.map((item, index) => (
               <div
-                key={product.id}
+                key={item.id}
                 className="product-box"
                 style={{
                   flex: "0 0 auto",
@@ -190,52 +199,73 @@ const RelatedProductList = ({
                     className="likebuttonForMobile"
                     onClick={() =>
                       handleLikeToggle(
-                        product.id,
+                        item.id,
                         index,
-                        product.is_wishlist ? "remove" : "add"
+                        item.is_wishlist ? "remove" : "add"
                       )
                     }
                   >
-                    {product?.is_wishlist ? (
+                    {item?.is_wishlist ? (
                       <FavoriteIcon className="product-icon" />
                     ) : (
                       <FavoriteBorderIcon className="product-icon" />
                     )}
                   </div>
                   <img
-  onMouseEnter={() => handleImageHover(index, true)}
-  onMouseLeave={() => handleImageHover(index, false)}
-  onClick={() => handleDetailPage(product.id, product.product_name)}
-  className="product-image"
-  src={
-    (product && secondaryImages[index]) || (product && `${ImageUrl}/${product.files}`)
-  }
-  alt={product ? product.product_name : 'Product'}
-/>
+                    onMouseEnter={() => handleImageHover(index, true)}
+                    onMouseLeave={() => handleImageHover(index, false)}
+                    onClick={() => handleDetailPage(item.id, item.product_name)}
+                    className="product-image"
+                    src={
+                      (item && secondaryImages[index]) || (item && `${ImageUrl}/${item.files}`)
+                    }
+                    alt={item ? item.product_name : 'Product'}
+                  />
 
                   <div className="product-icons">
-                    <ShoppingBagOutlinedIcon
-                      className="product-icon"
-                      onClick={() =>
-                        handleDetailPage(product.id, product.product_name)
-                      }
-                    />
-                    {product.is_wishlist ? (
-                      <FavoriteIcon
+                    <p>
+                      <ShoppingBagOutlinedIcon
                         className="product-icon"
                         onClick={() =>
-                          handleLikeToggle(product.id, index, "remove")
+                          handleDetailPage(
+                            item.productId || item.id,
+                            item.product_name || item.productName
+                          )
                         }
                       />
+                    </p>
+                    {item.is_wishlist ? (
+                      <p>
+                        <FavoriteIcon
+                          className="product-icon"
+                          onClick={() =>
+                            handleLikeToggle(
+                              item.id || item.productId,
+                              index,
+                              "remove",
+                              user_id
+                            )
+                          }
+                        />
+                      </p>
                     ) : (
-                      <FavoriteBorderIcon
-                        className="product-icon"
-                        onClick={() =>
-                          handleLikeToggle(product.id, index, "add")
-                        }
-                      />
+                      <p>
+                        <FavoriteBorderIcon
+                          className="product-icon"
+                          onClick={() =>
+                            handleLikeToggle(
+                              item.id || item.productId,
+                              index,
+                              "add",
+                              user_id
+                            )
+                          }
+                        />
+                      </p>
                     )}
                   </div>
+
+
                 </div>
                 <div
                   className="product-description"
@@ -244,28 +274,28 @@ const RelatedProductList = ({
                   <p
                     className="product-name"
                     onClick={() =>
-                      handleDetailPage(product.id, product.product_name)
+                      handleDetailPage(item.id, item.product_name)
                     }
                   >
-                    {truncateProductName(product.product_name, 25)}
+                    {truncateProductName(item.product_name, 25)}
                   </p>
                   <p className="product-price">
-                    {product.discount_percent === 0 ? (
+                    {item.discount_percent === 0 ? (
                       <span className="mrp-with-discount product-icon_rs">
                         <CurrencyRupeeIcon style={{ fontSize: "14px" }} />{" "}
-                        {product.discount_amount || product.price}
+                        {item.discount_amount || item.price}
                       </span>
                     ) : (
                       <>
                         <span className="mrp-with-discount product-icon_rs">
                           <CurrencyRupeeIcon style={{ fontSize: "14px" }} />
-                          {product.discount_amount}
+                          {item.discount_amount}
                         </span>
                         <strike className="discount-mrp">
-                          {product.mrp_amount || product.price}
+                          {item.mrp_amount || item.price}
                         </strike>
                         <span className="discount-percent">
-                          {product.discount_percent}% off
+                          {item.discount_percent}% off
                         </span>
                       </>
                     )}
@@ -273,7 +303,7 @@ const RelatedProductList = ({
                   <div
                     className="addtocart"
                     onClick={() =>
-                      handleDetailPage(product.id, product.product_name)
+                      handleDetailPage(item.id, item.product_name)
                     }
                   >
                     <IoAddSharp /> <span>Add to cart</span>

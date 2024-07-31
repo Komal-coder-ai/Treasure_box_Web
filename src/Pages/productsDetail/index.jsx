@@ -611,7 +611,7 @@ const ProductDetail = ({ reload, setReload, setCatval }) => {
                           {info.map((item, index) => (
                             <option key={index} value={item.color_name}>
                               {item?.color_name}
-                              {item?.color_code}
+                              {/* {item?.color_code} */}
                             </option>
                           ))}
                         </select>
