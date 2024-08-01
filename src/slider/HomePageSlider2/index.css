@@ -130,3 +130,11 @@ body {
 .DiscovernowBNT:hover {
   color: var(--primary-color);
 }
+
+
+@media (min-width: 760px) and (max-width: 999px) {
+  .box-content{
+    flex-direction: column;
+    justify-content: center;
+  }
+}

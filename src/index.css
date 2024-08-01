@@ -11501,7 +11501,9 @@ html [type="button"],
     margin-top: 2px;
     margin-right: auto;
   }
-
+  .quantitybutton{
+    margin-bottom : 20px;
+  }
   .newProduct_page_container {
     margin: 10px;
   }
@@ -11667,7 +11669,14 @@ html [type="button"],
   .product_img_box {
     width: 50vw !important;
   }
-
+  .productBTNLAst {
+    flex-direction: column;
+    margin-top: 2px;
+    margin-right: auto;
+  }
+  .quantitybutton{
+    margin-bottom: 20px;
+  }
 }
 
 
@@ -11695,6 +11704,14 @@ html [type="button"],
 
   .cartForMovbile {
     display: none;
+  }
+  .productBTNLAst {
+    flex-direction: column;
+    margin-top: 2px;
+    margin-right: auto;
+  }
+  .quantitybutton{
+    margin-bottom: 20px;
   }
 }
 
