@@ -35,20 +35,20 @@ const RelatedProductList = ({
   const [itemsPerPage, setItemsPerPage] = useState(getItemsPerPage()); // State for items per page
   const navigate = useNavigate();
 
-  // Function to determine items per page based on screen width
+
   function getItemsPerPage() {
     const width = window.innerWidth;
-    if (width <= 600) return 1; // Mobile
-    if (width <= 1200) return 2; // Tablet
-    return 4; // Desktop
+    if (width <= 600) return 1;
+    if (width <= 1200) return 2;
+    return 4;
   }
 
-  // Fetch data from API
+
   const fetchData = async () => {
     try {
       const response = await postApiCall(relatedProductAPI, {
         subCategory_Id: subcategory,
-        userId: "", // Assuming userId can be an empty string
+        userId: "",
       });
       console.log("Response data:", response.data);
       if (response.data.status) {
@@ -67,7 +67,7 @@ const RelatedProductList = ({
     fetchData();
   }, [subcategory]);
 
-  // Update items per page when window is resized
+
   useEffect(() => {
     const handleResize = () => {
       setItemsPerPage(getItemsPerPage());
@@ -91,12 +91,12 @@ const RelatedProductList = ({
 
   const displayedProducts = products
     .slice(currentIndex, currentIndex + itemsPerPage)
-    .concat(
-      products.slice(
-        0,
-        Math.max(0, currentIndex + itemsPerPage - products.length)
-      )
-    );
+  // .concat(
+  //   products.slice(
+  //     0,
+  //     Math.max(0, currentIndex + itemsPerPage - products.length)
+  //   )
+  // );
 
   // Handle image hover
   const handleImageHover = (index, isHovering) => {
@@ -223,8 +223,8 @@ const RelatedProductList = ({
                     }
                     alt={item ? item.product_name : 'Product'}
                     style={{
-                        width:'300px',
-                        height:"400px"
+                      width: '300px',
+                      height: "400px"
                     }}
                   />
 

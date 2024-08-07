@@ -95,12 +95,17 @@ const Newhome = ({ reload, setReload, catval, setCatval }) => {
     }
   };
 
-  const fetchfeaturedList = async () => {
+  const fetchfeaturedList = async (id) => {
     setPending(true);
     try {
-      const result = await getApiCall(getfeaturedlist);
+      const payload = {
+        userId: user_id ? user_id : "",
+      };
+      
+      const result = await postApiCall(getfeaturedlist ,  payload);
       if (result.data.status) {
         setFeaturedList(result.data.List);
+        console.log("featuredList", result.data.List);
         setPending(false);
       }
     } catch (error) {

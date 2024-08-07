@@ -1,10 +1,11 @@
 import React from "react";
 import "./index.css";
 
-const ButtonForAll = ({ name, backgroundColor, textColor, onClick }) => {
+const ButtonForAll = ({ name, backgroundColor, textColor, onClick   }) => {
   const buttonStyle = {
     backgroundColor: backgroundColor, 
     color: textColor || "black", 
+    
   };
 
   return (
