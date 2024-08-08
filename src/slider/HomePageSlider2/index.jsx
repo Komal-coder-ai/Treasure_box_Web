@@ -24,7 +24,11 @@ const HoomepageSlider2 = ({ titleList }) => {
             <div className="box box1">
             <Link to="/product" className="DiscovernowBNT">
               <div className="box-content d-flex">
-                <div>
+                <div
+                style={{
+                  width:"150px"
+                }}
+                >
                   <p>{item.category_name}</p>
                   <Link to="/product" className="DiscovernowBNT">
                     Discover now

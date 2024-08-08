@@ -28,8 +28,15 @@ const TwoConSlider = ({ titleList = [] }) => {
                       }}
                       >{item.category_name}</p>
                     
-                     <Link to={"/product"}>
-                     <Button className="buynowbtn">Buy Now</Button></Link>
+                     <Link to={"/product"}
+                     style={{
+                      textDecoration:"none"
+                     }}
+                     >
+                     <ButtonForAll name="Buy Now"></ButtonForAll>
+                     
+                     </Link>
+
                     </div>
                     <img
                       src={`${ImageUrl}${item.files}`}
