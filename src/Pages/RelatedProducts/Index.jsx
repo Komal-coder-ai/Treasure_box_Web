@@ -35,7 +35,6 @@ const RelatedProductList = ({
   const [itemsPerPage, setItemsPerPage] = useState(getItemsPerPage()); // State for items per page
   const navigate = useNavigate();
 
-
   function getItemsPerPage() {
     const width = window.innerWidth;
     if (width <= 600) return 1;
@@ -43,14 +42,12 @@ const RelatedProductList = ({
     return 4;
   }
 
-
   const fetchData = async () => {
     try {
       const response = await postApiCall(relatedProductAPI, {
         subCategory_Id: subcategory,
         userId: "",
       });
-      console.log("Response data:", response.data);
       if (response.data.status) {
         setProducts(response.data.list);
       } else {
@@ -67,16 +64,13 @@ const RelatedProductList = ({
     fetchData();
   }, [subcategory]);
 
-
   useEffect(() => {
     const handleResize = () => {
       setItemsPerPage(getItemsPerPage());
     };
-
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
-
 
   const handlePrev = () => {
     setCurrentIndex(
@@ -84,28 +78,16 @@ const RelatedProductList = ({
     );
   };
 
-  // Handle next button click
   const handleNext = () => {
     setCurrentIndex((prevIndex) => (prevIndex + itemsPerPage) % products.length);
   };
 
-  const displayedProducts = products
-    .slice(currentIndex, currentIndex + itemsPerPage)
-  // .concat(
-  //   products.slice(
-  //     0,
-  //     Math.max(0, currentIndex + itemsPerPage - products.length)
-  //   )
-  // );
+  const displayedProducts = products.slice(currentIndex, currentIndex + itemsPerPage);
 
-  // Handle image hover
   const handleImageHover = (index, isHovering) => {
     setSecondaryImages((prevImages) => {
       const product = products[index];
-      if (!product) {
-
-        return prevImages;
-      }
+      if (!product) return prevImages;
       return {
         ...prevImages,
         [index]: isHovering
@@ -114,7 +96,6 @@ const RelatedProductList = ({
       };
     });
   };
-
 
   if (loading) {
     return <div>Loading...</div>;
@@ -163,28 +144,25 @@ const RelatedProductList = ({
 
   return (
     <div className="related-products">
-
       <Container className="d-flex">
         <Col><hr /></Col>
-        <Col className="text-center" style={{
-          color: "#201f1f"
-        }}> <h1>Related Products</h1></Col>
+        <Col className="text-center" style={{ color: "#201f1f" }}>
+          <h1>Related Products</h1>
+        </Col>
         <Col><hr /></Col>
       </Container>
-      <p className="text-center"
-
-      >Check out these related items to complement your choice!</p>
-
-
+      <p className="text-center">Check out these related items to complement your choice!</p>
 
       <div className="slider-wrapper">
-        <ArrowBackIosIcon
-          onClick={handlePrev}
-          style={{ cursor: "pointer", fontSize: "2rem", color: "var(--primary-color)" }}
-        />
+      {products.length > itemsPerPage && (
+          <ArrowBackIosIcon
+            onClick={handlePrev}
+            style={{ cursor: "pointer", fontSize: "2rem", color: "var(--primary-color)" }}
+          />
+        )}
         <div className="slider-container">
           <div className="product-list" style={{ display: "flex" }}>
-            {displayedProducts?.map((item, index) => (
+            {displayedProducts.map((item, index) => (
               <div
                 key={item.id}
                 className="product-box"
@@ -205,7 +183,7 @@ const RelatedProductList = ({
                       )
                     }
                   >
-                    {item?.is_wishlist ? (
+                    {item.is_wishlist ? (
                       <FavoriteIcon className="product-icon" />
                     ) : (
                       <FavoriteBorderIcon className="product-icon" />
@@ -219,12 +197,11 @@ const RelatedProductList = ({
                     className="product-image"
                     src={
                       (item && secondaryImages[index]) || (item && `${ImageUrl}/${item.files}`)
-
                     }
-                    alt={item ? item.product_name : 'Product'}
+                    alt={item ? item.product_name : "Product"}
                     style={{
-                      width: '300px',
-                      height: "400px"
+                      width: "300px",
+                      height: "400px",
                     }}
                   />
 
@@ -270,18 +247,11 @@ const RelatedProductList = ({
                       </p>
                     )}
                   </div>
-
-
                 </div>
-                <div
-                  className="product-description"
-                  style={{ marginTop: "20px" }}
-                >
+                <div className="product-description" style={{ marginTop: "20px" }}>
                   <p
                     className="product-name"
-                    onClick={() =>
-                      handleDetailPage(item.id, item.product_name)
-                    }
+                    onClick={() => handleDetailPage(item.id, item.product_name)}
                   >
                     {truncateProductName(item.product_name, 25)}
                   </p>
@@ -301,28 +271,33 @@ const RelatedProductList = ({
                           {item.mrp_amount || item.price}
                         </strike>
                         <span className="discount-percent">
-                          {item.discount_percent}% off
+                          ({item.discount_percent}% Off)
                         </span>
                       </>
                     )}
                   </p>
                   <div
-                    className="addtocart"
                     onClick={() =>
-                      handleDetailPage(item.id, item.product_name)
+                      handleDetailPage(item.productId || item.id, item.product_name)
                     }
+                    className="btn_primary"
                   >
-                    <IoAddSharp /> <span>Add to cart</span>
+                    <IoAddSharp /> Add to Cart
                   </div>
                 </div>
               </div>
             ))}
           </div>
         </div>
-        <ArrowForwardIosIcon
-          onClick={handleNext}
-          style={{ cursor: "pointer", fontSize: "2rem", color: "var(--primary-color)" }}
-        />
+        {products.length > itemsPerPage && (
+
+          <ArrowForwardIosIcon
+            onClick={handleNext}
+            style={{ cursor: "pointer", fontSize: "2rem", color: "var(--primary-color)" }}
+          />
+        )}
+
+        
       </div>
     </div>
   );
