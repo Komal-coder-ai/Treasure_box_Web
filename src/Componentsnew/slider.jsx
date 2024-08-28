@@ -180,6 +180,8 @@ const SliderComponent = ({
 
 
               </div>
+
+              
               <div
                 className="product-description"
                 style={{ marginTop: "20px" }}

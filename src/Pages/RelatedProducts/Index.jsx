@@ -107,10 +107,12 @@ const RelatedProductList = ({
   }
 
   const handleLikeToggle = async (id, index, type, user_id) => {
+    console.log("user_id", user_id);
     if (user_id) {
       try {
         if (type === "remove") {
           await deleteApiCall(`${deleteFromWishlistApi}/${user_id}/${id}`);
+          
           const updatedList = newarrivalList.filter(
             (item) => item.productId !== id
           );
@@ -276,15 +278,17 @@ const RelatedProductList = ({
                         </span>
                       </>
                     )}
-                  </p>
-                  <div
-                    onClick={() =>
-                      handleDetailPage(item.productId || item.id, item.product_name)
-                    }
-                    className="btn_primary"
-                  >
-                    <IoAddSharp /> Add to Cart
-                  </div>
+                   </p>
+                   <div className="addtocart"
+                  onClick={() =>
+                    handleDetailPage(
+                      item.productId || item.id,
+                      item.product_name || item.productName
+                    )
+                  }
+                >
+                  <IoAddSharp /> <span> Add to cart</span>
+                </div>
                 </div>
               </div>
             ))}

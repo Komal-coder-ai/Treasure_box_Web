@@ -17,7 +17,10 @@ const TwoConSlider = ({ titleList = [] }) => {
           filteredTitleList.map((item, index) => (
             <Col key={index} xs={12} md={6} lg={6} className="mb-3">
               <div className="box box1 d-flex">
-                <Link to={`/product/${item.id}`} className="DiscovernowBNT">
+                <Link to={"/product"}
+                 style={{
+                  textDecoration:"none"
+                 }}>
                   <div className="box-content d-flex  align-items-center justify-content-evenly">
                     <div className=" mb-2"
                     
