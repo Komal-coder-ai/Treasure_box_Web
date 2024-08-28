@@ -7,7 +7,7 @@ import { Activecategory, getApiCall } from "../../API/baseUrl";
 import { FaInstagram, FaFacebookF } from "react-icons/fa";
 import { CiLocationOn } from "react-icons/ci";
 
-const Footer = ({ catval, setCatval, bgcolor, textcolor, imptext }) => {
+const Footer = ({ catval,  bgcolor, textcolor, imptext }) => {
   const [showloginpopup, setShowloginpopup] = useState(false);
   const [categoryList, setCategoryList] = useState([]);
 
@@ -30,13 +30,13 @@ const Footer = ({ catval, setCatval, bgcolor, textcolor, imptext }) => {
     fetchCategoryList();
   }, []);
 
-  const handleCatClick = (name) => {
-    setCatval(name);
-  };
+  // const handleCatClick = (name) => {
+  //   setCatval(name);
+  // };
 
-  const handleEmptyCatval = () => {
-    setCatval("");
-  };
+  // const handleEmptyCatval = () => {
+  //   setCatval("");
+  // };
 
   const handleProfilePage = () => {
     setShowloginpopup(!showloginpopup);
@@ -81,7 +81,7 @@ const Footer = ({ catval, setCatval, bgcolor, textcolor, imptext }) => {
                   <li key={index}>
                     <Link
                       className=""
-                      onClick={() => handleCatClick(name.category_name)}
+                      // onClick={() => handleCatClick(name.category_name)}
                       to={`/product/${name.id}/${name.category_name}`}
                     >
                       <p
@@ -116,7 +116,7 @@ const Footer = ({ catval, setCatval, bgcolor, textcolor, imptext }) => {
                   color: finalTextColor,
                 }}
               >
-                <Link onClick={handleEmptyCatval} to="/contact" className="">
+                <Link  to="/contact" className="">
                   Contact
                 </Link>
               </li>
@@ -126,7 +126,7 @@ const Footer = ({ catval, setCatval, bgcolor, textcolor, imptext }) => {
                   color: finalTextColor,
                 }}
               >
-                <Link onClick={handleEmptyCatval} to="/help" className="">
+                <Link  to="/help" className="">
                   FAQs
                 </Link>
               </li>
@@ -136,7 +136,7 @@ const Footer = ({ catval, setCatval, bgcolor, textcolor, imptext }) => {
                   color: finalTextColor,
                 }}
               >
-                <Link onClick={handleEmptyCatval} to="/terms" className="">
+                <Link to="/terms" className="">
                   Terms and Conditions
                 </Link>
               </li>
@@ -146,7 +146,7 @@ const Footer = ({ catval, setCatval, bgcolor, textcolor, imptext }) => {
                   color: finalTextColor,
                 }}
               >
-                <Link onClick={handleEmptyCatval} to="/privacy" className="">
+                <Link  to="/privacy" className="">
                   Privacy Policy
                 </Link>
               </li>
@@ -156,7 +156,7 @@ const Footer = ({ catval, setCatval, bgcolor, textcolor, imptext }) => {
                   color: finalTextColor,
                 }}
               >
-                <Link onClick={handleEmptyCatval} to="/about" className="">
+                <Link  to="/about" className="">
                   About Us
                 </Link>
               </li>
@@ -166,7 +166,7 @@ const Footer = ({ catval, setCatval, bgcolor, textcolor, imptext }) => {
                   color: finalTextColor,
                 }}
               >
-                <Link onClick={handleEmptyCatval} to="/return" className="">
+                <Link  to="/return" className="">
                   Return Policy
                 </Link>
               </li>
@@ -176,7 +176,7 @@ const Footer = ({ catval, setCatval, bgcolor, textcolor, imptext }) => {
                   color: finalTextColor,
                 }}
               >
-                <Link onClick={handleEmptyCatval} to="/refund" className="">
+                <Link  to="/refund" className="">
                   Refund Policy
                 </Link>
               </li>
@@ -186,7 +186,7 @@ const Footer = ({ catval, setCatval, bgcolor, textcolor, imptext }) => {
                   color: finalTextColor,
                 }}
               >
-                <Link onClick={handleEmptyCatval} to="/shipping" className="">
+                <Link  to="/shipping" className="">
                   Shipping Policy
                 </Link>
               </li>
@@ -213,16 +213,16 @@ const Footer = ({ catval, setCatval, bgcolor, textcolor, imptext }) => {
               }}
             >
               Any questions? <span>Let us know</span>
-              <a
-                onClick={handleEmptyCatval}
-                href="tel:+919294588000"
-                className="footcolorlinks"
-                style={{
-                  color: finalTextColor,
-                }}
-              >
-                {/* (+91) 92945 88000 */}
-              </a>
+ <li>             <a
+  href="mailto:info@treasurebox.live"
+
+  className="footcolorlinks"
+  style={{ color: finalTextColor }}
+>
+  info@treasurebox.live
+</a></li>
+
+
             </p>
             <p
               className="stext-301 nospace footcolor p-b-10 p-t-15"

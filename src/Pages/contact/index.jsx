@@ -87,7 +87,7 @@ const Contact = () => {
                   <ul>
                     <li>Email:</li>
                     <li className="contctinformation">
-                      treasurebox@gmail.com
+          info@treasurebox.live
                     </li>
                   </ul>
                 </div>
