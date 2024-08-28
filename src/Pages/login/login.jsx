@@ -29,6 +29,7 @@ import CloseIcon from "@mui/icons-material/Close";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import { Button } from "bootstrap";
+import PhoneInput from "react-phone-input-2";
 
 const initialValues = {
   mobile: "",
@@ -332,12 +333,12 @@ const Login = ({
               />
 
               <div className="marginBottom">
-                <MuiPhoneNumber
-                  sx={{ "& svg": { height: "1em" } }}
+                <PhoneInput
+                  sx={{ "& svg": { height: "1em" , marginTop: "5px"} }}
                   className="mobile_phone_field"
                   name="mobile"
                   disableAreaCodes
-                  defaultCountry={"in"}
+                   placeholder="Enter phone number"
                   label="Mobile Number"
                   onChange={phoneChange}
                 />

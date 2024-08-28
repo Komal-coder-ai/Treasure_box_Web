@@ -110,5 +110,6 @@
     margin-bottom: 15px;
 } */
 .mobile_phone_field input {
-    padding: 21px 3px 5px !important;
+    padding:  5px !important;
+    margin-top: 10px;
 }
