@@ -332,16 +332,19 @@ const Login = ({
                 onClick={handleprofilePageclose}
               />
 
+          
+                <label htmlFor="">Mobile Number</label>
               <div className="marginBottom">
                 <PhoneInput
-                  sx={{ "& svg": { height: "1em" , marginTop: "5px"} }}
+                  sx={{ "& svg": { height: "1em", marginTop: "5px" } }}
                   className="mobile_phone_field"
                   name="mobile"
                   disableAreaCodes
-                   placeholder="Enter phone number"
-                  label="Mobile Number"
+                  placeholder="Enter phone number"
                   onChange={phoneChange}
                 />
+
+
                 {errors.mobile && touched.mobile ? (
                   <p className="Login_form-error">{errors.mobile}</p>
                 ) : null}

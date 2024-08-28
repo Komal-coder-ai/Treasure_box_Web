@@ -113,3 +113,6 @@
     padding:  5px !important;
     margin-top: 10px;
 }
+.special-label{
+    display: none;
+}
