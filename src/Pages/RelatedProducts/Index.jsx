@@ -24,7 +24,7 @@ const RelatedProductList = ({
   setReload,
   newarrivalList,
   setNewarrivalList,
-  user_id,
+
   subcategory,
 }) => {
   const [products, setProducts] = useState([]);
@@ -34,6 +34,7 @@ const RelatedProductList = ({
   const [secondaryImages, setSecondaryImages] = useState({});
   const [itemsPerPage, setItemsPerPage] = useState(getItemsPerPage()); // State for items per page
   const navigate = useNavigate();
+  const user_id = localStorage.getItem("user_id")
 
   function getItemsPerPage() {
     const width = window.innerWidth;
