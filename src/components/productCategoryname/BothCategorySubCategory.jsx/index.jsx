@@ -36,6 +36,9 @@ const CategoryAndSubcategoryComponent = ({dropdownRef}) => {
       <div
         style={{
           display: "flex",
+          width: "90vw" ,
+            overflowX:"scroll",
+          
         }}
         className="CategoryAndSubcategoryCon"
       >

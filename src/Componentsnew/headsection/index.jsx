@@ -591,7 +591,7 @@ const HeaderSection = ({
                 <div className="">
                   <div
                     className="shoplistdata mx-3"
-                    style={{ width: "100vw" }}
+                   
                   >
                     {isDropdownOpenShop && (
                       <CategoryAndSubcategoryComponent
