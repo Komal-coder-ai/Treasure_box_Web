@@ -553,11 +553,12 @@ const HeaderSection = ({
     setIsDropdownOpenShop(!isDropdownOpenShop);
   };
 
+  const isHomeRoute = location.pathname === "/" || location.pathname === "/about" || location.pathname === "/contact" || location.pathname === "";
   return (
     <>
       <div
         className={`headersection_container container-fluid ${
-          isSticky ? "sticky" : ""
+          isHomeRoute ? "sticky" : ""
         }`}
         style={{
           height: "100px",

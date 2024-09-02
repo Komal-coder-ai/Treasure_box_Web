@@ -233,7 +233,7 @@ const Newhome = ({ reload, setReload, catval, setCatval }) => {
                         margin: "auto",
                       }}
                     >
-                      <hr class="col-2" />
+                      <hr class="headingLine1 col-2" style={{ width: "20%" }} />
 
                       <h2
                         class="home_body_product_heading col "
