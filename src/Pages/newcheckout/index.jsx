@@ -109,6 +109,7 @@ const OrderCheckout = ({ reload, setReload }) => {
                 setShowsuccessPopup(true)
                 setReload(!reload)
                 setOrderId(result.data?.product_order_id);
+                console.log(result.data,"result.data?.product_order_id")
                 ToastMessage("success", result.data.message);
                 setLoading(false)
                 setLoader(false)
@@ -341,7 +342,8 @@ const OrderCheckout = ({ reload, setReload }) => {
                     </div>
                     <div className='ordercheckout_customer_contact_field'>
                         <div className='fullwidth'>
-                            <TextField className='profile-textfield' value={values.mobile} fullWidth name='mobile'
+                            <TextField className='profile-textfield'
+                              fullWidth name='mobile'
                                 focused
                                 id="mobile" label="Mobile Number"
                                 variant="outlined"
@@ -480,9 +482,9 @@ const OrderCheckout = ({ reload, setReload }) => {
                                 marginBottom:"0px"
                             }}>Net Banking</p>} />
 
-                            {/* <FormControlLabel className='formcontrol' value="1" control={<Radio sx={{ color: "blue" }} />} label={<p style={{
+                            <FormControlLabel className='formcontrol' value="1" control={<Radio sx={{ color: "blue" }} />} label={<p style={{
                                 marginBottom:"0px"
-                            }}>Cash on Delivery (COD)</p>} /> */}
+                            }}>Cash on Delivery (COD)</p>} />
                         </RadioGroup>
                     </div>
 

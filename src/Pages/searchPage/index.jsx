@@ -11,7 +11,7 @@ const SearchPage = ({onClose}) => {
   const [search, setSearch] = useState("");
   const [offset, setOffset] = useState(1);
   const [sortBy, setSortBy] = useState('');
-  const [limit, setLimit] = useState(10);
+  const [limit, setLimit] = useState(20);
   const [data, setData] = useState([]);
   const [sortByColumnName, setSortByColumnName] = useState('');
 

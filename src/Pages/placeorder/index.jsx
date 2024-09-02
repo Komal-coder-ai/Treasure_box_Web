@@ -482,7 +482,7 @@ const Placeorder = ({ refresh, setRefresh }) => {
                               defaultValue="1"
                               name="radio-buttons-group"
                             >
-                              <FormControlLabel className='formcontrol' value="1" control={<Radio sx={{ color: "blue" }} />} label={<p>Cash on Delivery (COD)</p>} />
+                               <FormControlLabel className='formcontrol' value="1" control={<Radio sx={{ color: "blue" }} />} label={<p>Cash on Delivery (COD)</p>} />
                             </RadioGroup>
                           </div>
                         </div>

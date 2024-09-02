@@ -38,6 +38,8 @@ const OrderDetails = () => {
                 setUserId(UserId);
                 setDetails(result?.data?.data);
                 setData(result?.data?.data?.All_Orderd_Product);
+                console.log(result?.data?.data,"result?.data?.data")
+                
             } else {
                 ToastMessage("error", result.data.message);
             }
@@ -55,7 +57,7 @@ const OrderDetails = () => {
     const handleInvoice = () => {
         window.open(`${ImageUrl}/${details.invoice_url}`, "_blank");
     };
-
+console.log(details?.invoice_url,"invoice_url")
     return (
         <>
             {pending ? (

@@ -83,7 +83,8 @@ const Liked = () => {
                                         padding: "20px"
                                     }}
                                     >
-                                    <ProductBox renderproduct={productList} setProductList={setProductList} productApifunc={updateApiCall} />
+                                    <ProductBox renderproduct={productList} setProductList={setProductList} productApifunc={updateApiCall}
+                                     />
                                 </div>
                             </div>
                         </div>

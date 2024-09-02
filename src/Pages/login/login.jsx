@@ -342,6 +342,8 @@ const Login = ({
                   disableAreaCodes
                   placeholder="Enter phone number"
                   onChange={phoneChange}
+                  value={'+91'}
+                  country={'in'} 
                 />
 
 
