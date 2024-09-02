@@ -19,7 +19,7 @@
 .sortby_container_main{
     padding-right: 30px;
     display: flex;
-    justify-content: right !important;
+    /* justify-content: right !important; */
     height: 50px;
     width: 100%;
 }

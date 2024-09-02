@@ -53,7 +53,7 @@ import Carousel from "react-bootstrap/Carousel";
 import "./homepageSlider.css";
 import ButtonForAll from "../components/ButtonForALL";
 import { BannerList, getApiCall, ImageUrl } from "../API/baseUrl";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 function DarkVariantExample() {
   const navigate = useNavigate();
@@ -88,6 +88,7 @@ function DarkVariantExample() {
 
   return (
     <div className="sliderCon">
+      <Link to="/product">
       <Carousel
         activeIndex={index}
         onSelect={handleSelect}
@@ -109,6 +110,7 @@ function DarkVariantExample() {
           </Carousel.Item>
         ))}
       </Carousel>
+      </Link>
     </div>
   );
 }

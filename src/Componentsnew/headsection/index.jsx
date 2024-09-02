@@ -556,14 +556,14 @@ const HeaderSection = ({
   const isHomeRoute = location.pathname === "/" || location.pathname === "/about" || location.pathname === "/contact" || location.pathname === "";
   return (
     <>
-      <div
-        className={`headersection_container container-fluid ${
-          isHomeRoute ? "sticky" : ""
-        }`}
-        style={{
-          height: "100px",
-        }}
-      >
+     <div
+      className={`headersection_container container-fluid ${
+        isHomeRoute && isSticky ? "sticky" : ""
+      }`}
+      style={{
+        height: "100px",
+      }}
+    >
         {/* ============================================ section 1 =================================================== */}
         <div className="headersection_container_one welcome_container  desktopNavbar ">
           <div className=" sectionBody">

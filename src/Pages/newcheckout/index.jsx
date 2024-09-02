@@ -298,7 +298,7 @@ const OrderCheckout = ({ reload, setReload }) => {
         }
 
         const options = {
-            key: key,
+            key_id: key,
             amount: (Number(totalprice).toFixed(2)) * 100, 
             currency: 'INR',
             name: 'Treasure box',
@@ -486,6 +486,7 @@ const OrderCheckout = ({ reload, setReload }) => {
                                 marginBottom:"0px"
                             }}>Cash on Delivery (COD)</p>} />
                         </RadioGroup>
+                        
                     </div>
 
                     <ButtonComponent type="submit" loading={loading} disabled={loading} btn_name="Place Order" />
