@@ -5,7 +5,9 @@
 
 .CategoryAndSubcategoryCon ul {
     list-style-type: none;
-    padding: 15px;
+    /* padding: 15px; */
+    width: 150px;
+    margin-left: 2px;
 }
 
 .CategoryAndSubcategoryCon ul li {
