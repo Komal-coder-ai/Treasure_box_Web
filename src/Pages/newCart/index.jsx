@@ -72,7 +72,7 @@ const Newcart = ({ reload, setReload }) => {
         setTotalprice(result?.data?.totalCartValue);
       } else {
       }
-    } catch (error) {}
+    } catch (error) { }
   };
 
   useEffect(() => {
@@ -171,7 +171,7 @@ const Newcart = ({ reload, setReload }) => {
       } else {
         ToastMessage("error", result.data.message);
       }
-    } catch (error) {}
+    } catch (error) { }
   };
 
   const handlegetdeliverycharge = async () => {
@@ -283,14 +283,14 @@ const Newcart = ({ reload, setReload }) => {
                                   )
                                 }
                               />
-
+                              {/* 
                               <input
                                 type="number"
                                 name="num-product2"
-                                value={product.quantity}
+                                
                                 style={{ width: "20px" }}
-                              />
-
+                              /> */}
+                              <p style={{ width: "20px" }}>{product.quantity}</p>
                               <IoAddOutline
                                 type="button"
                                 disabled={loading}
@@ -332,9 +332,9 @@ const Newcart = ({ reload, setReload }) => {
 
                 <div className="total2">
                   <h2 className=" cl2 p-b-10 "
-                  style={{
-                    color: "var(--black-color)",
-                  }}
+                    style={{
+                      color: "var(--black-color)",
+                    }}
                   >Cart totals</h2>
                   <div className="tablecart2">
                     <ul className="tableul">
@@ -372,9 +372,9 @@ const Newcart = ({ reload, setReload }) => {
 
                       <li className="totalList">
                         <span className="listText"
-                        style={{
+                          style={{
 
-                        }}
+                          }}
                         >Total :</span>
 
                         <span className="listvalue">
@@ -390,7 +390,7 @@ const Newcart = ({ reload, setReload }) => {
                     btn_name="Proceed to Checkout"
                   />
                   {deliverychargevalue === price ||
-                  deliverychargevalue > price ? (
+                    deliverychargevalue > price ? (
                     <p className="addmore_text justify-center d-flex my-4">
                       <span className="addmore_text">* Add more products worth</span>
                       <span className="addmore_rs d-flex">
@@ -400,7 +400,7 @@ const Newcart = ({ reload, setReload }) => {
                         />{" "}
                         {Number(deliverychargevalue - price).toFixed(2)}
                       </span>{" "}
-                       <span> to avail Free Delivery</span>
+                      <span> to avail Free Delivery</span>
                     </p>
                   ) : (
                     ""

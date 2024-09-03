@@ -661,7 +661,7 @@ const HeaderSection = ({
               {" "}
               <div className="dropdown-container1" ref={dropdownRef}>
                 <li className="">
-                  <Link onClick={toggleDropdownProfile}>
+               
                     <FiAlignJustify
                       style={{
                         fontSize: "25px",
@@ -670,8 +670,9 @@ const HeaderSection = ({
                         marginLeft: "10px",
                       }}
                       className="mx-3"
+                      onClick={toggleDropdownProfile}
                     />
-                  </Link>
+                 
                 </li>
                 {isDropdownOpenProfile && (
                   <div className="dropdown-content1">
