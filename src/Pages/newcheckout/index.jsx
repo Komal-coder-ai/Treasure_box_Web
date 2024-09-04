@@ -46,7 +46,7 @@ const OrderCheckout = ({ reload, setReload }) => {
     const [loader, setLoader] = React.useState(false)
 
 
-    const { values, errors, touched, handleBlur, handleChange, handleSubmit,setFieldTouched, setFieldValue } =
+    const { values, errors, touched, handleBlur, handleChange, handleSubmit, setFieldTouched, setFieldValue } =
         useFormik({
             initialValues,
             validationSchema: addressformschema,
@@ -109,7 +109,7 @@ const OrderCheckout = ({ reload, setReload }) => {
                 setShowsuccessPopup(true)
                 setReload(!reload)
                 setOrderId(result.data?.product_order_id);
-                console.log(result.data,"result.data?.product_order_id")
+                console.log(result.data, "result.data?.product_order_id")
                 ToastMessage("success", result.data.message);
                 setLoading(false)
                 setLoader(false)
@@ -136,6 +136,7 @@ const OrderCheckout = ({ reload, setReload }) => {
             if (result.data.status) {
                 setpaymentData(result.data.data);
                 setKey(result.data.key_id);
+                console.log("key", result.data.key_id)
             }
         } catch (error) {
             console.log("error", error);
@@ -287,7 +288,6 @@ const OrderCheckout = ({ reload, setReload }) => {
     }
 
     const displayRazorpay = async () => {
-
         const res = await loadScript(
             "https://checkout.razorpay.com/v1/checkout.js"
         );
@@ -296,15 +296,15 @@ const OrderCheckout = ({ reload, setReload }) => {
             alert("Razorpay SDK failed to load. Are you online?");
             return;
         }
-
+        console.log(key, "key_id")
         const options = {
-            key_id: key,
-            amount: (Number(totalprice).toFixed(2)) * 100, 
-            currency: 'INR',
+            key: key,
+            amount: (Number(totalprice).toFixed(2)) * 100,
+            currency:   'INR',
             name: 'Treasure box',
             description: 'Explore the world of treasure',
             image: 'https://example.com/your_logo',
-            order_id: paymentdata.id, 
+            order_id: paymentdata.id,
             handler: function (response) {
                 // alert(response.razorpay_payment_id);
                 // alert(response.razorpay_order_id);
@@ -343,7 +343,7 @@ const OrderCheckout = ({ reload, setReload }) => {
                     <div className='ordercheckout_customer_contact_field'>
                         <div className='fullwidth'>
                             <TextField className='profile-textfield'
-                              fullWidth name='mobile'
+                                fullWidth name='mobile'
                                 focused
                                 id="mobile" label="Mobile Number"
                                 variant="outlined"
@@ -461,10 +461,10 @@ const OrderCheckout = ({ reload, setReload }) => {
                             onChange={handleradioChange}
                         >
                             <FormControlLabel value="1" control={<Radio />} label={<p style={{
-                                marginBottom:"0px "
+                                marginBottom: "0px "
                             }}>Home (All day delivery)</p>} />
                             <FormControlLabel value="0" control={<Radio />} label={<p style={{
-                                marginBottom:"0px "
+                                marginBottom: "0px "
                             }} className='adress_text'>Work (Delivery between 10AM to 5PM)</p>} />
                         </RadioGroup>
                     </Grid>
@@ -479,18 +479,18 @@ const OrderCheckout = ({ reload, setReload }) => {
                             onChange={handlepaymentChange}
                         >
                             <FormControlLabel className='formcontrol' value="0" control={<Radio sx={{ color: "blue" }} />} label={<p style={{
-                                marginBottom:"0px"
+                                marginBottom: "0px"
                             }}>Net Banking</p>} />
 
                             <FormControlLabel className='formcontrol' value="1" control={<Radio sx={{ color: "blue" }} />} label={<p style={{
-                                marginBottom:"0px"
+                                marginBottom: "0px"
                             }}>Cash on Delivery (COD)</p>} />
                         </RadioGroup>
-                        
+
                     </div>
 
                     <ButtonComponent type="submit" loading={loading} disabled={loading} btn_name="Place Order" />
-{/* ************ */}
+                    {/* ************ */}
                 </form>
 
                 <div className='ordercheckout_summarycontainer'>
@@ -500,9 +500,9 @@ const OrderCheckout = ({ reload, setReload }) => {
                                 <div key={index} className='ordercheckout_summary_product_container'>
                                     <div className='order_summary_img_container'>
                                         <img src={`${ImageUrl}${product.files}`} alt="IMG" />
-</div>
+                                    </div>
 
-                                    
+
                                     <div className='order_summary_namequantity_container'>
                                         <h2 className='text-overflow fs-18'>{product.product_name}</h2>
                                         {product.product_size === "FreeSize" ? "" : <p className='align-justify'>Size : {product.product_size}</p>}
@@ -511,26 +511,26 @@ const OrderCheckout = ({ reload, setReload }) => {
 
 
                                         <p className='header-cart-item-rupee'><CurrencyRupeeIcon sx={{ fontSize: "16px" }} />{product.discount_percent === 0 ? product.mrp_amount : product.discount_amount}</p>
-                                        
+
                                         <div className="qunatitydiv d-flex"
-                                        style={{
-                                          width:"100px"
-                                        }}
+                                            style={{
+                                                width: "100px"
+                                            }}
                                         >
                                             <RiSubtractLine type='button' disabled={loading} onClick={() => handleminus(product.id, product.quantity, index)}>
                                             </RiSubtractLine>
 
-                                            <input type="number" name="num-product2" value={product.quantity} 
-                                               style={{ width: "20px",background:"none" }}
+                                            <input type="number" name="num-product2" value={product.quantity}
+                                                style={{ width: "20px", background: "none" }}
                                             />
 
-                                            <IoAddOutline  type='button' disabled={loading} onClick={() => handleplus(product.id, index)}>
-                                               
+                                            <IoAddOutline type='button' disabled={loading} onClick={() => handleplus(product.id, index)}>
+
                                             </IoAddOutline>
                                         </div>
                                     </div>
 
-                                
+
                                 </div>
                             )
                         })}

@@ -556,14 +556,13 @@ const HeaderSection = ({
   const isHomeRoute = location.pathname === "/" || location.pathname === "/about" || location.pathname === "/contact" || location.pathname === "";
   return (
     <>
-     <div
-      className={`headersection_container container-fluid ${
-        isHomeRoute && isSticky ? "sticky" : ""
-      }`}
-      style={{
-        height: "100px",
-      }}
-    >
+      <div
+        className={`headersection_container container-fluid ${isHomeRoute && isSticky ? "sticky" : ""
+          }`}
+        style={{
+          height: "100px",
+        }}
+      >
         {/* ============================================ section 1 =================================================== */}
         <div className="headersection_container_one welcome_container  desktopNavbar ">
           <div className=" sectionBody">
@@ -592,7 +591,7 @@ const HeaderSection = ({
                 <div className="">
                   <div
                     className="shoplistdata mx-3"
-                   
+
                   >
                     {isDropdownOpenShop && (
                       <CategoryAndSubcategoryComponent
@@ -615,7 +614,7 @@ const HeaderSection = ({
             <li
               className="profile_list navbarListItemsStyle"
               onClick={gotocontact}
-              // style={{color:'black' }}
+            // style={{color:'black' }}
             >
               Contact
             </li>
@@ -661,18 +660,18 @@ const HeaderSection = ({
               {" "}
               <div className="dropdown-container1" ref={dropdownRef}>
                 <li className="">
-               
-                    <FiAlignJustify
-                      style={{
-                        fontSize: "25px",
-                        color: "black",
-                        fontWeight: "blod",
-                        marginLeft: "10px",
-                      }}
-                      className="mx-3"
-                      onClick={toggleDropdownProfile}
-                    />
-                 
+
+                  <FiAlignJustify
+                    style={{
+                      fontSize: "25px",
+                      color: "black",
+                      fontWeight: "blod",
+                      marginLeft: "10px",
+                    }}
+                    className="mx-3"
+                    onClick={toggleDropdownProfile}
+                  />
+
                 </li>
                 {isDropdownOpenProfile && (
                   <div className="dropdown-content1">
@@ -766,8 +765,8 @@ const HeaderSection = ({
           <div className="logo-mobile">
             <Link to="/" className="logo">
               <img
-              src={headerlogo}
-               alt="IMG-LOGO"
+                src={headerlogo}
+                alt="IMG-LOGO"
               />
             </Link>
           </div>
@@ -782,31 +781,25 @@ const HeaderSection = ({
               <MenuIcon sx={{ cursor: "pointer" }} className="mobiletoggle" />
             </li>
 
-            <div
-              className="listofmoabilenavbar"
-              style={{
-                justifyContent: "end",
-                display: "flex",
-              }}
-            >
-              <li>
-                {" "}
-                <button onClick={handleSearchClick}>Search</button>
-                {showPopup && (
-                  <div className="popup">
-                    <div className="popup-content">
-                      <button
-                        className="close-button"
-                        onClick={handleClosePopup}
-                      >
-                        close
-                      </button>
-                      <SearchPage onClose={handleClosePopup} />
-                    </div>
-                  </div>
-                )}
-              </li>
 
+            <li>
+              {" "}
+              <button onClick={handleSearchClick}>Search</button>
+              {showPopup && (
+                <div className="popup">
+                  <div className="popup-content">
+                    <button
+                      className="close-button"
+                      onClick={handleClosePopup}
+                    >
+                      close
+                    </button>
+                    <SearchPage onClose={handleClosePopup} />
+                  </div>
+                </div>
+              )}
+            </li>
+            <Link to={"/cart"} style={{color:"black" , textDecoration:"none"}}>
               <li
                 className="icon_list_header"
                 style={{
@@ -814,152 +807,148 @@ const HeaderSection = ({
                 }}
                 onClick={Gotocart}
               >
-                <Badge
-                  className="cart_badge"
-                  color="black"
-                 
-                >
-                  <IoBagHandleOutline
-                    onClick={Gotocart}
-                    style={{
-                      marginLeft: "31px",
-                      fontSize: "16px",
-                      color: "black",
-                      marginRight: "2px",
-                      cursor: "pointer",
-                    }}
-                    sx={{ cursor: "pointer" }}
-                  />
-                  Cart({cartcount ? cartcount : 0})
-                </Badge>
+
+                <IoBagHandleOutline
+                  onClick={Gotocart}
+                  style={{
+                    fontSize: "17px",
+                    margin: "2px 2px 8px 2px "
+
+                  }}
+                  sx={{ cursor: "pointer" }}
+                />
+
+                Cart({cartcount ? cartcount : 0})
+
               </li>
-              {/* Profile section */}
-              <div className="headersection_container_profile_mobile">
-         
-                
-            <BottomSheet
-                  // open={openMobileProfilebtn}
-                  className="bottomsheet "
-                  id={idmobileprofile} open={openMobileProfile} anchorE1={anchorE3}
-                >
-                
-    
-                  <div>
-                    <div
-                      className="profile_container container_profile"
-                      style={{
-                        padding: "20px",
-                      }}
-                    >
-                      <RxCross2
-                        onClick={MobileProfilebtnOff}
-                        className="CorssButton"
-                      />
-                    
-                      {username ? (
-                        <h6 style={{ color: "#5d5555", fontWeight: 600 }}>
-                          Hello {username}
-                        </h6>
-                      ) : (
-                        <h6 style={{ color: "#5d5555", fontWeight: 600 }}>
-                          Welcome
-                        </h6>
-                      )}
+            </Link>
+            {/* Profile section */}
+            <div className="headersection_container_profile_mobile">
 
-                      {user_id ? (
-                        <p>{mobile}</p>
-                      ) : (
-                        <p className="profile_welcome_msg">
-                          To access account and manage orders
-                        </p>
-                      )}
-                    </div>
-                    <Divider />
 
-                    <div
-                      className="profile_container"
-                      style={{
-                        padding: "20px",
-                        zIndex: "9999",
-                      }}
-                    >
-                      <p
-                        className="profile_list"
-                        onClick={user_id ? GotoProfile : handleprofilePage}
-                        style={{
-                          cursor: "pointer",
-                        }}
-                      >
-                        My Profile
+              <BottomSheet
+                // open={openMobileProfilebtn}
+                className="bottomsheet "
+                id={idmobileprofile} open={openMobileProfile} anchorE1={anchorE3}
+              >
+
+
+                <div>
+                  <div
+                    className="profile_container container_profile"
+                    style={{
+                      padding: "20px",
+                    }}
+                  >
+                    <RxCross2
+                      onClick={MobileProfilebtnOff}
+                      className="CorssButton"
+                    />
+
+                    {username ? (
+                      <h6 style={{ color: "#5d5555", fontWeight: 600 }}>
+                        Hello {username}
+                      </h6>
+                    ) : (
+                      <h6 style={{ color: "#5d5555", fontWeight: 600 }}>
+                        Welcome
+                      </h6>
+                    )}
+
+                    {user_id ? (
+                      <p>{mobile}</p>
+                    ) : (
+                      <p className="profile_welcome_msg">
+                        To access account and manage orders
                       </p>
-                      <p
-                        className="profile_list"
-                        onClick={user_id ? GotoOrders : handleprofilePage}
-                        style={{
-                          cursor: "pointer",
-                        }}
-                      >
-                        Orders
-                      </p>
-                      <p
-                        className="profile_list"
-                        onClick={handlelikePage}
-                        style={{
-                          cursor: "pointer",
-                        }}
-                      >
-                        Wishlist
-                      </p>
-                      <p
-                        className="profile_list"
-                        onClick={gotocontact}
-                        style={{
-                          cursor: "pointer",
-                        }}
-                      >
-                        Contact Us
-                      </p>
-                      <p
-                        className="profile_list"
-                        onClick={gotoabout}
-                        style={{
-                          cursor: "pointer",
-                        }}
-                      >
-                        About Us
-                      </p>
-                      {user_id ? (
-                        <button
-                          className="login_btn_profile"
-                          style={{ color: "#c1bcbc" }}
-                          onClick={logoutfromapp}
-                        >
-                          Logout
-                        </button>
-                      ) : (
-                        <button
-                          className="login_btn_profile"
-                          onClick={handleprofilePage}
-                        >
-                          Login
-                        </button>
-                      )}
-                    </div>
+                    )}
                   </div>
+                  <Divider />
 
-                 
-                </BottomSheet>
-        
-                <div></div>
+                  <div
+                    className="profile_container"
+                    style={{
+                      padding: "20px",
+                      zIndex: "9999",
+                    }}
+                  >
+                    <p
+                      className="profile_list"
+                      onClick={user_id ? GotoProfile : handleprofilePage}
+                      style={{
+                        cursor: "pointer",
+                      }}
+                    >
+                      My Profile
+                    </p>
+                    <p
+                      className="profile_list"
+                      onClick={user_id ? GotoOrders : handleprofilePage}
+                      style={{
+                        cursor: "pointer",
+                      }}
+                    >
+                      Orders
+                    </p>
+                    <p
+                      className="profile_list"
+                      onClick={handlelikePage}
+                      style={{
+                        cursor: "pointer",
+                      }}
+                    >
+                      Wishlist
+                    </p>
+                    <p
+                      className="profile_list"
+                      onClick={gotocontact}
+                      style={{
+                        cursor: "pointer",
+                      }}
+                    >
+                      Contact Us
+                    </p>
+                    <p
+                      className="profile_list"
+                      onClick={gotoabout}
+                      style={{
+                        cursor: "pointer",
+                      }}
+                    >
+                      About Us
+                    </p>
+                    {user_id ? (
+                      <button
+                        className="login_btn_profile"
+                        style={{ color: "#c1bcbc" }}
+                        onClick={logoutfromapp}
+                      >
+                        Logout
+                      </button>
+                    ) : (
+                      <button
+                        className="login_btn_profile"
+                        onClick={handleprofilePage}
+                      >
+                        Login
+                      </button>
+                    )}
+                  </div>
+                </div>
 
-             
-              </div>
+
+              </BottomSheet>
+
+              <div></div>
+
+
+            </div>
 
 
 
 
 
- {/* <BottomSheetCom
+            {/* <BottomSheetCom
                     username={username}
                     user_id={user_id}
                     GotoProfile={GotoProfile}
@@ -976,42 +965,42 @@ const HeaderSection = ({
                   ></BottomSheetCom> */}
 
 
-                  <div className='headersection_container_profile_mobile' >
-                            <div ref={profileRefmobile}>
-                                <li onClick={handleClick} className='headersection_container_profile_contain'>
-                                    <PersonIcon sx={{ color: "var(--colornewprimary)", cursor: "pointer" }} />
-                                </li>
-                              
-                            </div>
-                           
-                        </div>
-                  
+            <div className='headersection_container_profile_mobile' >
+              <div ref={profileRefmobile}>
+                <li onClick={handleClick} className='headersection_container_profile_contain'>
+                  <PersonIcon sx={{ color: "var(--colornewprimary)", cursor: "pointer" }} />
+                </li>
 
+              </div>
 
-
-              {/* Mobile Menu */}
-              {showmblMenu && (
-                <MobileMenu
-                  onClick={handlemblmenu}
-                  setShowmblMenu={setShowmblMenu}
-                  setCatval={setCatval}
-                  handlelogout={handlelogout}
-                />
-              )}
-
-              {/* Login Popup */}
-              {showloginpopup && (
-                <Login
-                  showloginpopup={showloginpopup}
-                  setShowloginpopup={setShowloginpopup}
-                  reload={reload}
-                  setReload={setReload}
-                  {...{ setCartTotal, setCartcount }}
-                />
-              )}
             </div>
+
+
+
+
+            {/* Mobile Menu */}
+            {showmblMenu && (
+              <MobileMenu
+                onClick={handlemblmenu}
+                setShowmblMenu={setShowmblMenu}
+                setCatval={setCatval}
+                handlelogout={handlelogout}
+              />
+            )}
+
+            {/* Login Popup */}
+            {showloginpopup && (
+              <Login
+                showloginpopup={showloginpopup}
+                setShowloginpopup={setShowloginpopup}
+                reload={reload}
+                setReload={setReload}
+                {...{ setCartTotal, setCartcount }}
+              />
+            )}
           </div>
         </div>
+
       </div>
     </>
   );

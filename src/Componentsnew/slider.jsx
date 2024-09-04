@@ -200,6 +200,7 @@ const SliderComponent = ({
                     25
                   )}
                 </p>
+             
                 <p className="product-price">
                   {item.discount_percent === 0 ? (
                     <span className="mrp-with-discount product-icon_rs">
