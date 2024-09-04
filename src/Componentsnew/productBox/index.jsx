@@ -76,12 +76,14 @@ const ProductBox = ({
 
 
   const handleImageHover = (index, isHovering) => {
-    setSecondaryImages((prevImages) => ({
-      ...prevImages,
-      [index]: isHovering
-        ? `${ImageUrl}/${renderproduct[index].secondary_image}`
-        : null,
-    }));
+    if (window.matchMedia("(min-width: 769px)").matches) {
+      setSecondaryImages((prevImages) => ({
+        ...prevImages,
+        [index]: isHovering
+          ? `${ImageUrl}/${renderproduct[index].secondary_image}`
+          : null,
+      }));
+    }
   };
 
   return (
@@ -197,7 +199,7 @@ const ProductBox = ({
                         />
                       )}
                     </p>
-                   
+
                   </div>
                 </div>
                 <div
@@ -248,13 +250,13 @@ const ProductBox = ({
                     )}
                   </p>
 
-                   <div className="addtocart"
-                  onClick={() =>
-                    handleDetailPage(
-                      item.productId || item.id,
-                      item.product_name || item.productName
-                    )
-                  } >
+                  <div className="addtocart"
+                    onClick={() =>
+                      handleDetailPage(
+                        item.productId || item.id,
+                        item.product_name || item.productName
+                      )
+                    } >
                     <IoAddSharp /> <span>Add to cart</span>
                   </div>
                 </div>

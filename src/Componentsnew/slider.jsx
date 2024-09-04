@@ -60,13 +60,21 @@ const SliderComponent = ({
   };
 
   const handleImageHover = (index, isHovering) => {
-    setSecondaryImages((prevImages) => ({
-      ...prevImages,
-      [index]: isHovering
-        ? `${ImageUrl}/${newarrivalList[index].secondary_image}`
-        : null,
-    }));
+   
+    if (window.matchMedia("(min-width: 769px)").matches) {
+      setSecondaryImages((prevImages) => ({
+        ...prevImages,
+        [index]: isHovering
+          ? `${ImageUrl}/${newarrivalList[index].secondary_image}`
+          : null,
+      }));
+    }
+    
+    
+    
   };
+  
+
 
   const truncateProductName = (name, maxLength) => {
     if (name.length > maxLength) {
