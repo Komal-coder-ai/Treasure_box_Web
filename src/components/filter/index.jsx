@@ -196,7 +196,7 @@ const Filter = ({ setShowfilter, setProductList, shownav, showfilter, showtext }
 				setShowfilter(false)
 			}
 		} catch (error) {
-			console.log("error", error);
+			// console.log("error", error);
 		} finally {
 		}
 	}
@@ -212,7 +212,7 @@ const Filter = ({ setShowfilter, setProductList, shownav, showfilter, showtext }
 				setCategoryList(categoryData)
 			}
 		} catch (error) {
-			console.log("error", error);
+			// console.log("error", error);
 		} finally {
 		}
 	}

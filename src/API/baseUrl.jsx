@@ -5,7 +5,7 @@ const user_id = localStorage.getItem("user_id")
 export const baseUrl = axios.create({
     // baseURL: 'https://gallant-cohen.50-17-89-82.plesk.page/',
     baseURL: 'https://treasure.technotoil.com/',
-    // baseURL: 'https://a61e-27-58-197-40.ngrok-free.app/',
+    // baseURL: 'https://a725-2401-4900-8822-465d-a450-5527-df8a-2e90.ngrok-free.app/',
 });
 
 export const ImageUrl = 'https://treasure.technotoil.com/'
@@ -192,7 +192,7 @@ const customHeaders = {
     deviceToken : device_token,
 };
 
-    console.log("Refresh token", url, data)
+    // console.log("Refresh token", url, data)
     let response
     try {
         response = await baseUrl.get(`${url}`, {

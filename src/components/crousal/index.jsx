@@ -24,7 +24,7 @@ const Crousal = () => {
 				setPending(false)
 	        }
 	    } catch (error) {
-	        console.log("error", error);
+	        // console.log("error", error);
 	    } finally {
 			setPending(false)
 	    }
