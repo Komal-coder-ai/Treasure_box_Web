@@ -133,8 +133,6 @@ const OrderCheckout = ({ reload, setReload }) => {
                 total_amount: amount
             })
 
-            // console.log("LLLLLLLLLLLLLLLLLLLLLLLLL",result)
-            // console.log("LLLLLLLLLLLLLLL    LLLLLLLLLL",result.data.data)
             if (result.data.status) {
                 setpaymentData(result.data.data);
                 setKey(result.data.key_id);
@@ -300,32 +298,20 @@ const OrderCheckout = ({ reload, setReload }) => {
         }
         console.log(key, "key_id")
         const options = {
-            key: "rzp_live_4X9jlTGNQXHJVK",
-            // key: key,
-            // key: "rzp_live_egeVWOPHatNh1P",
+            key: key,
             amount: (Number(totalprice).toFixed(2)) * 100,
             currency:   'INR',
             name: 'Treasure box',
             description: 'Explore the world of treasure',
             image: 'https://example.com/your_logo',
             order_id: paymentdata.id,
-            // handler: function (response) {
-            //     // alert(response.razorpay_payment_id);
-            //     // alert(response.razorpay_order_id);
-            //     // alert(response.razorpay_signature);
-            //     setLoader(true)
-            //     submitForm("type", response.razorpay_payment_id);
-            // },
             handler: function (response) {
-                console.log("Razorpay Response:", response);
-                if(response.error) {
-                    console.error("Payment Failed", response.error.description);
-                } else {
-                    setLoader(true);
-                    submitForm("type", response.razorpay_payment_id);
-                }
+                // alert(response.razorpay_payment_id);
+                // alert(response.razorpay_order_id);
+                // alert(response.razorpay_signature);
+                setLoader(true)
+                submitForm("type", response.razorpay_payment_id);
             },
-            
             prefill: {
                 name: values.firstname + values.lastname,
                 email: values.email,
@@ -338,22 +324,8 @@ const OrderCheckout = ({ reload, setReload }) => {
                 color: '#3399cc',
             },
         };
-
-        console.log(options, "-----------------'")
-
-        // const rzp = new window.Razorpay(options);
-
-        // rzp.open();
         const rzp = new window.Razorpay(options);
 
-        // Add a handler for the payment failure event
-        rzp.on('payment.failed', function(response) {
-            // Handle the payment failure event
-            console.error("Payment Failed:", response.error);
-            alert("Payment failed: " + response.error.description);
-        });
-    
-        // Open the Razorpay checkout form
         rzp.open();
     };
 
@@ -477,7 +449,7 @@ const OrderCheckout = ({ reload, setReload }) => {
                             ) : null}
                         </div>
 
-{/* <h1>hhhhhh</h1>                    </div> */}
+                    </div>
                     <Grid item xs={12} sm={12} md={12} lg={12} sx={{}}>
                         <FormLabel id="demo-radio-buttons-group-label">Address Type</FormLabel>
                         <RadioGroup
@@ -506,13 +478,13 @@ const OrderCheckout = ({ reload, setReload }) => {
                             name="radio-buttons-group"
                             onChange={handlepaymentChange}
                         >
-                            <FormControlLabel className='formcontrol' value="0" control={<Radio sx={{ color: "blue" }} />} label={<p style={{
+                            {/* <FormControlLabel className='formcontrol' value="0" control={<Radio sx={{ color: "blue" }} />} label={<p style={{
                                 marginBottom: "0px"
-                            }}>Net Banking</p>} />
+                            }}>Net Banking</p>} /> */}
 
-                            {/* <FormControlLabel className='formcontrol' value="1" control={<Radio sx={{ color: "blue" }} />} label={<p style={{
+                            <FormControlLabel className='formcontrol' value="1" control={<Radio sx={{ color: "blue" }} />} label={<p style={{
                                 marginBottom: "0px"
-                            }}>Cash on Delivery (COD)**</p>} /> */}
+                            }}>Cash on Delivery (COD)</p>} />
                         </RadioGroup>
 
                     </div>
