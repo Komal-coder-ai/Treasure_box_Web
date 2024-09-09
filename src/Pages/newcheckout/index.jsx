@@ -135,6 +135,7 @@ const OrderCheckout = ({ reload, setReload }) => {
 
             if (result.data.status) {
                 setpaymentData(result.data.data);
+                console.log("paymentdata", result.data.data)
                 setKey(result.data.key_id);
                 console.log("key", result.data.key_id)
             }
@@ -288,29 +289,30 @@ const OrderCheckout = ({ reload, setReload }) => {
     }
 
     const displayRazorpay = async () => {
+
         const res = await loadScript(
             "https://checkout.razorpay.com/v1/checkout.js"
         );
-
+console.log(res,"res")
         if (!res) {
             alert("Razorpay SDK failed to load. Are you online?");
             return;
         }
-        console.log(key, "key_id")
+
         const options = {
             key: key,
-            amount: (Number(totalprice).toFixed(2)) * 100,
-            currency:   'INR',
+            amount: (Number(totalprice).toFixed(2)) * 100, 
+            currency: 'INR',
             name: 'Treasure box',
             description: 'Explore the world of treasure',
             image: 'https://example.com/your_logo',
-            order_id: paymentdata.id,
+            order_id: paymentdata.id, 
             handler: function (response) {
                 // alert(response.razorpay_payment_id);
                 // alert(response.razorpay_order_id);
                 // alert(response.razorpay_signature);
                 setLoader(true)
-                submitForm("type", response.razorpay_payment_id);
+                submitForm("Net Banking", response.razorpay_payment_id);
             },
             prefill: {
                 name: values.firstname + values.lastname,
@@ -478,9 +480,9 @@ const OrderCheckout = ({ reload, setReload }) => {
                             name="radio-buttons-group"
                             onChange={handlepaymentChange}
                         >
-                            {/* <FormControlLabel className='formcontrol' value="0" control={<Radio sx={{ color: "blue" }} />} label={<p style={{
+                            <FormControlLabel className='formcontrol' value="0" control={<Radio sx={{ color: "blue" }} />} label={<p style={{
                                 marginBottom: "0px"
-                            }}>Net Banking</p>} /> */}
+                            }}>Net Banking</p>} />
 
                             <FormControlLabel className='formcontrol' value="1" control={<Radio sx={{ color: "blue" }} />} label={<p style={{
                                 marginBottom: "0px"
