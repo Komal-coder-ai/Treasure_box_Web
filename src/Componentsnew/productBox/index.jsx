@@ -11,12 +11,14 @@ import {
   deleteFromWishlistApi,
   postApiCall,
 } from "../../API/baseUrl";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import Login from "../../Pages/login/login";
 import CurrencyRupeeIcon from "@mui/icons-material/CurrencyRupee";
 import { IoAddSharp } from "react-icons/io5";
-import { Container } from "react-bootstrap";
-
+import { Container, Stack } from "react-bootstrap";
+import { Breadcrumbs, Typography } from "@mui/material";
+import NavigateNextIcon from '@mui/icons-material/NavigateNext';
+import OutOfStock from "../outOfStock/Index";
 const ProductBox = ({
   renderproduct,
   shownav,
@@ -29,6 +31,8 @@ const ProductBox = ({
   const user_id = localStorage.getItem("user_id");
   const [showLoginPopup, setShowLoginPopup] = useState(false);
   const [secondaryImages, setSecondaryImages] = useState({});
+  const { product, name } = useParams();
+  console.log(name, "namenamenamename")
   const handleDetailPage = (id, name) => {
     const cleanedName = name.replace(/[^\w\s]/gi, "");
     navigate(`/productDetails/${id}/${cleanedName}`);
@@ -85,10 +89,45 @@ const ProductBox = ({
       }));
     }
   };
+  const breadcrumbs = [
+    <Link to={"/"} underline="hover" key="1" color="inherit"
+    // onClick={handleClick}
+    className="breadcrumbsLink"
+    >
+      HOME
+    </Link>,
+    <Link
+      underline="hover"
+      key="2"
+      color="inherit"
+      to={"/product"}
+    // onClick={handleClick}
+    className="breadcrumbsLink"
+    >
+      {product}
+    </Link>,
+    <Typography key="3" sx={{ color: 'text.primary' }}>
+      {name}
+    </Typography>,
+  ];
+
 
   return (
     <>
       <Container className="slider-container">
+        {/* <Stack spacing={2}>
+
+          <Breadcrumbs
+            separator={<NavigateNextIcon fontSize="small" />}
+            aria-label="breadcrumb"
+          >
+            {breadcrumbs}
+          </Breadcrumbs>
+        </Stack> */}
+
+
+
+
         <Grid container>
           {renderproduct.map((item, index) => (
             <Grid key={index} {...getGridProps(numProducts)}>
@@ -207,7 +246,11 @@ const ProductBox = ({
                   style={{ marginTop: "20px" }}
                 >
                   {item.is_active === 0 ? (
-                    <p className="outofstock test-align">Out Of Stock</p>
+                    <p className="outofstockCom test-align"
+                      style={{ color: "red" }}
+                    >
+                      <OutOfStock />
+                    </p>
                   ) : (
                     ""
                   )}
@@ -236,12 +279,13 @@ const ProductBox = ({
                       <>
                         <span className="mrp-with-discount product-icon_rs">
                           <CurrencyRupeeIcon
-                            style={{ fontSize: "14px", color: "black" , marginRight:"5px"}}
+                            style={{ fontSize: "14px", color: "black", marginRight: "5px" }}
                           />
                           {item.discount_amount}
                         </span>
-                        <strike className="discount_mrp">
-                          {item.mrp_amount || item.price}
+                        <strike className="discount_mrp"
+                        >
+                          <span style={{ marginLeft: "5px" }}>  {item.mrp_amount || item.price}</span>
                         </strike>
                         {/* <span className="discount_percent">
                           {item.discount_percent}% off{" "}

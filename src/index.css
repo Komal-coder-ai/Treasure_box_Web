@@ -71,7 +71,10 @@ body {
   --line-color:#848b8a
 
 }
-
+.breadcrumbsLink{
+  color: black;
+  text-decoration: none;
+}
 
 
 
@@ -11735,6 +11738,10 @@ html [type="button"],
 }
 
 .startrating label span{
+  font-size: 20px !important;
+  color: var(--primary-color);
+}
+.startrating span span{
   font-size: 20px !important;
   color: var(--primary-color);
 }

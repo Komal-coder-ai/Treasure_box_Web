@@ -246,17 +246,8 @@ const NewProductpage = ({ reload, setReload }) => {
 
           <div className='product_sortby_container'>
          
-            <div className='sortby_container_main justify-content-between'>
-            <h3
-              
-              style={{
-                color: "var(--heading-color)",
-                textAlign: "center",
-               
-              }}
-            >
-              {name}
-            </h3>
+            <div className='sortby_container_main justify-content-end'>
+           
               <div className='sortby_container'>
                 <Autocomplete
                   disablePortal

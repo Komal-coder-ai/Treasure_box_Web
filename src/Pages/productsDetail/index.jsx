@@ -10,7 +10,7 @@ import "react-image-gallery/styles/css/image-gallery.css";
 import ImageGallery from "react-image-gallery";
 import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
 import { Link as ScrollLink, animateScroll as scroll } from "react-scroll";
-
+import NavigateNextIcon from '@mui/icons-material/NavigateNext';
 import {
   addtocartApi,
   addtowishlist,
@@ -24,7 +24,7 @@ import Login from "../login/login";
 import RemoveTag from "../../components/removetag";
 import CircleIcon from "@mui/icons-material/Circle";
 import RadioButtonCheckedIcon from "@mui/icons-material/RadioButtonChecked";
-import { Divider, Rating, Skeleton } from "@mui/material";
+import { Breadcrumbs, Divider, Rating, Skeleton, Typography } from "@mui/material";
 // import instock from '../../Assect/ready-to-ship-icon.jpg';
 import instock from "../../Assect/return-box.png";
 import RemoveRedEyeOutlinedIcon from "@mui/icons-material/RemoveRedEyeOutlined";
@@ -40,10 +40,13 @@ import { IoMdAdd } from "react-icons/io";
 import { RiSubtractFill } from "react-icons/ri";
 import DetailPageTab from "../../slider/detailPageTab";
 import RelatedProducts from "../RelatedProducts/Index";
+import { Stack } from "react-bootstrap";
+import OutOfStock from "../../Componentsnew/outOfStock/Index";
+import OutofStock from "../../Componentsnew/outOfStock/Index";
 
 const ProductDetail = ({ reload, setReload, setCatval }) => {
   const user_id = localStorage.getItem("user_id");
-  const { id } = useParams();
+  const { id,name } = useParams();
   const navigate = useNavigate();
   const [counter, setCounter] = React.useState(1);
   const [showmodal, setShowmodal] = React.useState(false);
@@ -67,6 +70,7 @@ const ProductDetail = ({ reload, setReload, setCatval }) => {
   const [activeColorData, setActievColorData] = useState({});
   const [renderimage, setRenderimage] = useState("");
   const [subcategory, setsubcategory] = useState(null);
+
   const handleprofilePage = () => {
     setShowloginpopup(!showloginpopup);
   };
@@ -243,7 +247,7 @@ const ProductDetail = ({ reload, setReload, setCatval }) => {
       } else {
         ToastMessage("error", result.data.message);
       }
-    } catch (error) {}
+    } catch (error) { }
   };
 
   const gotocart = () => {
@@ -358,8 +362,28 @@ const ProductDetail = ({ reload, setReload, setCatval }) => {
     },
   ];
 
+
+
+
+  const breadcrumbs = [
+    <Link to={"/"} underline="hover" key="1" color="inherit"
+    // onClick={handleClick}
+    className="breadcrumbsLink"
+    >
+      HOME
+    </Link>,
+    
+    <Typography key="3" sx={{ color: 'text.primary' }}>
+      {name}
+    </Typography>,
+  ];
   return (
     <>
+
+
+
+
+
       <div
         className="productdetail_container"
         style={{
@@ -367,6 +391,16 @@ const ProductDetail = ({ reload, setReload, setCatval }) => {
         }}
       >
         <div className="product_detail_imagecontainer">
+{/* <h1>hhh</h1> */}
+{/* <Stack spacing={2}>
+
+<Breadcrumbs
+  separator={<NavigateNextIcon fontSize="small" />}
+  aria-label="breadcrumb"
+>
+  {breadcrumbs}
+</Breadcrumbs>
+</Stack> */}
           {pending ? (
             <Skeleton variant="rectangular" minWidth={200} height={350} />
           ) : (
@@ -505,6 +539,7 @@ const ProductDetail = ({ reload, setReload, setCatval }) => {
             </div>
           ) : (
             <div className="p-r-50 p-t-5 p-lr-0-lg">
+              
               <p className="productdetails_productname">
                 {details.productName}
               </p>
@@ -516,6 +551,7 @@ const ProductDetail = ({ reload, setReload, setCatval }) => {
                     value={details?.averageProductRating}
                     color="var(--primary-color)"
                     className="startrating mt-1"
+                    readOnly
                   />
                   <Divider orientation="vertical" variant="middle" flexItem />
                   <span className="mx-2">
@@ -543,7 +579,11 @@ const ProductDetail = ({ reload, setReload, setCatval }) => {
                       {details.mrp_amount ? details.mrp_amount : details.price}
                     </span>
                     {details.is_active === 0 ? (
-                      <p className="soldout">Sold Out</p>
+                      <p className="soldout"
+                        style={{ color: "red" }}
+                      >
+                    <OutofStock />
+                      </p>
                     ) : (
                       ""
                     )}
@@ -560,6 +600,10 @@ const ProductDetail = ({ reload, setReload, setCatval }) => {
                         {" "}
                         {details.discount_amount}
                       </span>
+                      <strike className="discount-mrp mx-2">
+                        <CurrencyRupeeIcon style={{ fontSize: '14px' }} />
+                        {details.mrp_amount || details.price}
+                      </strike>
                     </span>
                     {/* <strike className="mx-2">
                       {details.mrp_amount ? details.mrp_amount : details.price}
@@ -568,7 +612,13 @@ const ProductDetail = ({ reload, setReload, setCatval }) => {
                       {details.discount_percent} Rs off{" "}
                     </span> */}
                     {details.is_active === 0 ? (
-                      <p className="soldout">Sold Out</p>
+                      <p className="soldout"
+                        style={{ color: "red !important" }}
+                      >
+                      <OutofStock />
+                      </p>
+                      
+                   
                     ) : (
                       ""
                     )}{" "}
@@ -605,7 +655,7 @@ const ProductDetail = ({ reload, setReload, setCatval }) => {
                           name="color"
                           id="color-select"
                           style={{ width: "100%", padding: "10px" }}
-                          // onChange={(e) => handlecolor(e.target.value)}
+                        // onChange={(e) => handlecolor(e.target.value)}
                         >
                           <option value="">- Please select -</option>
                           {info.map((item, index) => (
@@ -634,13 +684,13 @@ const ProductDetail = ({ reload, setReload, setCatval }) => {
                           name="color"
                           id="color-select"
                           style={{ width: "100%", padding: "10px" }}
-                          // onChange={(e) => handlecolor(e.target.value)}
+                        // onChange={(e) => handlecolor(e.target.value)}
                         >
                           <option value="">- Please select -</option>
                           {info.map((item, index) => (
                             <option key={index} value={item.product_size}>
                               {item?.product_size}
-                        </option>
+                            </option>
                           ))}
                         </select>
                       </div>
@@ -701,7 +751,7 @@ const ProductDetail = ({ reload, setReload, setCatval }) => {
                   <p
                     style={{
                       margin: " 10px 4px 0px 4px",
-                  
+
                     }}
                   >
                     {" "}
@@ -728,11 +778,10 @@ const ProductDetail = ({ reload, setReload, setCatval }) => {
 
                 {checkAddedFunction() ? (
                   <button
-                    className={`${
-                      details.is_active === 0
-                        ? "cart_div2_disable"
-                        : "cart_div2"
-                    } `}
+                    className={`${details.is_active === 0
+                      ? "cart_div2_disable"
+                      : "cart_div2"
+                      } `}
                     disabled={cartbtnloading || details.is_active === 0}
                     onClick={gotocart}
                   >
@@ -740,15 +789,16 @@ const ProductDetail = ({ reload, setReload, setCatval }) => {
                   </button>
                 ) : (
                   <button
-                    className={`${
-                      details.is_active === 0
-                        ? "cart_div2_disable"
-                        : "cart_div2"
-                    } `}
+                    className={`${details.is_active === 0
+                      ? "cart_div2_disable"
+                      : "cart_div2"
+                      } `}
                     disabled={cartbtnloading || details.is_active === 0}
                     onClick={user_id ? handlecart : handleprofilePage}
+                    style={{ border: "1px solid  var(--primary-color)" }}
                   >
-                    <ShoppingCartIcon sx={{ marginRight: "5px" }} /> Add to cart
+                    <ShoppingCartIcon sx={{ marginRight: "5px" }} />
+                    Add to cart
                   </button>
                 )}
 

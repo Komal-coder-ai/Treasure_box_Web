@@ -270,7 +270,11 @@ const RelatedProductList = ({
                           <CurrencyRupeeIcon style={{ fontSize: "14px", marginLeft: "5px" }} />
                           {item.discount_amount}
                         </span>
-                        <strike className="discount-mrp">
+                        <strike className="discount-mrp" 
+                        style={{marginLeft: "5px"}}
+                        >
+                        <CurrencyRupeeIcon style={{ fontSize: "14px", marginLeft: "5px" }} />
+                        
                           {item.mrp_amount || item.price}
                         </strike>
                         {/* <span className="discount-percent">

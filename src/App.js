@@ -62,9 +62,9 @@ function App() {
       element: <Main {...{ reload, setReload ,catval, setCatval}} />,
       children: [
         { element: <Navigate to="/"/>, index: true },
-        { path: "product", element: <NewProductpage {...{reload, setReload ,catval, setCatval}}/> },
-        { path: "product/:id/:name", element: <NewProductpage {...{reload, setReload ,catval, setCatval}}/> },
-        { path: "product/:name/:id/:type", element: <NewProductpage {...{reload, setReload ,catval, setCatval}}/> },
+        { path: ":product", element: <NewProductpage {...{reload, setReload ,catval, setCatval}}/> },
+        { path: ":product/:id/:name", element: <NewProductpage {...{reload, setReload ,catval, setCatval}}/> },
+        { path: ":product/:name/:id/:type", element: <NewProductpage {...{reload, setReload ,catval, setCatval}}/> },
         { path: "contact", element: <Contact/> },
         { path: "cart", element: <Newcart {...{reload, setReload}} /> },
         { path: "productDetails/:id/:name", element: <ProductDetail {...{reload, setReload ,catval, setCatval}} /> },
