@@ -23,7 +23,8 @@ import CircleIcon from "@mui/icons-material/Circle";
 import DeleteIcon from "@mui/icons-material/Delete";
 import TopPageImage from "../../components/toppageimage";
 
-const Cart = ({ refresh, setRefresh }) => {a
+const Cart = ({ refresh, setRefresh }) => {
+  a
   const navigate = useNavigate();
   const user_id = localStorage.getItem("user_id");
   const [counter, setCounter] = React.useState([]);
@@ -57,7 +58,7 @@ const Cart = ({ refresh, setRefresh }) => {a
         setprice(result?.data?.cartTotalPrice);
       } else {
       }
-    } catch (error) {}
+    } catch (error) { }
   };
 
   useEffect(() => {
@@ -147,12 +148,12 @@ const Cart = ({ refresh, setRefresh }) => {a
       } else {
         ToastMessage("error", result.data.message);
       }
-    } catch (error) {}
+    } catch (error) { }
   };
 
   return (
     <>
-    {/* Lorem, ipsum dolor. */}
+      {/* Lorem, ipsum dolor. */}
 
       {pending ? (
         <Loader />
@@ -166,7 +167,7 @@ const Cart = ({ refresh, setRefresh }) => {a
                   return (
                     <div className="cart_container">
                       <div className="description_quantity">
-<TopPageImage pagename="Cart"></TopPageImage>
+                        <TopPageImage pagename="Cart"></TopPageImage>
                         <div className="cart_img_container">
                           <img
                             src={`${ImageUrl}${product.files}`}
@@ -243,7 +244,7 @@ const Cart = ({ refresh, setRefresh }) => {a
                 })}
               </div>
 
-             </div>
+            </div>
           ) : (
             <Empty image={emptycartlist} btn="Shop Now" />
           )}

@@ -236,16 +236,16 @@ const ProductBox = ({
                       <>
                         <span className="mrp-with-discount product-icon_rs">
                           <CurrencyRupeeIcon
-                            style={{ fontSize: "14px", color: "black" }}
+                            style={{ fontSize: "14px", color: "black" , marginRight:"5px"}}
                           />
                           {item.discount_amount}
                         </span>
                         <strike className="discount_mrp">
                           {item.mrp_amount || item.price}
                         </strike>
-                        <span className="discount_percent">
+                        {/* <span className="discount_percent">
                           {item.discount_percent}% off{" "}
-                        </span>
+                        </span> */}
                       </>
                     )}
                   </p>

@@ -267,15 +267,15 @@ const RelatedProductList = ({
                     ) : (
                       <>
                         <span className="mrp-with-discount product-icon_rs">
-                          <CurrencyRupeeIcon style={{ fontSize: "14px" }} />
+                          <CurrencyRupeeIcon style={{ fontSize: "14px", marginLeft: "5px" }} />
                           {item.discount_amount}
                         </span>
                         <strike className="discount-mrp">
                           {item.mrp_amount || item.price}
                         </strike>
-                        <span className="discount-percent">
+                        {/* <span className="discount-percent">
                           ({item.discount_percent}% Off)
-                        </span>
+                        </span> */}
                       </>
                     )}
                    </p>

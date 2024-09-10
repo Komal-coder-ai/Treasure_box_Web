@@ -700,8 +700,8 @@ const ProductDetail = ({ reload, setReload, setCatval }) => {
                 >
                   <p
                     style={{
-                      marginRight: "4px",
-                      marginBottom: "0px",
+                      margin: " 10px 4px 0px 4px",
+                  
                     }}
                   >
                     {" "}

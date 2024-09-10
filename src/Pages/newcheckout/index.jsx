@@ -293,7 +293,7 @@ const OrderCheckout = ({ reload, setReload }) => {
         const res = await loadScript(
             "https://checkout.razorpay.com/v1/checkout.js"
         );
-console.log(res,"res")
+        console.log(res, "res")
         if (!res) {
             alert("Razorpay SDK failed to load. Are you online?");
             return;
@@ -301,12 +301,12 @@ console.log(res,"res")
 
         const options = {
             key: key,
-            amount: (Number(totalprice).toFixed(2)) * 100, 
+            amount: (Number(totalprice).toFixed(2)) * 100,
             currency: 'INR',
             name: 'Treasure box',
             description: 'Explore the world of treasure',
             image: 'https://example.com/your_logo',
-            order_id: paymentdata.id, 
+            order_id: paymentdata.id,
             handler: function (response) {
                 // alert(response.razorpay_payment_id);
                 // alert(response.razorpay_order_id);
@@ -514,21 +514,28 @@ console.log(res,"res")
 
                                         <p className='header-cart-item-rupee'><CurrencyRupeeIcon sx={{ fontSize: "16px" }} />{product.discount_percent === 0 ? product.mrp_amount : product.discount_amount}</p>
 
-                                        <div className="qunatitydiv d-flex"
+                                        <div className=""
                                             style={{
-                                                width: "100px"
+                                                width: "100px",
+                                                border: "1px solid",
+                                                display: "flex",
+                                                justifyContent: "space-between",
+                                                alignItems: "center",
+                                                padding: "5px",
+                                                // border: "1px solid black",
                                             }}
                                         >
-                                            <RiSubtractLine type='button' disabled={loading} onClick={() => handleminus(product.id, product.quantity, index)}>
-                                            </RiSubtractLine>
+                                            <RiSubtractLine type='button' disabled={loading} onClick={() => handleminus(product.id, product.quantity, index)} />
 
-                                            <input type="number" name="num-product2" value={product.quantity}
+
+                                            <span type="number" name="num-product2"
                                                 style={{ width: "20px", background: "none" }}
-                                            />
+                                            >
+                                                {product.quantity}
+                                            </span>
 
-                                            <IoAddOutline type='button' disabled={loading} onClick={() => handleplus(product.id, index)}>
+                                            <IoAddOutline type='button' disabled={loading} onClick={() => handleplus(product.id, index)} />
 
-                                            </IoAddOutline>
                                         </div>
                                     </div>
 
