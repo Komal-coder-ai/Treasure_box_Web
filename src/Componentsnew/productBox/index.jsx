@@ -19,6 +19,7 @@ import { Container, Stack } from "react-bootstrap";
 import { Breadcrumbs, Typography } from "@mui/material";
 import NavigateNextIcon from '@mui/icons-material/NavigateNext';
 import OutOfStock from "../outOfStock/Index";
+import { BreadcrumbsFunction } from "../Breadcrumbs/Index";
 const ProductBox = ({
   renderproduct,
   shownav,
@@ -89,41 +90,21 @@ const ProductBox = ({
       }));
     }
   };
-  const breadcrumbs = [
-    <Link to={"/"} underline="hover" key="1" color="inherit"
-    // onClick={handleClick}
-    className="breadcrumbsLink"
-    >
-      HOME
-    </Link>,
-    <Link
-      underline="hover"
-      key="2"
-      color="inherit"
-      to={"/product"}
-    // onClick={handleClick}
-    className="breadcrumbsLink"
-    >
-      {product}
-    </Link>,
-    <Typography key="3" sx={{ color: 'text.primary' }}>
-      {name}
-    </Typography>,
-  ];
+
 
 
   return (
     <>
       <Container className="slider-container">
-        {/* <Stack spacing={2}>
+        <Stack spacing={2}>
 
           <Breadcrumbs
             separator={<NavigateNextIcon fontSize="small" />}
             aria-label="breadcrumb"
           >
-            {breadcrumbs}
+            <BreadcrumbsFunction link1="Home" link2={product} link3={name} />
           </Breadcrumbs>
-        </Stack> */}
+        </Stack>
 
 
 

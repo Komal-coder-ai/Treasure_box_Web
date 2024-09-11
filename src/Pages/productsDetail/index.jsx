@@ -43,10 +43,11 @@ import RelatedProducts from "../RelatedProducts/Index";
 import { Stack } from "react-bootstrap";
 import OutOfStock from "../../Componentsnew/outOfStock/Index";
 import OutofStock from "../../Componentsnew/outOfStock/Index";
+import { BreadcrumbsFunction } from "../../Componentsnew/Breadcrumbs/Index";
 
 const ProductDetail = ({ reload, setReload, setCatval }) => {
   const user_id = localStorage.getItem("user_id");
-  const { id,name } = useParams();
+  const { id, name } = useParams();
   const navigate = useNavigate();
   const [counter, setCounter] = React.useState(1);
   const [showmodal, setShowmodal] = React.useState(false);
@@ -70,7 +71,7 @@ const ProductDetail = ({ reload, setReload, setCatval }) => {
   const [activeColorData, setActievColorData] = useState({});
   const [renderimage, setRenderimage] = useState("");
   const [subcategory, setsubcategory] = useState(null);
-
+  console.log(id, "id*******")
   const handleprofilePage = () => {
     setShowloginpopup(!showloginpopup);
   };
@@ -365,25 +366,10 @@ const ProductDetail = ({ reload, setReload, setCatval }) => {
 
 
 
-  const breadcrumbs = [
-    <Link to={"/"} underline="hover" key="1" color="inherit"
-    // onClick={handleClick}
-    className="breadcrumbsLink"
-    >
-      HOME
-    </Link>,
-    
-    <Typography key="3" sx={{ color: 'text.primary' }}>
-      {name}
-    </Typography>,
-  ];
+
+
   return (
     <>
-
-
-
-
-
       <div
         className="productdetail_container"
         style={{
@@ -391,16 +377,19 @@ const ProductDetail = ({ reload, setReload, setCatval }) => {
         }}
       >
         <div className="product_detail_imagecontainer">
-{/* <h1>hhh</h1> */}
-{/* <Stack spacing={2}>
+          {/* <h1>hhh</h1> */}
+          <Stack spacing={2}>
 
-<Breadcrumbs
-  separator={<NavigateNextIcon fontSize="small" />}
-  aria-label="breadcrumb"
->
-  {breadcrumbs}
-</Breadcrumbs>
-</Stack> */}
+            <Breadcrumbs
+              separator={<NavigateNextIcon fontSize="small" />}
+              aria-label="breadcrumb"
+            >
+              <BreadcrumbsFunction link1="Home" link2={name} />
+            </Breadcrumbs>
+          </Stack>
+
+
+
           {pending ? (
             <Skeleton variant="rectangular" minWidth={200} height={350} />
           ) : (
@@ -539,7 +528,7 @@ const ProductDetail = ({ reload, setReload, setCatval }) => {
             </div>
           ) : (
             <div className="p-r-50 p-t-5 p-lr-0-lg">
-              
+
               <p className="productdetails_productname">
                 {details.productName}
               </p>
@@ -582,7 +571,7 @@ const ProductDetail = ({ reload, setReload, setCatval }) => {
                       <p className="soldout"
                         style={{ color: "red" }}
                       >
-                    <OutofStock />
+                        <OutofStock />
                       </p>
                     ) : (
                       ""
@@ -615,10 +604,10 @@ const ProductDetail = ({ reload, setReload, setCatval }) => {
                       <p className="soldout"
                         style={{ color: "red !important" }}
                       >
-                      <OutofStock />
+                        <OutofStock />
                       </p>
-                      
-                   
+
+
                     ) : (
                       ""
                     )}{" "}
@@ -918,6 +907,7 @@ const ProductDetail = ({ reload, setReload, setCatval }) => {
           />
 
           <RelatedProducts
+            product_id={id}
             user_id={user_id}
             subcategory={subcategory}
           ></RelatedProducts>

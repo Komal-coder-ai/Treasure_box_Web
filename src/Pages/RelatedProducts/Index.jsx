@@ -24,7 +24,7 @@ const RelatedProductList = ({
   setReload,
   newarrivalList,
   setNewarrivalList,
-
+  product_id,
   subcategory,
 }) => {
   const [products, setProducts] = useState([]);
@@ -47,6 +47,7 @@ const RelatedProductList = ({
     try {
       const response = await postApiCall(relatedProductAPI, {
         subCategory_Id: subcategory,
+        product_Id: product_id,
         userId: "",
       });
       if (response.data.status) {

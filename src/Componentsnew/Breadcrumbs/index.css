@@ -1,0 +1,20 @@
+.breadcrumbsLink {
+    text-decoration: none;
+    color: #1976d2; /* MUI primary color */
+    font-weight: 500;
+    font-size: 16px;
+    padding: 0 10px;
+    display: inline-block;
+    transition: color 0.3s ease;
+}
+
+.breadcrumbsLink:hover {
+    color: #1565c0; /* Darker shade on hover */
+    text-decoration: underline;
+}
+
+.breadcrumbsLink:not(:last-child)::after {
+    content: "›";
+    margin-left: 10px;
+    color: #757575; /* Icon color */
+}
