@@ -1,10 +1,12 @@
 .breadcrumbsLink {
     text-decoration: none;
-    color: #1976d2;
+    color: var(--primary-color);
     font-weight: 500;
     padding: 0 5px;
 }
-
+.breadcrumbsLink:hover{
+    color: var(--primary-color);
+}
 .separator {
     margin: 0 5px;
     color: #757575;

@@ -78,7 +78,7 @@
 /* Individual product icon */
 .product-icon {
   border-bottom: 0.1px solid black;
-  color: rgb(139, 135, 135);
+  color: var(--primary-color);
   font-size: x-small;
   padding-bottom: 2px;
   cursor: pointer;
