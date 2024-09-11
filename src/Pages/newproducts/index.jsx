@@ -4,12 +4,14 @@ import { ActiveProducts, Activecategory, Activesubcategory, categoryfilterApi, f
 import "./index.css"
 import ProductBox from '../../Componentsnew/productBox'
 import Newfilter from '../../components/newfilter'
-import { Autocomplete, TextField } from '@mui/material'
+import { Autocomplete, Breadcrumbs, TextField } from '@mui/material'
 import { useParams } from "react-router-dom"
 import { Skeleton } from '@mui/material';
 import Mobilefilter from '../../components/newfilter/mobilefilter'
 import TopPageImage from "../../components/toppageimage";
 import ButtonForAll from '../../components/ButtonForALL'
+import { BreadcrumbsFunction } from '../../Componentsnew/Breadcrumbs/Index'
+import NavigateNextIcon from '@mui/icons-material/NavigateNext';
 const SortByData = [
   {
     id: 4,
@@ -38,7 +40,7 @@ const SortByData = [
 const NewProductpage = ({ reload, setReload }) => {
   const { id } = useParams();
   const { name } = useParams();
-  const { type } = useParams();
+  const { type,product } = useParams();
   console.log(name, "category_name")
   const user_id = localStorage.getItem("user_id")
   const [sortval, setSortval] = useState([])
@@ -246,8 +248,15 @@ const NewProductpage = ({ reload, setReload }) => {
 
           <div className='product_sortby_container'>
          
-            <div className='sortby_container_main justify-content-end'>
-           
+            <div className='sortby_container_main justify-content-between'>
+            <Breadcrumbs
+          separator={<NavigateNextIcon fontSize="small" />}
+          aria-label="breadcrumb"
+        >
+          <BreadcrumbsFunction link1="Home" 
+          // link2={product} 
+          link3={name} link4={type}  link5={product}/>
+        </Breadcrumbs>
               <div className='sortby_container'>
                 <Autocomplete
                   disablePortal

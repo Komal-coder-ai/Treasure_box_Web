@@ -17,9 +17,9 @@ import CurrencyRupeeIcon from "@mui/icons-material/CurrencyRupee";
 import { IoAddSharp } from "react-icons/io5";
 import { Container, Stack } from "react-bootstrap";
 import { Breadcrumbs, Typography } from "@mui/material";
-import NavigateNextIcon from '@mui/icons-material/NavigateNext';
+
 import OutOfStock from "../outOfStock/Index";
-import { BreadcrumbsFunction } from "../Breadcrumbs/Index";
+
 const ProductBox = ({
   renderproduct,
   shownav,
@@ -97,12 +97,7 @@ const ProductBox = ({
     <>
       <Stack spacing={2}>
 
-        <Breadcrumbs
-          separator={<NavigateNextIcon fontSize="small" />}
-          aria-label="breadcrumb"
-        >
-          <BreadcrumbsFunction link1="Home" link2={product} link3={name} link4={type} />
-        </Breadcrumbs>
+      
       </Stack>
       <Container className="slider-container">
 

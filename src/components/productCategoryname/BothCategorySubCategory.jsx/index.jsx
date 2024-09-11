@@ -40,11 +40,11 @@ const CategoryAndSubcategoryComponent = ({dropdownRef}) => {
         {categories.map((category) => (
            category.subCategory.length > 0 && (
           <ul key={category.id}>
-            <li>
+            <li   onClick={dropdownRef}>
               <Link
                 to={`/product/${category.id}/${category.category_name}`}
                 className="bothList"
-                // onClick={dropdownRef}
+              
               >
                 {category.category_name}
               </Link>

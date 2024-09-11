@@ -4,7 +4,9 @@ import "./index.css";
 import data from "./data";
 import FAQItem from "./faqitems";
 // import imageForPhone from "../../Assect/illustration-woman-online-mobile.svg";
-
+import { BreadcrumbsFunction } from '../../Componentsnew/Breadcrumbs/Index';
+import NavigateNextIcon from '@mui/icons-material/NavigateNext';
+import { Breadcrumbs } from "@mui/material";
 const Help = () => {
   const handelClick = (id) => {
     const details = document.getElementsByTagName("details");
@@ -22,6 +24,14 @@ const Help = () => {
     <>
       <div className="faq_wrapper_container_fluid container">
         <div className="faq_container_second_block">
+        <Breadcrumbs
+          separator={<NavigateNextIcon fontSize="small" />}
+          aria-label="breadcrumb"
+        >
+          <BreadcrumbsFunction link1="Home"
+            page="FAQ"
+          />
+        </Breadcrumbs>
           <h3
             style={{
               textAlign: "center",

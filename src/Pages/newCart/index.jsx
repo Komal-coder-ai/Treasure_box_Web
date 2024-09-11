@@ -29,7 +29,10 @@ import CircleIcon from "@mui/icons-material/Circle";
 import DeleteIcon from "@mui/icons-material/Delete";
 import CurrencyRupeeIcon from "@mui/icons-material/CurrencyRupee";
 import ButtonComponent from "../../components/button";
+import { Breadcrumbs } from "@mui/material";
+import { BreadcrumbsFunction } from "../../Componentsnew/Breadcrumbs/Index";
 
+import NavigateNextIcon from '@mui/icons-material/NavigateNext';
 const Newcart = ({ reload, setReload }) => {
   const navigate = useNavigate();
   const user_id = localStorage.getItem("user_id");
@@ -196,6 +199,15 @@ const Newcart = ({ reload, setReload }) => {
           <Loader />
         ) : (
           <div className="newcart_container">
+ <Breadcrumbs
+          separator={<NavigateNextIcon fontSize="small" />}
+          aria-label="breadcrumb"
+        >
+          <BreadcrumbsFunction link1="Home"
+            page="Cart"
+          />
+        </Breadcrumbs>
+
             {data.length ? (
               <div className="">
                 <div className="TopPageForMobile"></div>

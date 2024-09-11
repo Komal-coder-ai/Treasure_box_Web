@@ -81,6 +81,7 @@ const Footer = ({ catval,  bgcolor, textcolor, imptext }) => {
                       <p
                         style={{
                           color: "var(--secondary-color)",
+                          lineHeight: "2",
                         }}
                       >
                         {name.category_name}

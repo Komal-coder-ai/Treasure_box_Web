@@ -9,13 +9,16 @@ import emptyWishlist from "../../Assect/emptywishlist.png";
 import ProductBox from '../../Componentsnew/productBox';
 import TopPageImage from '../../components/toppageimage';
 import ButtonForAll from '../../components/ButtonForALL';
-import { Link } from 'react-router-dom';
-
+import { Link, useParams } from 'react-router-dom';
+import { Breadcrumbs } from '@mui/material';
+import { BreadcrumbsFunction } from '../../Componentsnew/Breadcrumbs/Index';
+import NavigateNextIcon from '@mui/icons-material/NavigateNext';
 const Liked = () => {
     const user_id = localStorage.getItem("user_id")
     const [productList, setProductList] = useState([]);
     const [pending, setPending] = useState(false);
-
+    const { liked } = useParams()
+    console.log(liked, "liked")
     const getLiked = async () => {
         setPending(true)
         try {
@@ -76,15 +79,22 @@ const Liked = () => {
                             </div>
                             <div className='wishlist_container'
 
+                            >  <Breadcrumbs
+                                separator={<NavigateNextIcon fontSize="small" />}
+                                aria-label="breadcrumb"
                             >
+                                    <BreadcrumbsFunction link1="Home"
+                                        page="Like"
+                                    />
+                                </Breadcrumbs>
                                 <div className="wishList_img "
 
                                     style={{
                                         padding: "20px"
                                     }}
-                                    >
+                                >
                                     <ProductBox renderproduct={productList} setProductList={setProductList} productApifunc={updateApiCall}
-                                     />
+                                    />
                                 </div>
                             </div>
                         </div>

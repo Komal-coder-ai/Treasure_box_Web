@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import {
   Box,
+  Breadcrumbs,
   FormControlLabel,
   FormLabel,
   Grid,
@@ -19,8 +20,9 @@ import ToastMessage from "../../utils/ToastMessage";
 import { ThreeDots } from "react-loader-spinner";
 import { profileSchema } from "../../utils/validation";
 import ButtonForAll from "../../components/ButtonForALL";
-import "./index.css"; // Import your custom CSS file for styles
-
+import "./index.css";
+import { BreadcrumbsFunction } from '../../Componentsnew/Breadcrumbs/Index';
+import NavigateNextIcon from '@mui/icons-material/NavigateNext';
 const Profile = () => {
   const user_id = localStorage.getItem("user_id");
   const mobile = localStorage.getItem("mobile");
@@ -107,6 +109,14 @@ const Profile = () => {
         className="form-container-box"
         onSubmit={handleSubmit}
       >
+        <Breadcrumbs
+          separator={<NavigateNextIcon fontSize="small" />}
+          aria-label="breadcrumb"
+        >
+          <BreadcrumbsFunction link1="Home"
+            page="profile"
+          />
+        </Breadcrumbs>
         <Grid
           container
           spacing={1}
