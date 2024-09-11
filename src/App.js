@@ -35,6 +35,7 @@ import Com from './Componentsnew/com';
 import NotFound from './components/NotFound/NotFound';
 import FormComponent from './components/Try';
 import CategoryAndSubCategory from './components/productCategoryname/BothCategorySubCategory.jsx';
+import SiteMap from './Pages/SiteMap/Index.jsx';
 // import Navbar2 from './components/header2';
 
 
@@ -45,7 +46,7 @@ function App() {
   const [catval, setCatval] = useState("");
 
   const [show, setShow] = useState(false);
-  const [notification, setNotification] = useState({title: '', body: ''});
+  const [notification, setNotification] = useState({ title: '', body: '' });
   const [isTokenFound, setTokenFound] = useState(false);
   // getNotificationToken(setTokenFound);
 
@@ -59,21 +60,22 @@ function App() {
   const router = createBrowserRouter([
     {
       path: "/",
-      element: <Main {...{ reload, setReload ,catval, setCatval}} />,
+      element: <Main {...{ reload, setReload, catval, setCatval }} />,
       children: [
-        { element: <Navigate to="/"/>, index: true },
-        { path: ":product", element: <NewProductpage {...{reload, setReload ,catval, setCatval}}/> },
-        { path: ":product/:id/:name/:type", element: <NewProductpage {...{reload, setReload ,catval, setCatval}}/> },
-        { path: ":product/:id/:name/", element: <NewProductpage {...{reload, setReload ,catval, setCatval}}/> },
-        
-        { path: ":product/:name/:id/:type", element: <NewProductpage {...{reload, setReload ,catval, setCatval}}/> },
-        { path: "contact", element: <Contact/> },
-        { path: "cart", element: <Newcart {...{reload, setReload}} /> },
-        { path: "productDetails/:id/:name", element: <ProductDetail {...{reload, setReload ,catval, setCatval}} /> },
+        { element: <Navigate to="/" />, index: true },
+        { path: "sitemap.html", element: <SiteMap /> },
+        { path: "product", element: <NewProductpage {...{ reload, setReload, catval, setCatval }} /> },
+        { path: ":product/:id/:name/:type", element: <NewProductpage {...{ reload, setReload, catval, setCatval }} /> },
+        { path: ":product/:id/:name/", element: <NewProductpage {...{ reload, setReload, catval, setCatval }} /> },
+
+        { path: ":product/:name/:id/:type", element: <NewProductpage {...{ reload, setReload, catval, setCatval }} /> },
+        { path: "contact", element: <Contact /> },
+        { path: "cart", element: <Newcart {...{ reload, setReload }} /> },
+        { path: "productDetails/:id/:name", element: <ProductDetail {...{ reload, setReload, catval, setCatval }} /> },
         { path: "about", element: <About /> },
         { path: "help", element: <Help /> },
-        { path: "address", element: <CheckOut/> },
-        { path: "checkout", element: <OrderCheckout {...{reload, setReload}} /> },
+        { path: "address", element: <CheckOut /> },
+        { path: "checkout", element: <OrderCheckout {...{ reload, setReload }} /> },
         { path: "liked", element: <Liked /> },
         { path: "login", element: <Login /> },
         { path: "order", element: <Order /> },
@@ -87,11 +89,12 @@ function App() {
         { path: "payment-cancel", element: <Paymentfail /> },
         { path: "payment-callback", element: <Paymentdone /> },
         { path: "productDetails", element: <CategoryAndSubCategory /> },
-        // { path: "try", element: <FormComponent /> },
-      
 
-         { path:"*", element:<NotFound></NotFound>}
-     
+        // { path: "try", element: <FormComponent /> },
+
+
+        { path: "*", element: <NotFound></NotFound> }
+
       ]
     },
     {
@@ -101,7 +104,7 @@ function App() {
     },
     {
       path: "/modal",
-      element: <SimpleDialog/>,
+      element: <SimpleDialog />,
       children: []
     },
 
@@ -110,36 +113,36 @@ function App() {
 
   return (
     <>
-      
-   
+
+
       <RouterProvider router={router} >
         <UseScrollToTop />
         <div className="App">
-        <Toast onClose={() => setShow(false)} show={show} delay={3000} autohide animation style={{
-          position: 'absolute',
-          top: 20,
-          right: 20,
-          minWidth: 200
-        }}>
-          <Toast.Header>
-            <img
-              src="holder.js/20x20?text=%20"
-              className="rounded mr-2"
-              alt=""
-            />
-            <strong className="mr-auto">{notification.title}</strong>
-            <small>just now</small>
-          </Toast.Header>
-          <Toast.Body>{notification.body}</Toast.Body>
-        </Toast>
-      <header className="App-header">
-        {isTokenFound && <h1> Notification permission enabled 👍🏻 </h1>}
-        {!isTokenFound && <h1> Need notification permission ❗️ </h1>}
-        <Button onClick={() => setShow(true)}>Show Toast</Button>
-      </header>
+          <Toast onClose={() => setShow(false)} show={show} delay={3000} autohide animation style={{
+            position: 'absolute',
+            top: 20,
+            right: 20,
+            minWidth: 200
+          }}>
+            <Toast.Header>
+              <img
+                src="holder.js/20x20?text=%20"
+                className="rounded mr-2"
+                alt=""
+              />
+              <strong className="mr-auto">{notification.title}</strong>
+              <small>just now</small>
+            </Toast.Header>
+            <Toast.Body>{notification.body}</Toast.Body>
+          </Toast>
+          <header className="App-header">
+            {isTokenFound && <h1> Notification permission enabled 👍🏻 </h1>}
+            {!isTokenFound && <h1> Need notification permission ❗️ </h1>}
+            <Button onClick={() => setShow(true)}>Show Toast</Button>
+          </header>
 
 
-    </div>
+        </div>
       </RouterProvider>
     </>
   );

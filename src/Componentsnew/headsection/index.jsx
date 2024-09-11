@@ -7,7 +7,7 @@ import { IoBagHandleOutline } from "react-icons/io5";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import ToastMessage from "../../utils/ToastMessage";
 import "./index.css";
-
+import AccountTreeIcon from '@mui/icons-material/AccountTree';
 import swal from "sweetalert";
 import {
   Activecategory,
@@ -552,6 +552,9 @@ const HeaderSection = ({
   const toggleDropdownShop = () => {
     setIsDropdownOpenShop(!isDropdownOpenShop);
   };
+const sitemap = () => {
+  navigate("/sitemap.html")
+}
 
   const isHomeRoute = location.pathname === "/" || location.pathname === "/about" || location.pathname === "/contact" || location.pathname === "";
   return (
@@ -656,6 +659,7 @@ const HeaderSection = ({
               Cart({cartcount ? cartcount : 0})
             </li>
 
+<AccountTreeIcon onClick={sitemap}></AccountTreeIcon>
             <li>
               {" "}
               <div className="dropdown-container1" ref={dropdownRef}>
