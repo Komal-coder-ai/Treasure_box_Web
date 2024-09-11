@@ -296,6 +296,7 @@ export const CategoryAndSubcategoryApi ="category/get-categories-list"
 
 export const relatedProductAPI = "product/get/sub-category-product/list"
 
+export const categorygetcategorieslist ="category/get-categories-list"
 
 
 

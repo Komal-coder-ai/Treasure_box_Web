@@ -1,23 +1,27 @@
 import { Typography } from "@mui/material";
 import { Link } from "react-router-dom";
-import './index.css';  
-export const BreadcrumbsFunction = ({ link1, link2, link3 }) => {
+import './index.css';
+
+export const BreadcrumbsFunction = ({ link1, link2, link3, link4 }) => {
+    
+    const renderLink = (to, link, key) => {
+        return link ? (
+            <>
+                <Link to={to} key={key} className="breadcrumbsLink">
+                    {link}
+                </Link>
+              
+                <span className="separator">›</span>
+            </>
+        ) : null;
+    };
+
     return (
-        <>
-            <Link to={"/"} key="1" className="breadcrumbsLink">
-                {link1}
-            </Link>
-
-            <Link to={"/"} key="2" className="breadcrumbsLink">
-                {link2}
-            </Link>
-
-            <Link to={"/product"} key="3" className="breadcrumbsLink">
-                {link3}
-            </Link>
-            <Link to={"/product"} key="3" className="breadcrumbsLink">
-                {link3}
-            </Link>
-        </>
+        <div className="breadcrumbsContainer">
+            {renderLink("/", link1, "1")}
+            {renderLink("/", link2, "2")}
+            {renderLink("/product", link3, "3")}
+            {renderLink("/product", link4, "4")}
+        </div>
     );
 };

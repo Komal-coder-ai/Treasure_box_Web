@@ -8,6 +8,7 @@ import { CiLocationOn } from "react-icons/ci";
 import { HiOutlineMailOpen } from "react-icons/hi";
 import { FaStar, FaFacebookF, FaInstagram, FaPhoneAlt } from "react-icons/fa";
 import TopPageImage from "../../components/toppageimage";
+import contactbgimage from '../../Assect/contactbgimage.jpeg'
 
 const initialValues = {
   email: "",
@@ -57,7 +58,7 @@ const Contact = () => {
    
         <div className="TopPageForMobile">
         <TopPageImage    pagename="Contact Us"
-        bgimg="https://ng-outstock.vercel.app/assets/img/page-title/page-title-2.jpg" />
+        bgimg={contactbgimage} />
       </div>
       <section className="bg0 p-b-50 m-t-50">
         <div className="contactcontainer">

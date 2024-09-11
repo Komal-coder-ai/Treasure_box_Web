@@ -180,7 +180,7 @@ const NewProductpage = ({ reload, setReload }) => {
   const subcategorygilterApiCall = async () => {
     setLoading(true)
     try {
-      const result = await postApiCall(`${subcategoryfilterApi}/${id}`)
+      const result = await postApiCall(`${categoryfilterApi}/${id}`)
       if (result.data.status) {
         setProductList(result.data.data)
         setLoading(false)

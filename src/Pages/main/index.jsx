@@ -12,12 +12,7 @@ const Main = ({ reload, setReload, catval, setCatval }) => {
   const [fontval, setFontval] = useState("");
 
   // Define colors for the home page
-  const homePageColors = {
-    bgcolor: "#212529",
-    textcolor: "white",
-    imptext: " var(--primary-color)",
-  };
-
+ 
   // Determine if current route is home page
   const isHomePage = pathname === "/";
 
@@ -34,11 +29,8 @@ const Main = ({ reload, setReload, catval, setCatval }) => {
         ) : (
           <Outlet />
         )}
-        <Footer
-          {...(isHomePage
-            ? { imptext: " var(--primary-color)" }
-            : homePageColors)}
-        />
+        <Footer/>
+         
       </div>
       <BacktoHome />
     </>

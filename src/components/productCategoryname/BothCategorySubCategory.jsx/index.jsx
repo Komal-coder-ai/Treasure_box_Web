@@ -3,33 +3,27 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import "./index.css";
+import { categorygetcategorieslist, getApiCall } from "../../../API/baseUrl";
 
 const CategoryAndSubcategoryComponent = ({dropdownRef}) => {
   const [categories, setCategories] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        // Fetch categories and subcategories data
-        const response = await axios.get(
-          "https://treasure.technotoil.com/category/get-categories-list"
-        );
-        if (response.data.status) {
-          setCategories(response.data.data);
-        }
-        setLoading(false);
-      } catch (error) {
-        console.error("Error fetching data:", error);
+  const fetchcategoryList = async () => {
+    try {
+      const response = await getApiCall(categorygetcategorieslist)
+      if (response.data.status) {
+        setCategories(response.data.data);
+        console.log()
       }
-    };
-
-    fetchData();
-  }, []);
-
-  if (loading) {
-    return <div>...</div>;
+      setLoading(false);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
   }
+  useEffect(() => {
+    fetchcategoryList();
+  }, []);
 
   return (
     <>
@@ -44,6 +38,7 @@ const CategoryAndSubcategoryComponent = ({dropdownRef}) => {
       >
         {/* <h2></h2> */}
         {categories.map((category) => (
+           category.subCategory.length > 0 && (
           <ul key={category.id}>
             <li>
               <Link
@@ -58,7 +53,7 @@ const CategoryAndSubcategoryComponent = ({dropdownRef}) => {
             <ul>
               {category.subCategory.map((subcategory) => (
                 <Link
-                  to={`/product/${category.id}/${category.category_name}`}
+                  to={`/product/${category.id}/${category.category_name}/${subcategory.category_name}`}
                   className="bothList"
                   style={{
                     textDecoration: "none",
@@ -73,6 +68,7 @@ const CategoryAndSubcategoryComponent = ({dropdownRef}) => {
               ))}
             </ul>
           </ul>
+           )
         ))}
       </div>
     </>

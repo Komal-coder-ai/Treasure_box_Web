@@ -42,21 +42,15 @@ const Footer = ({ catval,  bgcolor, textcolor, imptext }) => {
     setShowloginpopup(!showloginpopup);
   };
 
-  // Define default colors
-  const defaultBgColor = " var(--secondary-color)";
-  const defaultTextColor = "#000000";
-
-  // Determine final colors based on props or defaults
-  const finalBgColor = bgcolor || defaultBgColor;
-  const finalTextColor = textcolor || defaultTextColor;
+ 
 
   return (
     <footer
       className="footer container-fluid"
       style={{
         padding: "50px",
-        backgroundColor: finalBgColor,
-        color: finalTextColor,
+        backgroundColor: "black",
+        color: "var(--secondary-color)",
       }}
     >
       <div
@@ -71,7 +65,7 @@ const Footer = ({ catval,  bgcolor, textcolor, imptext }) => {
               <p
                 className="footerheading"
                 style={{
-                  color: finalTextColor,
+                  color: "var(--secondary-color)",
                 }}
               >
                 Categories
@@ -86,7 +80,7 @@ const Footer = ({ catval,  bgcolor, textcolor, imptext }) => {
                     >
                       <p
                         style={{
-                          color: finalTextColor,
+                          color: "var(--secondary-color)",
                         }}
                       >
                         {name.category_name}
@@ -105,7 +99,7 @@ const Footer = ({ catval,  bgcolor, textcolor, imptext }) => {
               <p
                 className="footerheading"
                 style={{
-                  color: finalTextColor,
+                  color: "var(--secondary-color)",
                 }}
               >
                 Help
@@ -113,7 +107,7 @@ const Footer = ({ catval,  bgcolor, textcolor, imptext }) => {
               <li
                 className="nospace"
                 style={{
-                  color: finalTextColor,
+                  color: "var(--secondary-color)",
                 }}
               >
                 <Link  to="/contact" className="">
@@ -123,7 +117,7 @@ const Footer = ({ catval,  bgcolor, textcolor, imptext }) => {
               <li
                 className="nospace"
                 style={{
-                  color: finalTextColor,
+                  color: "var(--secondary-color)",
                 }}
               >
                 <Link  to="/help" className="">
@@ -133,7 +127,7 @@ const Footer = ({ catval,  bgcolor, textcolor, imptext }) => {
               <li
                 className="nospace"
                 style={{
-                  color: finalTextColor,
+                  color: "var(--secondary-color)",
                 }}
               >
                 <Link to="/terms" className="">
@@ -143,7 +137,7 @@ const Footer = ({ catval,  bgcolor, textcolor, imptext }) => {
               <li
                 className="nospace"
                 style={{
-                  color: finalTextColor,
+                  color: "var(--secondary-color)",
                 }}
               >
                 <Link  to="/privacy" className="">
@@ -153,7 +147,7 @@ const Footer = ({ catval,  bgcolor, textcolor, imptext }) => {
               <li
                 className="nospace"
                 style={{
-                  color: finalTextColor,
+                  color: "var(--secondary-color)",
                 }}
               >
                 <Link  to="/about" className="">
@@ -163,7 +157,7 @@ const Footer = ({ catval,  bgcolor, textcolor, imptext }) => {
               <li
                 className="nospace"
                 style={{
-                  color: finalTextColor,
+                  color: "var(--secondary-color)",
                 }}
               >
                 <Link  to="/return" className="">
@@ -173,7 +167,7 @@ const Footer = ({ catval,  bgcolor, textcolor, imptext }) => {
               <li
                 className="nospace"
                 style={{
-                  color: finalTextColor,
+                  color: "var(--secondary-color)",
                 }}
               >
                 <Link  to="/refund" className="">
@@ -183,7 +177,7 @@ const Footer = ({ catval,  bgcolor, textcolor, imptext }) => {
               <li
                 className="nospace"
                 style={{
-                  color: finalTextColor,
+                  color: "var(--secondary-color)",
                 }}
               >
                 <Link  to="/shipping" className="">
@@ -196,20 +190,20 @@ const Footer = ({ catval,  bgcolor, textcolor, imptext }) => {
           <div
             className="col-2-2 col-lg-3"
             style={{
-              color: finalTextColor,
+              color: "var(--secondary-color)",
             }}
           >
             <p
               className="footerheading"
               style={{
-                color: finalTextColor,
+                color: "var(--secondary-color)",
               }}
             >
               GET IN TOUCH
             </p>
             <p
               style={{
-                color: finalTextColor,
+                color: "var(--secondary-color)",
               }}
             >
               Any questions? <span>Let us know</span>
@@ -217,7 +211,7 @@ const Footer = ({ catval,  bgcolor, textcolor, imptext }) => {
   href="mailto:info@treasurebox.live"
 
   className="footcolorlinks"
-  style={{ color: finalTextColor }}
+  style={{ color: "var(--secondary-color)" }}
 >
   info@treasurebox.live
 </a></li>
@@ -227,7 +221,7 @@ const Footer = ({ catval,  bgcolor, textcolor, imptext }) => {
             <p
               className="stext-301 nospace footcolor p-b-10 p-t-15"
               style={{
-                color: finalTextColor,
+                color: "var(--secondary-color)",
               }}
             >
               Follow Us
@@ -235,7 +229,7 @@ const Footer = ({ catval,  bgcolor, textcolor, imptext }) => {
              
                 className="icon footerSocialMediaIcon"
                 style={{
-                  color: finalTextColor,
+                  color: "var(--secondary-color)",
                 }}
               >
                 <a
@@ -246,7 +240,7 @@ const Footer = ({ catval,  bgcolor, textcolor, imptext }) => {
                   <FaInstagram
                     className="footerSocialMediaIcon"
                     style={{
-                      color: finalTextColor,
+                      color: "var(--secondary-color)",
                     }}
                   />
                 </a>
@@ -258,7 +252,7 @@ const Footer = ({ catval,  bgcolor, textcolor, imptext }) => {
                   <FaFacebookF
                     className="footerSocialMediaIcon"
                     style={{
-                      color: finalTextColor,
+                      color: "var(--secondary-color)",
                     }}
                   />
                 </a>
@@ -266,7 +260,7 @@ const Footer = ({ catval,  bgcolor, textcolor, imptext }) => {
                   <CiLocationOn
                     className="footerSocialMediaIcon"
                     style={{
-                      color: finalTextColor,
+                      color: "var(--secondary-color)",
                     }}
                   />
                 </a>

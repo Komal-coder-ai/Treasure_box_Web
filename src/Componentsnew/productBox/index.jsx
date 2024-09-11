@@ -32,7 +32,7 @@ const ProductBox = ({
   const user_id = localStorage.getItem("user_id");
   const [showLoginPopup, setShowLoginPopup] = useState(false);
   const [secondaryImages, setSecondaryImages] = useState({});
-  const { product, name } = useParams();
+  const { product, name, type } = useParams();
   console.log(name, "namenamenamename")
   const handleDetailPage = (id, name) => {
     const cleanedName = name.replace(/[^\w\s]/gi, "");
@@ -95,16 +95,17 @@ const ProductBox = ({
 
   return (
     <>
-      <Container className="slider-container">
-        <Stack spacing={2}>
+      <Stack spacing={2}>
 
-          <Breadcrumbs
-            separator={<NavigateNextIcon fontSize="small" />}
-            aria-label="breadcrumb"
-          >
-            <BreadcrumbsFunction link1="Home" link2={product} link3={name} />
-          </Breadcrumbs>
-        </Stack>
+        <Breadcrumbs
+          separator={<NavigateNextIcon fontSize="small" />}
+          aria-label="breadcrumb"
+        >
+          <BreadcrumbsFunction link1="Home" link2={product} link3={name} link4={type} />
+        </Breadcrumbs>
+      </Stack>
+      <Container className="slider-container">
+
 
 
 

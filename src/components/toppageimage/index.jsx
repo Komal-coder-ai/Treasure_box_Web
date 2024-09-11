@@ -20,7 +20,10 @@ const TopPageImage = ({ pagename, bgimg }) => {
           backgroundImage: `url(${bgimg || defaultBgImg})`,
           width: "100%",
           height: "70vh",
+       
           backgroundSize: "cover",
+          backgroundPosition: "center",
+          backgroundRepeat: "no-repeat",
         }}
       >
         <div>

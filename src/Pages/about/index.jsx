@@ -6,13 +6,14 @@ import serviceicon2 from "../../Assect/bethemestore2-about-pic3.svg";
 import serviceicon3 from "../../Assect/bethemestore2-about-pic11.svg";
 import serviceicon4 from "../../Assect/bethemestore2-about-pic4.svg";
 import iconabout from "../../Assect/bethemestore2-about-pic5.png";
+import aboutbgimage from '../../Assect/aboutbgimage.jpeg'
 import "./index.css";
 import TopPageImage from "../../components/toppageimage";
 const About = () => {
   return (
     <>
 	  <div className="TopPageForMobile">
-  	<TopPageImage pagename="About Us"></TopPageImage>
+  	<TopPageImage pagename="About Us" bgimg={aboutbgimage} ></TopPageImage>
       </div>
 	
      <div className="aboutOuterCon">
