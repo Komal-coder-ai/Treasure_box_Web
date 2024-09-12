@@ -104,7 +104,12 @@ const DetailPageTab = ({
                     <div className="data mx-3">
                       <h5>{review.name}</h5>
                       <p>{review.email}</p>
-                      <Rating name="no-value" value={review.rating} color="var(--primary-color)" className="startrating mt-1" />
+                      <Rating name="no-value" 
+                      value={review.rating} 
+                      color="var(--primary-color)"
+                       className="startrating mt-1" 
+                    readOnly
+                       />
 
                       <p>{review.comment}</p>
                     </div>

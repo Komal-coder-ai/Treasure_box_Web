@@ -97,7 +97,7 @@ const ProductBox = ({
     <>
       <Stack spacing={2}>
 
-      
+
       </Stack>
       <Container className="slider-container">
 
@@ -111,176 +111,182 @@ const ProductBox = ({
               <div className="product-box"
 
               >
-                <div className="product-img-box">
-                  <div className="likebuttonForMobile">
-                    {item.is_wishlist ? (
-                      <p>
-                        <FavoriteIcon
-                          className="product-icon"
-                          onClick={() =>
-                            handleLikeToggle(
-                              item.id || item.productId,
-                              index,
-                              "remove",
-                              user_id
-                            )
-                          }
-                        />
-                      </p>
-                    ) : (
-                      <p>
-                        <FavoriteBorderIcon
-                          className="product-icon"
-                          onClick={() =>
-                            handleLikeToggle(
-                              item.id || item.productId,
-                              index,
-                              "add",
-                              user_id
-                            )
-                          }
-                        />
-                      </p>
-                    )}
-                  </div>
+                
 
-                  <img
+                  <>
+                    <div className="product-img-box">
+                      <div className="likebuttonForMobile">
+                        {item.is_wishlist ? (
+                          <p>
+                            <FavoriteIcon
+                              className="product-icon"
+                              onClick={() =>
+                                handleLikeToggle(
+                                  item.id || item.productId,
+                                  index,
+                                  "remove",
+                                  user_id
+                                )
+                              }
+                            />
+                          </p>
+                        ) : (
+                          <p>
+                            <FavoriteBorderIcon
+                              className="product-icon"
+                              onClick={() =>
+                                handleLikeToggle(
+                                  item.id || item.productId,
+                                  index,
+                                  "add",
+                                  user_id
+                                )
+                              }
+                            />
+                          </p>
+                        )}
+                      </div>
 
-                    onMouseEnter={() => handleImageHover(index, true)}
-                    onMouseLeave={() => handleImageHover(index, false)}
+                      <img
 
-                    onClick={() =>
-                      handleDetailPage(
-                        item.productId || item.id,
-                        item.product_name || item.productName
-                      )
-                    }
-                    className="product-image"
-                    src={
-                      secondaryImages[index] ||
-                      `${ImageUrl}/${item.files || item.file}`
-                    }
-                    alt=""
+                        onMouseEnter={() => handleImageHover(index, true)}
+                        onMouseLeave={() => handleImageHover(index, false)}
 
-
-                  />
-
-                  <div className="product-icons">
-                    <p>
-                      <ShoppingBagOutlinedIcon
-                        disabled={item.is_active === 0}
-                        sx={{
-                          cursor: item.is_active === 0 ? "no-drop" : "pointer",
-                        }}
                         onClick={() =>
-                          item.is_active === 0
-                            ? ""
-                            : handleDetailPage(
-                              item.productId || item.id,
-                              item.product_name || item.productName
-                            )
+                          handleDetailPage(
+                            item.productId || item.id,
+                            item.product_name || item.productName
+                          )
                         }
-                        className="product-icon"
+                        className="product-image"
+                        src={
+                          secondaryImages[index] ||
+                          `${ImageUrl}/${item.files || item.file}`
+                        }
+                        alt=""
+
+
                       />
-                    </p>
-                    <p>
-                      {item.is_wishlist ? (
-                        <FavoriteIcon
-                          sx={{
-                            color: "var(--primary-color)",
-                            cursor: "pointer",
-                          }}
-                          onClick={() =>
-                            handleLikeToggle(
-                              item.id || item.productId,
-                              index,
-                              "remove",
-                              user_id
-                            )
-                          }
-                          className="product-icon"
-                        />
-                      ) : (
-                        <FavoriteBorderIcon
-                          sx={{ cursor: "pointer" }}
-                          onClick={() =>
-                            handleLikeToggle(
-                              item.id || item.productId,
-                              index,
-                              "add",
-                              user_id
-                            )
-                          }
-                          className="product-icon"
-                        />
-                      )}
-                    </p>
 
-                  </div>
-                </div>
-                <div
-                  className="product-description"
-                  style={{ marginTop: "20px" }}
-                >
-                  {item.is_active === 0 ? (
-                    <p className="outofstockCom test-align"
-                      style={{ color: "red" }}
-                    >
-                      <OutOfStock />
-                    </p>
-                  ) : (
-                    ""
-                  )}
-
-                  <p
-                    className="product_name"
-                    onClick={() =>
-                      handleDetailPage(
-                        item.productId || item.id,
-                        item.product_name || item.productName
-                      )
-                    }
-                  >
-                    {item.product_name || item.productName}
-                  </p>
-
-                  <p className="product-price">
-                    {item.discount_percent === 0 ? (
-                      <span className="mrp-with-discount product-icon_rs">
-                        <CurrencyRupeeIcon
-                          style={{ fontSize: "14px", color: "black" }}
-                        />{" "}
-                        {item.discount_amount || item.price}
-                      </span>
-                    ) : (
-                      <>
-                        <span className="mrp-with-discount product-icon_rs">
-                          <CurrencyRupeeIcon
-                            style={{ fontSize: "14px", color: "black", marginRight: "5px" }}
+                      <div className="product-icons">
+                        <p>
+                          <ShoppingBagOutlinedIcon
+                            disabled={item.is_active === 0}
+                            sx={{
+                              cursor: item.is_active === 0 ? "no-drop" : "pointer",
+                            }}
+                            onClick={() =>
+                              item.is_active === 0
+                                ? ""
+                                : handleDetailPage(
+                                  item.productId || item.id,
+                                  item.product_name || item.productName
+                                )
+                            }
+                            className="product-icon"
                           />
-                          {item.discount_amount}
-                        </span>
-                        <strike className="discount_mrp"
+                        </p>
+                        <p>
+                          {item.is_wishlist ? (
+                            <FavoriteIcon
+                              sx={{
+                                color: "var(--primary-color)",
+                                cursor: "pointer",
+                              }}
+                              onClick={() =>
+                                handleLikeToggle(
+                                  item.id || item.productId,
+                                  index,
+                                  "remove",
+                                  user_id
+                                )
+                              }
+                              className="product-icon"
+                            />
+                          ) : (
+                            <FavoriteBorderIcon
+                              sx={{ cursor: "pointer" }}
+                              onClick={() =>
+                                handleLikeToggle(
+                                  item.id || item.productId,
+                                  index,
+                                  "add",
+                                  user_id
+                                )
+                              }
+                              className="product-icon"
+                            />
+                          )}
+                        </p>
+
+                      </div>
+                    </div>
+                    <div
+                      className="product-description"
+                      style={{ marginTop: "20px" }}
+                    >
+                      {item.is_in_stock === 0 ? (
+                        <p className="outofstockCom test-align"
+                          style={{ color: "red" }}
                         >
-                          <span style={{ marginLeft: "5px" }}>  {item.mrp_amount || item.price}</span>
-                        </strike>
-                        {/* <span className="discount_percent">
+                          <OutOfStock />
+                        </p>
+                      ) : (
+                        ""
+                      )}
+
+                      <p
+                        className="product_name"
+                        onClick={() =>
+                          handleDetailPage(
+                            item.productId || item.id,
+                            item.product_name || item.productName
+                          )
+                        }
+                      >
+                        {item.product_name || item.productName}
+                      </p>
+
+                      <p className="product-price">
+                        {item.discount_percent === 0 ? (
+                          <span className="mrp-with-discount product-icon_rs">
+                            <CurrencyRupeeIcon
+                              style={{ fontSize: "14px", color: "black" }}
+                            />{" "}
+                            {item.discount_amount || item.price}
+                          </span>
+                        ) : (
+                          <>
+                            <span className="mrp-with-discount product-icon_rs">
+                              <CurrencyRupeeIcon
+                                style={{ fontSize: "14px", color: "black", marginRight: "5px" }}
+                              />
+                              {item.discount_amount}
+                            </span>
+                            <strike className="discount_mrp"
+                            >
+                              <span style={{ marginLeft: "5px" }}>  {item.mrp_amount || item.price}</span>
+                            </strike>
+                            {/* <span className="discount_percent">
                           {item.discount_percent}% off{" "}
                         </span> */}
-                      </>
-                    )}
-                  </p>
+                          </>
+                        )}
+                      </p>
 
-                  <div className="addtocart"
-                    onClick={() =>
-                      handleDetailPage(
-                        item.productId || item.id,
-                        item.product_name || item.productName
-                      )
-                    } >
-                    <IoAddSharp /> <span>Add to cart</span>
-                  </div>
-                </div>
+                      <div className="addtocart"
+                        onClick={() =>
+                          handleDetailPage(
+                            item.productId || item.id,
+                            item.product_name || item.productName
+                          )
+                        } >
+                        <IoAddSharp /> <span>Add to cart</span>
+                      </div>
+                    </div>
+                  </>
+               
+
               </div>
             </Grid>
           ))}

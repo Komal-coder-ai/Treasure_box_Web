@@ -567,7 +567,7 @@ const ProductDetail = ({ reload, setReload, setCatval }) => {
                       <CurrencyRupeeIcon sx={{ fontSize: "16px" }} />{" "}
                       {details.mrp_amount ? details.mrp_amount : details.price}
                     </span>
-                    {details.is_active === 0 ? (
+                    {details.is_in_stock === 0 ? (
                       <p className="soldout"
                         style={{ color: "red" }}
                       >
@@ -600,7 +600,7 @@ const ProductDetail = ({ reload, setReload, setCatval }) => {
                     <span className="discount_percent">
                       {details.discount_percent} Rs off{" "}
                     </span> */}
-                    {details.is_active === 0 ? (
+                    {details.is_in_stock === 0 ? (
                       <p className="soldout"
                         style={{ color: "red !important" }}
                       >

@@ -52,6 +52,7 @@ const RelatedProductList = ({
       });
       if (response.data.status) {
         setProducts(response.data.list);
+        console.log("products", response.data.list);
       } else {
         throw new Error("Failed to fetch data");
       }
@@ -113,7 +114,7 @@ const RelatedProductList = ({
       try {
         if (type === "remove") {
           await deleteApiCall(`${deleteFromWishlistApi}/${user_id}/${id}`);
-          
+
           const updatedList = newarrivalList.filter(
             (item) => item.productId !== id
           );
@@ -147,169 +148,176 @@ const RelatedProductList = ({
   };
 
   return (
-    <div className="related-products">
-      <Container className="d-flex">
-        <Col><hr /></Col>
-        <Col className="text-center" style={{ color: "#201f1f" }}>
-          <h1>Related Products</h1>
-        </Col>
-        <Col><hr /></Col>
-      </Container>
-      <p className="text-center">Check out these related items to complement your choice!</p>
 
-      <div className="slider-wrapper">
-      {products.length > itemsPerPage && (
-          <ArrowBackIosIcon
-            onClick={handlePrev}
-            style={{ cursor: "pointer", fontSize: "2rem", color: "var(--primary-color)" }}
-          />
-        )}
-        <div className="slider-container">
-          <div className="product-list" style={{ display: "flex" }}>
-            {displayedProducts.map((item, index) => (
-              <div
-                key={item.id}
-                className="product-box"
-                style={{
-                  flex: "0 0 auto",
-                  width: `${100 / itemsPerPage}%`,
-                  padding: "10px",
-                }}
-              >
-                <div className="product-img-box">
+    <>
+
+      {products.length > 0 && (
+        <div className="related-products">
+          <Container className="d-flex">
+            <Col><hr /></Col>
+            <Col className="text-center" style={{ color: "#201f1f" }}>
+              <h1>Related Products</h1>
+            </Col>
+            <Col><hr /></Col>
+          </Container>
+          <p className="text-center">Check out these related items to complement your choice!</p>
+
+          <div className="slider-wrapper">
+            {products.length > itemsPerPage && (
+              <ArrowBackIosIcon
+                onClick={handlePrev}
+                style={{ cursor: "pointer", fontSize: "2rem", color: "var(--primary-color)" }}
+              />
+            )}
+            <div className="slider-container">
+              <div className="product-list" style={{ display: "flex" }}>
+                {displayedProducts.map((item, index) => (
                   <div
-                    className="likebuttonForMobile"
-                    onClick={() =>
-                      handleLikeToggle(
-                        item.id,
-                        index,
-                        item.is_wishlist ? "remove" : "add"
-                      )
-                    }
-                  >
-                    {item.is_wishlist ? (
-                      <FavoriteIcon className="product-icon" />
-                    ) : (
-                      <FavoriteBorderIcon className="product-icon" />
-                    )}
-                  </div>
-
-                  <img
-                    onMouseEnter={() => handleImageHover(index, true)}
-                    onMouseLeave={() => handleImageHover(index, false)}
-                    onClick={() => handleDetailPage(item.id, item.product_name)}
-                    className="product-image"
-                    src={
-                      (item && secondaryImages[index]) || (item && `${ImageUrl}/${item.files}`)
-                    }
-                    alt={item ? item.product_name : "Product"}
+                    key={item.id}
+                    className="product-box"
                     style={{
-                      width: "300px",
-                      height: "400px",
+                      flex: "0 0 auto",
+                      width: `${100 / itemsPerPage}%`,
+                      padding: "10px",
                     }}
-                  />
+                  >
+                    <div className="product-img-box">
+                      <div
+                        className="likebuttonForMobile"
+                        onClick={() =>
+                          handleLikeToggle(
+                            item.id,
+                            index,
+                            item.is_wishlist ? "remove" : "add"
+                          )
+                        }
+                      >
+                        {item.is_wishlist ? (
+                          <FavoriteIcon className="product-icon" />
+                        ) : (
+                          <FavoriteBorderIcon className="product-icon" />
+                        )}
+                      </div>
 
-                  <div className="product-icons">
-                    <p>
-                      <ShoppingBagOutlinedIcon
-                        className="product-icon"
+                      <img
+                        onMouseEnter={() => handleImageHover(index, true)}
+                        onMouseLeave={() => handleImageHover(index, false)}
+                        onClick={() => handleDetailPage(item.id, item.product_name)}
+                        className="product-image"
+                        src={
+                          (item && secondaryImages[index]) || (item && `${ImageUrl}/${item.files}`)
+                        }
+                        alt={item ? item.product_name : "Product"}
+                        style={{
+                          width: "300px",
+                          height: "400px",
+                        }}
+                      />
+
+                      <div className="product-icons">
+                        <p>
+                          <ShoppingBagOutlinedIcon
+                            className="product-icon"
+                            onClick={() =>
+                              handleDetailPage(
+                                item.productId || item.id,
+                                item.product_name || item.productName
+                              )
+                            }
+                          />
+                        </p>
+                        {item.is_wishlist ? (
+                          <p>
+                            <FavoriteIcon
+                              className="product-icon"
+                              onClick={() =>
+                                handleLikeToggle(
+                                  item.id || item.productId,
+                                  index,
+                                  "remove",
+                                  user_id
+                                )
+                              }
+                            />
+                          </p>
+                        ) : (
+                          <p>
+                            <FavoriteBorderIcon
+                              className="product-icon"
+                              onClick={() =>
+                                handleLikeToggle(
+                                  item.id || item.productId,
+                                  index,
+                                  "add",
+                                  user_id
+                                )
+                              }
+                            />
+                          </p>
+                        )}
+                      </div>
+                    </div>
+                    <div className="product-description" style={{ marginTop: "20px" }}>
+                      <p
+                        className="product-name"
+                        onClick={() => handleDetailPage(item.id, item.product_name)}
+                      >
+                        {truncateProductName(item.product_name, 25)}
+                      </p>
+                      <p className="product-price">
+                        {item.discount_percent === 0 ? (
+                          <span className="mrp-with-discount product-icon_rs">
+                            <CurrencyRupeeIcon style={{ fontSize: "14px" }} />{" "}
+                            {item.discount_amount || item.price}
+                          </span>
+                        ) : (
+                          <>
+                            <span className="mrp-with-discount product-icon_rs">
+                              <CurrencyRupeeIcon style={{ fontSize: "14px", marginLeft: "5px" }} />
+                              {item.discount_amount}
+                            </span>
+                            <strike className="discount-mrp"
+                              style={{ marginLeft: "5px" }}
+                            >
+                              <CurrencyRupeeIcon style={{ fontSize: "14px", marginLeft: "5px" }} />
+
+                              {item.mrp_amount || item.price}
+                            </strike>
+                            {/* <span className="discount-percent">
+                           ({item.discount_percent}% Off)
+                         </span> */}
+                          </>
+                        )}
+                      </p>
+                      <div className="addtocart"
                         onClick={() =>
                           handleDetailPage(
                             item.productId || item.id,
                             item.product_name || item.productName
                           )
                         }
-                      />
-                    </p>
-                    {item.is_wishlist ? (
-                      <p>
-                        <FavoriteIcon
-                          className="product-icon"
-                          onClick={() =>
-                            handleLikeToggle(
-                              item.id || item.productId,
-                              index,
-                              "remove",
-                              user_id
-                            )
-                          }
-                        />
-                      </p>
-                    ) : (
-                      <p>
-                        <FavoriteBorderIcon
-                          className="product-icon"
-                          onClick={() =>
-                            handleLikeToggle(
-                              item.id || item.productId,
-                              index,
-                              "add",
-                              user_id
-                            )
-                          }
-                        />
-                      </p>
-                    )}
+                      >
+                        <IoAddSharp /> <span> Add to cart</span>
+                      </div>
+                    </div>
                   </div>
-                </div>
-                <div className="product-description" style={{ marginTop: "20px" }}>
-                  <p
-                    className="product-name"
-                    onClick={() => handleDetailPage(item.id, item.product_name)}
-                  >
-                    {truncateProductName(item.product_name, 25)}
-                  </p>
-                  <p className="product-price">
-                    {item.discount_percent === 0 ? (
-                      <span className="mrp-with-discount product-icon_rs">
-                        <CurrencyRupeeIcon style={{ fontSize: "14px" }} />{" "}
-                        {item.discount_amount || item.price}
-                      </span>
-                    ) : (
-                      <>
-                        <span className="mrp-with-discount product-icon_rs">
-                          <CurrencyRupeeIcon style={{ fontSize: "14px", marginLeft: "5px" }} />
-                          {item.discount_amount}
-                        </span>
-                        <strike className="discount-mrp" 
-                        style={{marginLeft: "5px"}}
-                        >
-                        <CurrencyRupeeIcon style={{ fontSize: "14px", marginLeft: "5px" }} />
-                        
-                          {item.mrp_amount || item.price}
-                        </strike>
-                        {/* <span className="discount-percent">
-                          ({item.discount_percent}% Off)
-                        </span> */}
-                      </>
-                    )}
-                   </p>
-                   <div className="addtocart"
-                  onClick={() =>
-                    handleDetailPage(
-                      item.productId || item.id,
-                      item.product_name || item.productName
-                    )
-                  }
-                >
-                  <IoAddSharp /> <span> Add to cart</span>
-                </div>
-                </div>
+                ))}
               </div>
-            ))}
+            </div>
+            {products.length > itemsPerPage && (
+
+              <ArrowForwardIosIcon
+                onClick={handleNext}
+                style={{ cursor: "pointer", fontSize: "2rem", color: "var(--primary-color)" }}
+              />
+            )}
+
+
           </div>
         </div>
-        {products.length > itemsPerPage && (
+      )}
 
-          <ArrowForwardIosIcon
-            onClick={handleNext}
-            style={{ cursor: "pointer", fontSize: "2rem", color: "var(--primary-color)" }}
-          />
-        )}
-
-        
-      </div>
-    </div>
+    </>
   );
 };
 
