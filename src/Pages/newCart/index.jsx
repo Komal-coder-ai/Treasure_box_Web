@@ -7,6 +7,9 @@ import { GrFormClose } from "react-icons/gr";
 import TopPageImage from "../../components/toppageimage";
 import CartForMobile from "../CartForMobile";
 
+import { IoMdAdd } from "react-icons/io";
+import { RiSubtractFill } from "react-icons/ri";
+
 import "./index.css";
 import Empty from "../emptypage/emptyCart";
 import {
@@ -199,14 +202,14 @@ const Newcart = ({ reload, setReload }) => {
           <Loader />
         ) : (
           <div className="newcart_container">
- <Breadcrumbs
-          separator={<NavigateNextIcon fontSize="small" />}
-          aria-label="breadcrumb"
-        >
-          <BreadcrumbsFunction link1="Home"
-            page="Cart"
-          />
-        </Breadcrumbs>
+            <Breadcrumbs
+              separator={<NavigateNextIcon fontSize="small" />}
+              aria-label="breadcrumb"
+            >
+              <BreadcrumbsFunction link1="Home"
+                page="Cart"
+              />
+            </Breadcrumbs>
 
             {data.length ? (
               <div className="">
@@ -284,31 +287,53 @@ const Newcart = ({ reload, setReload }) => {
                           {product.is_active === 0 ? (
                             <p className="oos">Out Of Stock</p>
                           ) : (
-                            <div className="qunatitydiv d-flex">
-                              <RiSubtractLine
-                                disabled={loading}
-                                onClick={() =>
-                                  handleminus(
-                                    product.id,
-                                    product.quantity,
-                                    index
-                                  )
-                                }
-                              />
-                              {/* 
+                            // <div className="qunatitydiv d-flex">
+                            //   <RiSubtractLine
+                            //     disabled={loading}
+                            //     onClick={() =>
+                            //       handleminus(
+                            //         product.id,
+                            //         product.quantity,
+                            //         index
+                            //       )
+                            //     }
+                            //   />
+                            //   {/* 
+                            //   <input
+                            //     type="number"
+                            //     name="num-product2"
+
+                            //     style={{ width: "20px" }}
+                            //   /> */}
+                            //   <p style={{ width: "20px" }}>{product.quantity}</p>
+                            //   <IoAddOutline
+                            //     type="button"
+                            //     disabled={loading}
+                            //     onClick={() => handleplus(product.id, index)}
+                            //   />
+                            // </div>
+
+                            <div className="quantitybutton">
+                              <div className=" quantityAddSubIncon"
+                                disabled={loading} onClick={() => handleminus(product.id, product.quantity, index)}
+                              >
+                                <RiSubtractFill />
+                              </div>
+
                               <input
+                                className=" txt-center num-product"
                                 type="number"
-                                name="num-product2"
-                                
-                                style={{ width: "20px" }}
-                              /> */}
-                              <p style={{ width: "20px" }}>{product.quantity}</p>
-                              <IoAddOutline
-                                type="button"
-                                disabled={loading}
-                                onClick={() => handleplus(product.id, index)}
+                                name="num-product"
+                                value={product.quantity}
+                                style={{ width: "10px" }}
                               />
+
+                              <div className="quantityAddSubIncon" onClick={() => handleplus(product.id, index)}>
+                                <IoMdAdd />
+                              </div>
                             </div>
+
+
                           )}
                         </td>
 

@@ -20,6 +20,9 @@
     width: 110px !important;
     margin-left: 20px;
 }
+.checkoutQuantity{
+    margin-left: 0px !important;
+}
 
 .num-product {
     background: none !important;

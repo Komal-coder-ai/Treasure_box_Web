@@ -13,6 +13,8 @@ import CircleIcon from '@mui/icons-material/Circle';
 import Loader from '../../components/loader';
 import { RiSubtractLine } from 'react-icons/ri';
 import { IoAddOutline } from 'react-icons/io5';
+import { IoMdAdd } from "react-icons/io";
+import { RiSubtractFill } from "react-icons/ri";
 
 const mobilenumber = localStorage.getItem("mobile")
 
@@ -306,7 +308,7 @@ const OrderCheckout = ({ reload, setReload }) => {
             name: 'Treasure box',
             description: 'Explore the world of treasure',
             image: 'https://example.com/your_logo',
-            order_id: paymentdata.id,
+            order_id: paymentdata?.id ? paymentdata.id : "",
             handler: function (response) {
                 // alert(response.razorpay_payment_id);
                 // alert(response.razorpay_order_id);
@@ -514,7 +516,7 @@ const OrderCheckout = ({ reload, setReload }) => {
 
                                         <p className='header-cart-item-rupee'><CurrencyRupeeIcon sx={{ fontSize: "16px" }} />{product.discount_percent === 0 ? product.mrp_amount : product.discount_amount}</p>
 
-                                        <div className=""
+                                        {/* <div className=""
                                             style={{
                                                 width: "100px",
                                                 border: "1px solid",
@@ -536,7 +538,32 @@ const OrderCheckout = ({ reload, setReload }) => {
 
                                             <IoAddOutline type='button' disabled={loading} onClick={() => handleplus(product.id, index)} />
 
+                                        </div> */}
+
+
+                                        <div className="quantitybutton checkoutQuantity">
+                                            <div className=" quantityAddSubIncon"
+                                                disabled={loading} onClick={() => handleminus(product.id, product.quantity, index)}
+                                            >
+                                                <RiSubtractFill />
+                                            </div>
+
+                                            <input
+                                                className=" txt-center num-product"
+                                                type="number"
+                                                name="num-product"
+                                                value={product.quantity}
+                                                style={{ width: "10px" }}
+                                            />
+
+                                            <div className="quantityAddSubIncon" onClick={() => handleplus(product.id, index)}>
+                                                <IoMdAdd />
+                                            </div>
                                         </div>
+
+
+
+
                                     </div>
 
 
